@@ -11,7 +11,7 @@ find "$GALLERY_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.pn
     # Get the base filename without extension
     base_name="${image_file%.*}"
     caption_file="${base_name}.txt"
-    
+
     # Create caption file if it doesn't exist
     if [ ! -f "$caption_file" ]; then
         touch "$caption_file"

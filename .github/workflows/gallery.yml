@@ -23,7 +23,7 @@ jobs:
       - name: Pull Thumbsup Image 🐳
         run: docker pull ghcr.io/thumbsup/thumbsup:latest
       - name: Process Captions 📝
-        run: docker run -v "$(pwd):/work" ghcr.io/thumbsup/thumbsup:latest /bin/sh -c "cd /work/ && apk add --no-cache exiftool && ./process-captions.sh"
+        run: docker run -v "$(pwd):/work" ghcr.io/thumbsup/thumbsup:latest /bin/sh -c "cd /work/ && apk add --no-cache exiftool && sh process-captions.sh"
       - name: Build Gallery 🔧
         run: docker run -v "$(pwd):/work" ghcr.io/thumbsup/thumbsup:latest /bin/sh -c "cd /work/ && thumbsup --config config.json"
       - name: Package and upload artifact 📦

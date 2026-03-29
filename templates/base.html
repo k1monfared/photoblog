@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/photoblog/">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="static/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Photoblog RSS Feed" href="feed.xml">
+  <script src="static/theme.js"></script>
+  <script src="static/pagination.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="./">Photoblog</a>
+      <nav>
+        <a href="feed.xml">RSS</a>
+        <button id="tag-sidebar-toggle" aria-label="Tags">Tags</button>
+        <button id="timeline-sidebar-toggle" aria-label="Timeline">Timeline</button>
+        <button id="theme-toggle" aria-label="Toggle theme"></button>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    {{content}}
+  </main>
+  {{sidebar}}
+  {{timeline_sidebar}}
+  <footer>
+    <div class="container">
+      <!-- Giscus comments can be added here -->
+    </div>
+  </footer>
+  <script src="static/sidebar.js"></script>
+  <script src="static/lightbox.js"></script>
+  <script src="static/post-nav.js"></script>
+</body>
+</html>

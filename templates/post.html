@@ -1,0 +1,31 @@
+<article>
+  <h1>{{title}}</h1>
+  <div class="post-meta">{{date}} {{tag_chips}}</div>
+  {{body}}
+  <nav class="post-nav">
+    {{prev_link}}
+    {{next_link}}
+  </nav>
+  <div class="comments">
+    {{comments}}
+    <div class="comment-form-wrapper" data-endpoint="{{comment_endpoint}}">
+      <h3>Leave a comment</h3>
+      <form class="comment-form" action="{{comment_endpoint}}" method="POST">
+        <input type="hidden" name="slug" value="{{post_slug}}">
+        <div class="form-field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" placeholder="Your name (optional)">
+        </div>
+        <div class="form-field hp-field">
+          <label for="cf-url">Website</label>
+          <input type="text" id="cf-url" name="url" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="cf-comment">Comment</label>
+          <textarea id="cf-comment" name="comment" rows="4" required placeholder="Your comment..."></textarea>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</article>

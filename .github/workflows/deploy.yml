@@ -1,0 +1,83 @@
+name: Deploy Photoblog
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: false
+
+      - name: Restore LFS cache
+        uses: actions/cache@v4
+        with:
+          path: .git/lfs
+          key: lfs-${{ hashFiles('.lfs-assets-id') }}
+          restore-keys: lfs-
+
+      - name: Pull LFS media files
+        run: |
+          git lfs install
+          git lfs pull --include="*.png,*.jpg,*.jpeg,*.gif,*.svg,*.mp4" || echo "::warning::LFS pull failed — using cached build"
+          git rev-parse HEAD > .lfs-assets-id
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore build cache
+        id: build-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            _site
+            .build_cache.json
+          key: photoblog-build-${{ hashFiles('build.py', 'templates/**', 'static/**') }}-${{ hashFiles('*.md') }}
+          restore-keys: |
+            photoblog-build-${{ hashFiles('build.py', 'templates/**', 'static/**') }}-
+            photoblog-build-
+
+      - name: Force full rebuild if build tools changed
+        if: steps.build-cache.outputs.cache-hit != 'true'
+        run: rm -f .build_cache.json
+
+      - name: Build photoblog
+        run: python build.py
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

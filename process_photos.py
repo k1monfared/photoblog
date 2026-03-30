@@ -14,6 +14,7 @@ BLOG_DIR = Path(__file__).parent
 ORIGINAL_DIR = BLOG_DIR / "original_photos"
 WEB_DIR = BLOG_DIR / "files" / "photoblog"
 METADATA_DIR = BLOG_DIR / "metadata"
+POSTS_DIR = BLOG_DIR / "posts"
 
 MAX_WIDTH = 1200
 MAX_HEIGHT = 1600
@@ -286,7 +287,7 @@ def process_new():
                 if parts:
                     md_content += "\n" + "\n\n".join(parts) + "\n"
 
-            md_path = BLOG_DIR / f"{slug}.md"
+            md_path = POSTS_DIR / f"{slug}.md"
             if not md_path.exists():
                 md_path.write_text(md_content, encoding="utf-8")
 

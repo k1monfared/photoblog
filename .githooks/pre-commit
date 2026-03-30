@@ -2,7 +2,7 @@
 output=$(python process_photos.py 2>&1)
 if echo "$output" | grep -q "Processed [1-9]"; then
     echo "$output"
-    git add metadata/ files/photoblog/ *.md
+    git add metadata/ files/photoblog/ posts/*.md
     echo "New photos processed and staged. Review then re-commit."
     exit 1
 fi

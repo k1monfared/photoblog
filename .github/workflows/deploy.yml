@@ -41,7 +41,7 @@ jobs:
           path: |
             _site
             .build_cache.json
-          key: photoblog-build-${{ hashFiles('build.py', 'templates/**', 'static/**') }}-${{ hashFiles('*.md') }}
+          key: photoblog-build-${{ hashFiles('build.py', 'templates/**', 'static/**') }}-${{ hashFiles('posts/*.md') }}
           restore-keys: |
             photoblog-build-${{ hashFiles('build.py', 'templates/**', 'static/**') }}-
             photoblog-build-

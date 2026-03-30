@@ -10,6 +10,7 @@ from pathlib import Path
 BLOG_DIR = Path(__file__).parent
 METADATA_DIR = BLOG_DIR / "metadata"
 PHOTOS_DIR = BLOG_DIR / "files" / "photoblog"
+POSTS_DIR = BLOG_DIR / "posts"
 
 
 def classify_image(path):
@@ -144,7 +145,7 @@ def compute_new_image_name(old_image_path, new_slug):
 def migrate():
     METADATA_DIR.mkdir(parents=True, exist_ok=True)
 
-    md_files = sorted(BLOG_DIR.glob("*_photo.md"))
+    md_files = sorted(POSTS_DIR.glob("*_photo.md"))
     print(f"Found {len(md_files)} posts to migrate")
 
     stats = {"posts": 0, "metadata": 0, "renamed_posts": 0, "renamed_comments": 0,
@@ -205,7 +206,7 @@ def migrate():
             stats["metadata"] += 1
 
         # Rename post file (remove _photo suffix)
-        new_md_path = BLOG_DIR / f"{new_slug}.md"
+        new_md_path = POSTS_DIR / f"{new_slug}.md"
         if filepath != new_md_path:
             # Rewrite post content
             new_content = f"---\ntags: {', '.join(data['tags'])}\nthumbnail: {data['thumbnail']}\n---\n\n# {clean_title}\n\n"

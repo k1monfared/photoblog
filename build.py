@@ -31,6 +31,7 @@ TEMPLATE_DIR = BLOG_DIR / "templates"
 STATIC_DIR = BLOG_DIR / "static"
 FILES_DIR = BLOG_DIR / "files"
 COMMENTS_DIR = BLOG_DIR / "comments"
+POSTS_DIR = BLOG_DIR / "posts"
 SITE_URL = "https://k1monfared.github.io/photoblog"
 COMMENT_ENDPOINT = ""  # Set to serverless function URL when ready
 
@@ -46,7 +47,7 @@ MD_EXTENSION_CONFIGS = {
 }
 
 GITHUB_LINK_RE = re.compile(
-    r"https://github\.com/k1monfared/photoblog/blob/main/(\d{8}_[^)\"'\s]+\.md)"
+    r"https://github\.com/k1monfared/photoblog/blob/main/posts/(\d{8}_[^)\"'\s]+\.md)"
 )
 
 
@@ -317,7 +318,7 @@ def build(local=False, force=False):
     SITE_DIR.mkdir(parents=True, exist_ok=True)
 
     # Collect all post files
-    md_files = sorted(BLOG_DIR.glob("*.md"))
+    md_files = sorted(POSTS_DIR.glob("*.md"))
     posts = []
     for f in md_files:
         date, slug, url_slug = parse_filename(f.name)
@@ -356,7 +357,7 @@ def build(local=False, force=False):
     cached_count = 0
 
     for filename, date, slug, url_slug in posts:
-        filepath = BLOG_DIR / filename
+        filepath = POSTS_DIR / filename
         raw = filepath.read_text(encoding="utf-8")
         raw_hash = content_hash(raw)
 

@@ -8,30 +8,59 @@
   <link rel="stylesheet" href="static/style.css">
   <link rel="alternate" type="application/rss+xml" title="Photoblog RSS Feed" href="feed.xml">
   <script src="static/theme.js"></script>
-  <script src="static/pagination.js"></script>
 </head>
 <body>
   <header>
-    <div class="container">
-      <a href="./">Photoblog</a>
+    <div class="header-inner">
+      <a href="./" class="logo">Photoblog</a>
       <nav>
-        <a href="feed.xml">RSS</a>
-        <button id="tag-sidebar-toggle" aria-label="Tags">Tags</button>
-        <button id="timeline-sidebar-toggle" aria-label="Timeline">Timeline</button>
+        <button id="view-grid" class="view-btn active" aria-label="Grid view" title="Grid view">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="17" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/><rect x="17" y="9" width="6" height="6" rx="1"/><rect x="1" y="17" width="6" height="6" rx="1"/><rect x="9" y="17" width="6" height="6" rx="1"/><rect x="17" y="17" width="6" height="6" rx="1"/></svg>
+        </button>
+        <button id="view-feed" class="view-btn" aria-label="Feed view" title="Feed view">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="1" width="22" height="6" rx="1"/><rect x="1" y="9" width="22" height="6" rx="1"/><rect x="1" y="17" width="22" height="6" rx="1"/></svg>
+        </button>
+        <span class="nav-sep"></span>
+        <button id="tag-sidebar-toggle" aria-label="Tags" title="Tags">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><circle cx="7" cy="7" r="1" fill="currentColor"/></svg>
+        </button>
+        <button id="timeline-sidebar-toggle" aria-label="Timeline" title="Timeline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </button>
         <button id="theme-toggle" aria-label="Toggle theme"></button>
+        <a href="feed.xml" class="nav-icon" aria-label="RSS" title="RSS">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+        </a>
       </nav>
     </div>
   </header>
-  <main class="container">
+  <main>
     {{content}}
   </main>
   {{sidebar}}
   {{timeline_sidebar}}
-  <footer>
-    <div class="container">
-      <!-- Giscus comments can be added here -->
+  <!-- Post preview modal with carousel -->
+  <div class="modal-overlay" id="post-modal">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <div class="modal-photo">
+        <button class="carousel-prev" aria-label="Previous image">&#8249;</button>
+        <img class="modal-img" src="" alt="">
+        <button class="carousel-next" aria-label="Next image">&#8250;</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+        <span class="carousel-counter" id="carousel-counter"></span>
+      </div>
+      <div class="modal-details">
+        <h2 class="modal-title"></h2>
+        <span class="modal-date"></span>
+        <p class="modal-excerpt"></p>
+        <div class="modal-tags"></div>
+        <a class="modal-link" href="">View full post</a>
+      </div>
     </div>
-  </footer>
+  </div>
+  <script src="static/viewtoggle.js"></script>
+  <script src="static/pagination.js"></script>
   <script src="static/sidebar.js"></script>
   <script src="static/lightbox.js"></script>
   <script src="static/post-nav.js"></script>

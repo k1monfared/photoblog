@@ -374,6 +374,10 @@ def build(local=False, force=False):
         # Extract excerpt (fast)
         excerpt = extract_excerpt(content)
 
+        # Extract all image URLs from post content
+        post_images = re.findall(r'!\[.*?\]\(([^)]+)\)', content)
+        post_images = [img for img in post_images if img.startswith("files/")]
+
         # Parse tags (fast)
         tags = []
         raw_tags = meta.get("tags", "")
@@ -381,6 +385,7 @@ def build(local=False, force=False):
             tags = [t.strip().lower() for t in raw_tags.split(",") if t.strip()]
 
         thumbnail = meta.get("thumbnail", "")
+        photo = thumbnail  # full-size web image for grid view
 
         # Generate thumbnails (cached by mtime already)
         if thumbnail and "photoblog" in tags:
@@ -447,6 +452,8 @@ def build(local=False, force=False):
             "excerpt": excerpt,
             "tags": tags,
             "thumbnail": thumbnail,
+            "photo": photo,
+            "post_images": post_images,
             "post_html": post_html,
         })
 
@@ -572,40 +579,34 @@ def build(local=False, force=False):
         m = p["date"].month
         year_month[y][m].append(p)
 
-    timeline_parts = []
+    # Build timeline slider data
+    timeline_marks = []
     for year in sorted(year_month.keys(), reverse=True):
         months = year_month[year]
         year_count = sum(len(posts) for posts in months.values())
-        month_parts = []
+        month_marks = []
         for month in sorted(months.keys(), reverse=True):
             month_posts = months[month]
-            post_links = "\n".join(
-                f'<a href="{p["url_slug"]}/" class="timeline-link" target="_blank" rel="noopener">'
-                f'{html.escape(p["title"])}'
-                f'<span class="timeline-date">{p["date"].day}</span></a>'
-                for p in month_posts
+            month_marks.append(
+                f'<div class="tl-month" data-scroll="date-{year}-{month:02d}">'
+                f'<span class="tl-month-label">{MONTH_NAMES[month][:3]}</span>'
+                f'<span class="tl-month-count">{len(month_posts)}</span>'
+                f'</div>'
             )
-            month_parts.append(
-                f'<details>\n'
-                f'<summary><span class="timeline-label" data-scroll="date-{year}-{month:02d}">{MONTH_NAMES[month]}'
-                f' <span class="tag-count">{len(month_posts)}</span></span></summary>\n'
-                f'{post_links}\n'
-                f'</details>'
-            )
-        timeline_parts.append(
-            f'<details>\n'
-            f'<summary><span class="timeline-label" data-scroll="date-{year}">{year}'
-            f' <span class="tag-count">{year_count}</span></span></summary>\n'
-            f'{"".join(month_parts)}\n'
-            f'</details>'
+        timeline_marks.append(
+            f'<div class="tl-year" data-scroll="date-{year}">\n'
+            f'  <span class="tl-year-label">{year}</span>\n'
+            f'  <span class="tl-year-count">{year_count}</span>\n'
+            f'  <div class="tl-months">{"".join(month_marks)}</div>\n'
+            f'</div>'
         )
 
     timeline_sidebar_html = (
         '<aside class="timeline-sidebar" id="timeline-sidebar">\n'
         '  <div class="timeline-sidebar-header"><h3>Timeline</h3></div>\n'
-        f'  {"".join(timeline_parts)}\n'
+        f'  <div class="tl-track">{"".join(timeline_marks)}</div>\n'
         '</aside>'
-    ) if timeline_parts else ""
+    ) if timeline_marks else ""
 
     # Write post pages (deferred so sidebar is available)
     # posts_data is sorted newest-first, so i-1 = newer, i+1 = older
@@ -669,35 +670,79 @@ def build(local=False, force=False):
         )
         return f'<span class="tag-chips">{chips}</span>'
 
-    def make_post_list(post_list, page_size=None):
-        """Generate <li> items for a list of posts."""
+    def make_grid_items(post_list, page_size=None):
+        """Generate grid items for Instagram-style grid view."""
         items = []
         for i, p in enumerate(post_list):
-            excerpt_html = f'<p class="post-excerpt">{html.escape(p["excerpt"])}</p>' if p["excerpt"] else ""
+            photo = p.get("photo", "") or p.get("thumbnail", "")
+            if not photo:
+                continue
+            date_y = p["date"].strftime("%Y")
+            date_ym = p["date"].strftime("%Y-%m")
+            excerpt = html.escape(p["excerpt"]) if p["excerpt"] else ""
             chips_html = make_tag_chips(p["tags"])
-            thumb = p.get("thumbnail", "")
-            thumb_html = f'<img class="post-thumbnail" src="{html.escape(thumb)}" alt="" loading="lazy">' if thumb else ""
+            post_imgs = p.get("post_images", [])
+            images_json = html.escape(json.dumps(post_imgs))
+            multi_icon = '<span class="grid-multi-icon" aria-label="Multiple images"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></span>' if len(post_imgs) > 1 else ''
+            items.append(
+                f'  <div class="grid-item{" hidden" if page_size and i >= page_size else ""}"'
+                f' data-year="date-{date_y}" data-month="date-{date_ym}"'
+                f' data-url="{p["url_slug"]}/"'
+                f' data-title="{html.escape(p["title"])}"'
+                f' data-date="{p["date_str"]}"'
+                f' data-excerpt="{excerpt}"'
+                f' data-images="{images_json}"'
+                f' data-tags="{html.escape(chips_html)}">\n'
+                f'    <img src="{html.escape(photo)}" alt="{html.escape(p["title"])}" loading="lazy">\n'
+                f'    {multi_icon}\n'
+                f'    <div class="grid-overlay">\n'
+                f'      <span class="grid-overlay-title">{html.escape(p["title"])}</span>\n'
+                f'    </div>\n'
+                f'  </div>'
+            )
+        return "\n".join(items)
+
+    def make_feed_items(post_list, page_size=None):
+        """Generate feed cards for Instagram-style feed view."""
+        items = []
+        for i, p in enumerate(post_list):
+            excerpt_html = f'<p class="feed-excerpt">{html.escape(p["excerpt"])}</p>' if p["excerpt"] else ""
+            chips_html = make_tag_chips(p["tags"])
+            photo = p.get("photo", "") or p.get("thumbnail", "")
+            photo_html = f'<img class="feed-photo" src="{html.escape(photo)}" alt="{html.escape(p["title"])}" loading="lazy">' if photo else ""
             hidden = ' hidden' if page_size and i >= page_size else ''
             date_y = p["date"].strftime("%Y")
             date_ym = p["date"].strftime("%Y-%m")
             items.append(
-                f'  <li{hidden} data-year="date-{date_y}" data-month="date-{date_ym}">\n'
-                f'    <a href="{p["url_slug"]}/" target="_blank" rel="noopener">\n'
-                f'      <span class="post-title">{html.escape(p["title"])}</span>\n'
-                f'      {thumb_html}\n'
-                f'      <span class="post-date">{p["date_str"]}</span>\n'
-                f'      {excerpt_html}\n'
+                f'  <article class="feed-card{" hidden" if page_size and i >= page_size else ""}"'
+                f' data-year="date-{date_y}" data-month="date-{date_ym}">\n'
+                f'    <a href="{p["url_slug"]}/" class="feed-card-link">\n'
+                f'      {photo_html}\n'
                 f'    </a>\n'
-                f'    <div class="post-meta-line">{chips_html}</div>\n'
-                f'  </li>'
+                f'    <div class="feed-card-body">\n'
+                f'      <a href="{p["url_slug"]}/" class="feed-card-title">{html.escape(p["title"])}</a>\n'
+                f'      <span class="feed-card-date">{p["date_str"]}</span>\n'
+                f'      {excerpt_html}\n'
+                f'      <div class="feed-card-tags">{chips_html}</div>\n'
+                f'    </div>\n'
+                f'  </article>'
             )
         return "\n".join(items)
 
+    def make_post_list(post_list, page_size=None):
+        """Generate both grid and feed HTML for a list of posts."""
+        grid_size = page_size * 3 if page_size else None
+        grid_html = make_grid_items(post_list, page_size=grid_size)
+        feed_html = make_feed_items(post_list, page_size=page_size)
+        return grid_html, feed_html
+
     # Generate index page
     PAGE_SIZE = 10
+    grid_html, feed_html = make_post_list(posts_data, page_size=PAGE_SIZE)
     index_content = render_template(
         index_tmpl,
-        posts=make_post_list(posts_data, page_size=PAGE_SIZE),
+        grid_posts=grid_html,
+        feed_posts=feed_html,
     )
     index_html = render_template(base_tmpl, title="Photoblog", content=index_content, sidebar=tag_sidebar_html, timeline_sidebar=timeline_sidebar_html)
     (SITE_DIR / "index.html").write_text(index_html, encoding="utf-8")
@@ -706,10 +751,12 @@ def build(local=False, force=False):
     if tag_map:
         tag_tmpl = load_template("tag.html")
         for tag, tag_posts in tag_map.items():
+            tag_grid, tag_feed = make_post_list(tag_posts)
             tag_content = render_template(
                 tag_tmpl,
                 tag=html.escape(tag),
-                posts=make_post_list(tag_posts),
+                grid_posts=tag_grid,
+                feed_posts=tag_feed,
             )
             tag_html = render_template(
                 base_tmpl, title=f"Posts tagged: {tag}", content=tag_content, sidebar=tag_sidebar_html, timeline_sidebar=timeline_sidebar_html

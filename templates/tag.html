@@ -1,4 +1,8 @@
-<h1>Posts tagged: {{tag}}</h1>
-<ul class="post-list">
-{{posts}}
-</ul>
+<h1 class="tag-page-title">Posts tagged: {{tag}}</h1>
+<div class="gallery-grid" id="gallery-grid">
+{{grid_posts}}
+</div>
+<div class="gallery-feed" id="gallery-feed" style="display:none">
+{{feed_posts}}
+</div>
+<div class="scroll-sentinel" id="scroll-sentinel"></div>

@@ -1,0 +1,25 @@
+{
+  "title": "2022-04-14",
+  "date": "2022-04-14",
+  "slug": "20220414_photo_2",
+  "caption": "",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2022-04-14_photo_02.jpg",
+      "original": "2022-04-14_photo_02.jpg",
+      "alt": "2022-04-14 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "100mm",
+        "aperture": "f/5.6",
+        "shutter_speed": "1/1250s",
+        "iso": 1600,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    }
+  ]
+}

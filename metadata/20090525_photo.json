@@ -1,0 +1,33 @@
+{
+  "title": "2009-05-25",
+  "date": "2009-05-25",
+  "slug": "20090525_photo",
+  "caption": "Why should I give a title to every photo that I post here?",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2009-05-25_photo_01.jpg",
+      "original": "2009-05-25_photo_01.jpg",
+      "alt": "-",
+      "status": "dead",
+      "exif": {}
+    },
+    {
+      "web": "files/photoblog/2009-05-25_photo_02.jpg",
+      "original": "2009-05-25_photo_02.jpg",
+      "alt": "-",
+      "status": "html_with_url",
+      "google_url": "https://lh3.googleusercontent.com/blogger_img/APIUyshAW1opmrQgufIn9PDynoTRnE2mlDq1vdX_2VJG5mbZVzHqUXUgXidv7R8dTvH87HiGl-piPUYW_BlU-PM=s1600",
+      "exif": {}
+    },
+    {
+      "web": "files/photoblog/2009-05-25_photo_03.jpg",
+      "original": "2009-05-25_photo_03.jpg",
+      "alt": "-",
+      "status": "jpeg",
+      "exif": {}
+    }
+  ]
+}

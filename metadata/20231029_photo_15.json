@@ -1,0 +1,25 @@
+{
+  "title": "2023-10-29",
+  "date": "2023-10-29",
+  "slug": "20231029_photo_15",
+  "caption": "",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2023-10-29_photo_15.jpg",
+      "original": "2023-10-29_photo_15.jpg",
+      "alt": "2023-10-29 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "55mm",
+        "aperture": "f/6.3",
+        "shutter_speed": "1/60s",
+        "iso": 200,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "title": "2022-04-14",
+  "date": "2022-04-14",
+  "slug": "20220414_photo_10",
+  "caption": "",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2022-04-14_photo_10.jpg",
+      "original": "2022-04-14_photo_10.jpg",
+      "alt": "2022-04-14 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "50mm",
+        "aperture": "f/5.6",
+        "shutter_speed": "1/20s",
+        "iso": 800,
+        "camera": "Canon EOS M50",
+        "lens": "EF50mm f/1.8 STM"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "title": "1",
+  "date": "2009-03-17",
+  "slug": "20090317_1",
+  "caption": "An attemp to take a photo for the first anniversary of Namaye Nazdik.",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2009-03-17_1_01.jpg",
+      "original": "2009-03-17_1_01.jpg",
+      "alt": "1",
+      "status": "dead",
+      "exif": {}
+    },
+    {
+      "web": "files/photoblog/2009-03-17_1_02.jpg",
+      "original": "2009-03-17_1_02.jpg",
+      "alt": "1",
+      "status": "html_with_url",
+      "google_url": "https://lh3.googleusercontent.com/blogger_img/APIUysiopVZJHiPkkVo_nKWHu7In8jfgOWPrcnBIjszb7otPwW1aZt7G83gnZ--C6yuRJsCDieFUqj0D7iftNGc=s1600",
+      "exif": {}
+    },
+    {
+      "web": "files/photoblog/2009-03-17_1_03.jpg",
+      "original": "2009-03-17_1_03.jpg",
+      "alt": "1",
+      "status": "jpeg",
+      "exif": {}
+    }
+  ]
+}

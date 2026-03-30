@@ -1,0 +1,25 @@
+{
+  "title": "Prexy",
+  "date": "2009-12-01",
+  "slug": "20091201_prexy",
+  "caption": "",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2009-12-01_prexy_01.jpg",
+      "original": "2009-12-01_prexy_01.jpg",
+      "alt": "Prexy",
+      "status": "dead",
+      "exif": {}
+    },
+    {
+      "web": "files/photoblog/2009-12-01_prexy_02.jpg",
+      "original": "2009-12-01_prexy_02.jpg",
+      "alt": "Prexy",
+      "status": "jpeg",
+      "exif": {}
+    }
+  ]
+}

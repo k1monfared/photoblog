@@ -23,21 +23,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          lfs: false
-
-      - name: Restore LFS cache
-        uses: actions/cache@v4
-        with:
-          path: .git/lfs
-          key: lfs-${{ hashFiles('.lfs-assets-id') }}
-          restore-keys: lfs-
-
-      - name: Pull LFS media files
-        run: |
-          git lfs install
-          git lfs pull --include="*.png,*.jpg,*.jpeg,*.gif,*.svg,*.mp4" || echo "::warning::LFS pull failed — using cached build"
-          git rev-parse HEAD > .lfs-assets-id
 
       - name: Setup Python
         uses: actions/setup-python@v5

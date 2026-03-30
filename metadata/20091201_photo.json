@@ -1,0 +1,25 @@
+{
+  "title": "2009-12-01",
+  "date": "2009-12-01",
+  "slug": "20091201_photo",
+  "caption": "Denver Airport\nWho was that called \"Sohrab, where are my shoes?\" ?\nCheyenne\nLaramie\nCrab apple tree",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2009-12-01_photo_01.jpg",
+      "original": "2009-12-01_photo_01.jpg",
+      "alt": "-",
+      "status": "dead",
+      "exif": {}
+    },
+    {
+      "web": "files/photoblog/2009-12-01_photo_02.jpg",
+      "original": "2009-12-01_photo_02.jpg",
+      "alt": "-",
+      "status": "jpeg",
+      "exif": {}
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "title": "2022-03-21",
+  "date": "2022-03-21",
+  "slug": "20220321_photo_7",
+  "caption": "",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2022-03-21_photo_07.jpg",
+      "original": "2022-03-21_photo_07.jpg",
+      "alt": "2022-03-21 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "50mm",
+        "aperture": "f/5.6",
+        "shutter_speed": "1/50s",
+        "iso": 400,
+        "camera": "Canon EOS M50",
+        "lens": "EF50mm f/1.8 STM"
+      }
+    }
+  ]
+}

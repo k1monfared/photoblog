@@ -1,0 +1,25 @@
+{
+  "title": "2009-12-01",
+  "date": "2009-12-01",
+  "slug": "20091201_photo_5",
+  "caption": "",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2009-12-01_photo_5_01.jpg",
+      "original": "2009-12-01_photo_5_01.jpg",
+      "alt": "-",
+      "status": "dead",
+      "exif": {}
+    },
+    {
+      "web": "files/photoblog/2009-12-01_photo_5_02.jpg",
+      "original": "2009-12-01_photo_5_02.jpg",
+      "alt": "-",
+      "status": "jpeg",
+      "exif": {}
+    }
+  ]
+}

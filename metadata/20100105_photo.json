@@ -1,0 +1,33 @@
+{
+  "title": "2010-01-05",
+  "date": "2010-01-05",
+  "slug": "20100105_photo",
+  "caption": "My Christmas gift :)\nAn Indian game which I forgot the name",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2010-01-05_photo_01.jpg",
+      "original": "2010-01-05_photo_01.jpg",
+      "alt": "-",
+      "status": "dead",
+      "exif": {}
+    },
+    {
+      "web": "files/photoblog/2010-01-05_photo_02.jpg",
+      "original": "2010-01-05_photo_02.jpg",
+      "alt": "-",
+      "status": "html_with_url",
+      "google_url": "https://lh3.googleusercontent.com/blogger_img/APIUysiWKYzd8qnnX7M8EBciskO7Gohv5GSWS9_heAqZSu-LuFRGX1CZ0e1XBGRmajmv8eJUJxVzR6ETbb2tKZE=s1600",
+      "exif": {}
+    },
+    {
+      "web": "files/photoblog/2010-01-05_photo_03.jpg",
+      "original": "2010-01-05_photo_03.jpg",
+      "alt": "-",
+      "status": "jpeg",
+      "exif": {}
+    }
+  ]
+}

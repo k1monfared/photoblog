@@ -1,0 +1,25 @@
+{
+  "title": "2022-03-19",
+  "date": "2022-03-19",
+  "slug": "20220319_photo_5",
+  "caption": "",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2022-03-19_photo_05.jpg",
+      "original": "2022-03-19_photo_05.jpg",
+      "alt": "2022-03-19 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "250mm",
+        "aperture": "f/5.6",
+        "shutter_speed": "1/640s",
+        "iso": 200,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    }
+  ]
+}

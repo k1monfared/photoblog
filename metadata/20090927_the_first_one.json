@@ -1,0 +1,26 @@
+{
+  "title": "The first one",
+  "date": "2009-09-27",
+  "slug": "20090927_the_first_one",
+  "caption": "I have taken some photos from around the city (Laramie)\nBut due to a crash on my hard drive, I missed them all.\nSo this is the forst one, after that crash.",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2009-09-27_the_first_one_01.jpg",
+      "original": "2009-09-27_the_first_one_01.jpg",
+      "alt": "The first one",
+      "status": "html_with_url",
+      "google_url": "https://lh3.googleusercontent.com/blogger_img/APIUysixWrP7oQN4-6p7VecESYF2WgSniEYFgXaOxBcYm4-SNqM7lTZTUtBlY0Tbq0t83TTTwxsXvQCroAkmuec=s1600",
+      "exif": {}
+    },
+    {
+      "web": "files/photoblog/2009-09-27_the_first_one_02.jpg",
+      "original": "2009-09-27_the_first_one_02.jpg",
+      "alt": "The first one",
+      "status": "jpeg",
+      "exif": {}
+    }
+  ]
+}

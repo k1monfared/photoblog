@@ -238,6 +238,7 @@ class EditorHandler(SimpleHTTPRequestHandler):
 
             new_photo = dict(photo)
             new_photo["web"] = new_web_rel
+            new_photo.pop("deleted", None)  # ensure new photos are not marked deleted
             new_photos.append(new_photo)
 
         # Build new metadata
@@ -313,6 +314,7 @@ class EditorHandler(SimpleHTTPRequestHandler):
 
             new_photo = dict(photo)
             new_photo["web"] = new_web_rel
+            new_photo.pop("deleted", None)
             new_photos.append(new_photo)
 
         # Build new metadata

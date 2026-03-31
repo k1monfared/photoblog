@@ -349,7 +349,7 @@
     overlay.innerHTML =
       '<div class="editor-dialog">' +
         '<h3>Merge ' + slugs.length + ' posts</h3>' +
-        '<label>Date:<br><input type="date" class="merge-date" value="' + escapeHTML(earliest) + '"></label><br>' +
+        '<label>Date:<br><input type="text" class="merge-date" value="' + escapeHTML(earliest) + '" placeholder="YYYY-MM-DD" pattern="\\d{4}-\\d{2}-\\d{2}"></label><br>' +
         '<label>Slug:<br><input type="text" class="merge-slug" placeholder="my_photo_title"></label><br>' +
         '<label>Caption:<br><textarea class="merge-caption" rows="6">' + escapeHTML(prefilled) + '</textarea></label><br>' +
         '<button class="dialog-confirm-btn">Merge</button>' +
@@ -405,7 +405,7 @@
     overlay.innerHTML =
       '<div class="editor-dialog">' +
         '<h3>Split ' + indices.length + ' photo(s) to new post</h3>' +
-        '<label>Date:<br><input type="date" class="split-date" value="' + escapeHTML(dateStr) + '"></label><br>' +
+        '<label>Date:<br><input type="text" class="split-date" value="' + escapeHTML(dateStr) + '" placeholder="YYYY-MM-DD" pattern="\\d{4}-\\d{2}-\\d{2}"></label><br>' +
         '<label>Slug:<br><input type="text" class="split-slug" placeholder="new_post_slug"></label><br>' +
         '<label>Caption:<br><textarea class="split-caption" rows="4"></textarea></label><br>' +
         '<button class="dialog-confirm-btn">Split</button>' +
@@ -685,7 +685,7 @@
       '<div class="add-previews" id="add-previews"></div>' +
       '</div>' +
       '<label>Date</label>' +
-      '<input type="date" id="add-date" value="' + today + '">' +
+      '<input type="text" id="add-date" value="' + today + '" placeholder="YYYY-MM-DD" pattern="\\d{4}-\\d{2}-\\d{2}">' +
       '<label>Slug (lowercase letters, numbers, underscores)</label>' +
       '<input type="text" id="add-slug" placeholder="my_photo">' +
       '<label>Title</label>' +

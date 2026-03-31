@@ -448,3 +448,21 @@
 .trash-item-actions .purge-btn:hover {
   opacity: 0.85;
 }
+
+/* Nav buttons for editor */
+.nav-show-deleted-btn,
+.nav-trash-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 3px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 6px;
+}
+.nav-show-deleted-btn:hover,
+.nav-trash-btn:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}

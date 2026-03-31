@@ -101,19 +101,6 @@ class EditorHandler(SimpleHTTPRequestHandler):
                 return str(candidate)
         return super().translate_path(path)
 
-    def copyfile(self, source, outputfile):
-        """Override copyfile to inject editor CSS/JS into HTML responses."""
-        try:
-            content = source.read()
-        except Exception:
-            super().copyfile(source, outputfile)
-            return
-
-        if b"</body>" in content:
-            content = content.replace(b"</body>", INJECT_TAG.encode("utf-8"))
-
-        outputfile.write(content)
-
     def do_POST(self):
         """Route POST requests to API handlers."""
         path = self.path.split("?")[0]
@@ -138,7 +125,7 @@ class EditorHandler(SimpleHTTPRequestHandler):
             self.send_json(404, {"error": "not found"})
 
     def do_GET(self):
-        """Route GET requests: API endpoints or static files."""
+        """Route GET requests: API endpoints or static files with injection."""
         path = self.path.split("?")[0]
         if path == "/api/trash":
             try:
@@ -147,6 +134,28 @@ class EditorHandler(SimpleHTTPRequestHandler):
             except Exception as e:
                 self.send_json(500, {"error": str(e)})
             return
+
+        # Check if this is an HTML file request — inject editor assets
+        file_path = self.translate_path(self.path)
+        if os.path.isdir(file_path):
+            index = os.path.join(file_path, "index.html")
+            if os.path.isfile(index):
+                file_path = index
+            else:
+                return super().do_GET()
+
+        if file_path.endswith(".html") and os.path.isfile(file_path):
+            with open(file_path, "rb") as f:
+                content = f.read()
+            if b"</body>" in content:
+                content = content.replace(b"</body>", INJECT_TAG.encode("utf-8"))
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(content)))
+            self.end_headers()
+            self.wfile.write(content)
+            return
+
         super().do_GET()
 
     def send_json(self, code, data):

@@ -153,7 +153,7 @@ def find_referenced_assets(text):
 def build_slug_map(posts):
     """Build a map of original markdown filenames to blog URL slugs."""
     slug_map = {}
-    for filename, _date, _slug, url_slug, _deleted in posts:
+    for filename, _date, _slug, url_slug, *_ in posts:
         slug_map[filename] = url_slug
     return slug_map
 
@@ -324,15 +324,16 @@ def build(local=False, force=False):
         date, slug, url_slug = parse_filename(f.name)
         if date is None:
             continue
+        meta_slug = f.stem  # e.g. "20231029_photo_1" — matches JSON filename
         deleted = False
-        json_path = BLOG_DIR / "metadata" / f"{slug}.json"
+        json_path = BLOG_DIR / "metadata" / f"{meta_slug}.json"
         if json_path.exists():
             try:
                 meta_data = json.loads(json_path.read_text(encoding="utf-8"))
                 deleted = bool(meta_data.get("deleted"))
             except (json.JSONDecodeError, OSError):
                 pass
-        posts.append((f.name, date, slug, url_slug, deleted))
+        posts.append((f.name, date, slug, url_slug, deleted, meta_slug))
 
     # Sort newest first
     posts.sort(key=lambda p: p[1], reverse=True)
@@ -368,7 +369,7 @@ def build(local=False, force=False):
     rendered_count = 0
     cached_count = 0
 
-    for filename, date, slug, url_slug, deleted in posts:
+    for filename, date, slug, url_slug, deleted, meta_slug in posts:
         filepath = POSTS_DIR / filename
         raw = filepath.read_text(encoding="utf-8")
         raw_hash = content_hash(raw)
@@ -444,7 +445,7 @@ def build(local=False, force=False):
             post_html = render_template(
                 post_tmpl, title=title, date=date_str_full, body=body_html,
                 comments=comments_html, comment_endpoint=COMMENT_ENDPOINT,
-                post_slug=url_slug, tag_chips=tag_chips_html, slug=slug,
+                post_slug=url_slug, tag_chips=tag_chips_html, slug=meta_slug,
             )
             rendered_count += 1
 
@@ -461,7 +462,7 @@ def build(local=False, force=False):
             "date": date,
             "date_str": date_str,
             "url_slug": url_slug,
-            "slug": slug,
+            "slug": meta_slug,
             "deleted": deleted,
             "excerpt": excerpt,
             "tags": tags,

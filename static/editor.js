@@ -345,7 +345,7 @@
     var prefilled = excerpts.join('\n\n---\n\n');
 
     var overlay = document.createElement('div');
-    overlay.className = 'editor-dialog-overlay';
+    overlay.className = 'editor-dialog-overlay open';
     overlay.innerHTML =
       '<div class="editor-dialog">' +
         '<h3>Merge ' + slugs.length + ' posts</h3>' +
@@ -401,7 +401,7 @@
     var dateStr = parseDateFromSlug(postSlug);
 
     var overlay = document.createElement('div');
-    overlay.className = 'editor-dialog-overlay';
+    overlay.className = 'editor-dialog-overlay open';
     overlay.innerHTML =
       '<div class="editor-dialog">' +
         '<h3>Split ' + indices.length + ' photo(s) to new post</h3>' +
@@ -452,7 +452,7 @@
     var label = isPostPage ? 'photo(s)' : 'post(s)';
 
     var overlay = document.createElement('div');
-    overlay.className = 'editor-dialog-overlay';
+    overlay.className = 'editor-dialog-overlay open';
     overlay.innerHTML =
       '<div class="editor-dialog">' +
         '<h3>Delete ' + count + ' ' + label + '?</h3>' +
@@ -567,7 +567,7 @@
       if (!Array.isArray(items)) items = [];
 
       var overlay = document.createElement('div');
-      overlay.className = 'editor-dialog-overlay';
+      overlay.className = 'editor-dialog-overlay open';
 
       var html = '<div class="editor-dialog trash-dialog">' +
         '<h3>Trash</h3>' +

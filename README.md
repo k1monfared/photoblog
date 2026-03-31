@@ -4,6 +4,8 @@ A static photo blog built with Python. Instagram-style grid and feed views with 
 
 **Live site:** https://k1monfared.github.io/photoblog
 
+**Photo Editor (mobile PWA):** https://k1monfared.github.io/photoblog/photo-editor/
+
 ## Project structure
 
 ```
@@ -175,6 +177,36 @@ The editor is a Python HTTP server that serves the built site and injects `edito
 | `GET /api/trash` | List all deleted posts |
 
 After each mutation, the server updates metadata JSON, regenerates markdown, and runs an incremental build.
+
+## Photo Editor (mobile PWA)
+
+A Progressive Web App for editing the photoblog from your phone. No server required. Works entirely in the browser via the GitHub API.
+
+**URL:** https://k1monfared.github.io/photoblog/photo-editor/
+
+### Setup
+
+1. Create a [GitHub Personal Access Token](https://github.com/settings/personal-access-tokens/new) with **Contents: read/write** permission for this repo
+2. Open the Photo Editor URL on your phone
+3. Paste the token and connect
+4. Optionally, tap "Add to Home Screen" to install as a standalone app
+
+### Features
+
+All the same editing operations as the local editor, but from your phone:
+
+- **Browse** posts as a thumbnail grid
+- **Add posts** using your phone camera or gallery (images are resized in-browser)
+- **Edit captions** for posts and individual photos
+- **Merge** multiple posts into one
+- **Split** photos from a post into a new post
+- **Delete, restore, and purge** posts via trash
+
+Changes are committed atomically to the `main` branch via the GitHub Git Trees API. The site rebuilds automatically via GitHub Actions.
+
+### How it works
+
+The PWA is a set of static files in `photo-editor/` with no build step. It uses vanilla JavaScript with ES6 modules and talks directly to the GitHub REST API. Images are processed client-side using OffscreenCanvas (resized to 1200x1600 max, JPEG quality 85). Local caching uses IndexedDB. A service worker enables offline access to the app shell.
 
 ## Scripts
 

@@ -1,0 +1,82 @@
+{
+  "title": "China Town",
+  "date": "2022-05-01",
+  "slug": "20220501_china_town",
+  "caption": "Camera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 70mm | f/4.5 | 1/320s | ISO 250",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2022-05-01_china_town_01.jpg",
+      "original": "2022_05_01_photo_10_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "55mm",
+        "aperture": "f/4.0",
+        "shutter_speed": "1/125s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-05-01_china_town_02.jpg",
+      "original": "2022_05_01_photo_11_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "55mm",
+        "aperture": "f/4.0",
+        "shutter_speed": "1/125s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-05-01_china_town_03.jpg",
+      "original": "2022_05_01_photo_12_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "55mm",
+        "aperture": "f/4.0",
+        "shutter_speed": "1/50s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-05-01_china_town_04.jpg",
+      "original": "2022_05_01_photo_13_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "61mm",
+        "aperture": "f/4.0",
+        "shutter_speed": "1/25s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-05-01_china_town_05.jpg",
+      "original": "2022_05_01_photo_14_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "70mm",
+        "aperture": "f/4.5",
+        "shutter_speed": "1/320s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    }
+  ],
+  "thumbnail": "files/photoblog/2022-05-01_china_town_01.jpg"
+}

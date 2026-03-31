@@ -1,0 +1,82 @@
+{
+  "title": "Wharf",
+  "date": "2022-05-01",
+  "slug": "20220501_wharf",
+  "caption": "Camera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 55mm | f/4.5 | 1/50s | ISO 250\n\n---\n\nCamera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 79mm | f/4.5 | 1/50s | ISO 250\n\n---\n\nCamera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 70mm | f/4.5 | 1/100s | ISO 250\n\n---\n\nCamera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 84mm | f/4.5 | 1/125s | ISO 250\n\n---\n\nCamera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 79mm | f/4.5 | 1/125s | ISO 250",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2022-05-01_wharf_01.jpg",
+      "original": "2022_05_01_photo_44_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "55mm",
+        "aperture": "f/4.5",
+        "shutter_speed": "1/50s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-05-01_wharf_02.jpg",
+      "original": "2022_05_01_photo_43_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "79mm",
+        "aperture": "f/4.5",
+        "shutter_speed": "1/50s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-05-01_wharf_03.jpg",
+      "original": "2022_05_01_photo_42_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "70mm",
+        "aperture": "f/4.5",
+        "shutter_speed": "1/100s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-05-01_wharf_04.jpg",
+      "original": "2022_05_01_photo_33_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "84mm",
+        "aperture": "f/4.5",
+        "shutter_speed": "1/125s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-05-01_wharf_05.jpg",
+      "original": "2022_05_01_photo_29_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "79mm",
+        "aperture": "f/4.5",
+        "shutter_speed": "1/125s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    }
+  ],
+  "thumbnail": "files/photoblog/2022-05-01_wharf_01.jpg"
+}

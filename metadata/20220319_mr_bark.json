@@ -1,0 +1,40 @@
+{
+  "title": "Mr Bark",
+  "date": "2022-03-19",
+  "slug": "20220319_mr_bark",
+  "caption": "Camera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 89mm | f/5.6 | 1/50s | ISO 200\n\n---\n\nCamera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 121mm | f/5.6 | 1/30s | ISO 200",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2022-03-19_mr_bark_01.jpg",
+      "original": "2022_03_19_photo_1_01.jpg",
+      "alt": "2022-03-19 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "89mm",
+        "aperture": "f/5.6",
+        "shutter_speed": "1/50s",
+        "iso": 200,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-03-19_mr_bark_02.jpg",
+      "original": "2022_03_19_photo_2_01.jpg",
+      "alt": "2022-03-19 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "121mm",
+        "aperture": "f/5.6",
+        "shutter_speed": "1/30s",
+        "iso": 200,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    }
+  ],
+  "thumbnail": "files/photoblog/2022-03-19_mr_bark_01.jpg"
+}

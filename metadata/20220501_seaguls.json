@@ -1,0 +1,68 @@
+{
+  "title": "Seaguls",
+  "date": "2022-05-01",
+  "slug": "20220501_seaguls",
+  "caption": "Camera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 61mm | f/4.0 | 1/125s | ISO 250\n\n---\n\nCamera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 178mm | f/5.6 | 1/125s | ISO 250",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2022-05-01_seaguls_01.jpg",
+      "original": "2022_05_01_photo_30_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "61mm",
+        "aperture": "f/4.0",
+        "shutter_speed": "1/125s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-05-01_seaguls_02.jpg",
+      "original": "2022_05_01_photo_31_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "61mm",
+        "aperture": "f/4.0",
+        "shutter_speed": "1/125s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-05-01_seaguls_03.jpg",
+      "original": "2022_05_01_photo_40_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "178mm",
+        "aperture": "f/5.6",
+        "shutter_speed": "1/125s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-05-01_seaguls_04.jpg",
+      "original": "2022_05_01_photo_41_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "178mm",
+        "aperture": "f/5.6",
+        "shutter_speed": "1/125s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    }
+  ],
+  "thumbnail": "files/photoblog/2022-05-01_seaguls_01.jpg"
+}

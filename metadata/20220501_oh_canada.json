@@ -1,0 +1,40 @@
+{
+  "title": "Oh Canada",
+  "date": "2022-05-01",
+  "slug": "20220501_oh_canada",
+  "caption": "Camera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 55mm | f/4.0 | 1/125s | ISO 250\n\n---\n\nCamera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 55mm | f/4.0 | 1/125s | ISO 250",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2022-05-01_oh_canada_01.jpg",
+      "original": "2022_05_01_photo_34_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "55mm",
+        "aperture": "f/4.0",
+        "shutter_speed": "1/125s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-05-01_oh_canada_02.jpg",
+      "original": "2022_05_01_photo_35_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "55mm",
+        "aperture": "f/4.0",
+        "shutter_speed": "1/125s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    }
+  ],
+  "thumbnail": "files/photoblog/2022-05-01_oh_canada_01.jpg"
+}

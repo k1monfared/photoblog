@@ -19,7 +19,9 @@
         "iso": 800,
         "camera": "Canon EOS M50",
         "lens": "EF50mm f/1.8 STM"
-      }
+      },
+      "deleted": true
     }
-  ]
+  ],
+  "deleted": true
 }

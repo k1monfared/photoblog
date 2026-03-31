@@ -1,0 +1,40 @@
+{
+  "title": "Look",
+  "date": "2022-05-01",
+  "slug": "20220501_look",
+  "caption": "Camera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 55mm | f/4.0 | 1/50s | ISO 250\n\n---\n\nCamera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 55mm | f/4.0 | 1/50s | ISO 250",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2022-05-01_look_01.jpg",
+      "original": "2022_05_01_photo_26_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "55mm",
+        "aperture": "f/4.0",
+        "shutter_speed": "1/50s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-05-01_look_02.jpg",
+      "original": "2022_05_01_photo_27_01.jpg",
+      "alt": "2022-05-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "55mm",
+        "aperture": "f/4.0",
+        "shutter_speed": "1/50s",
+        "iso": 250,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    }
+  ],
+  "thumbnail": "files/photoblog/2022-05-01_look_01.jpg"
+}

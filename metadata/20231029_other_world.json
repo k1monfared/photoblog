@@ -1,0 +1,40 @@
+{
+  "title": "Other World",
+  "date": "2023-10-29",
+  "slug": "20231029_other_world",
+  "caption": "Camera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 55mm | f/6.3 | 1/40s | ISO 200",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2023-10-29_other_world_01.jpg",
+      "original": "2023_10_29_photo_28_01.jpg",
+      "alt": "2023-10-29 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "55mm",
+        "aperture": "f/6.3",
+        "shutter_speed": "1/30s",
+        "iso": 200,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2023-10-29_other_world_02.jpg",
+      "original": "2023_10_29_photo_29_01.jpg",
+      "alt": "2023-10-29 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "55mm",
+        "aperture": "f/6.3",
+        "shutter_speed": "1/40s",
+        "iso": 200,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    }
+  ],
+  "thumbnail": "files/photoblog/2023-10-29_other_world_01.jpg"
+}

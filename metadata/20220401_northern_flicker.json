@@ -1,0 +1,40 @@
+{
+  "title": "Northern Flicker",
+  "date": "2022-04-01",
+  "slug": "20220401_northern_flicker",
+  "caption": "Camera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 250mm | f/5.6 | 1/2000s | ISO 3200\n\n---\n\nCamera: Canon EOS M50  \nLens: EF-S55-250mm f/4-5.6 IS STM  \nSettings: 250mm | f/5.6 | 1/2000s | ISO 3200",
+  "tags": [
+    "photoblog"
+  ],
+  "photos": [
+    {
+      "web": "files/photoblog/2022-04-01_northern_flicker_01.jpg",
+      "original": "2022_04_01_photo_1_01.jpg",
+      "alt": "2022-04-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "250mm",
+        "aperture": "f/5.6",
+        "shutter_speed": "1/2000s",
+        "iso": 3200,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    },
+    {
+      "web": "files/photoblog/2022-04-01_northern_flicker_02.jpg",
+      "original": "2022_04_01_photo_2_01.jpg",
+      "alt": "2022-04-01 - photo",
+      "status": "jpeg",
+      "exif": {
+        "focal_length": "250mm",
+        "aperture": "f/5.6",
+        "shutter_speed": "1/2000s",
+        "iso": 3200,
+        "camera": "Canon EOS M50",
+        "lens": "EF-S55-250mm f/4-5.6 IS STM"
+      }
+    }
+  ],
+  "thumbnail": "files/photoblog/2022-04-01_northern_flicker_01.jpg"
+}

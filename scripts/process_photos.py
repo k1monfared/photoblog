@@ -143,9 +143,11 @@ def group_key(filename):
 def generate_markdown_from_json(json_path):
     """Generate a markdown post file from a metadata JSON file."""
     data = json.loads(json_path.read_text(encoding="utf-8"))
+    if data.get("deleted"):
+        return None
     title = data.get("title", data.get("date", "Untitled"))
     tags = ", ".join(data.get("tags", ["photoblog"]))
-    photos = data.get("photos", [])
+    photos = [p for p in data.get("photos", []) if not p.get("deleted")]
     if not photos:
         return None
 
@@ -202,7 +204,7 @@ def generate_markdown_from_json(json_path):
             if settings:
                 parts.append(f"**Settings:** {' | '.join(settings)}")
             if parts:
-                lines.extend(parts)
+                lines.append("  \n".join(parts))
                 lines.append("")
 
     return "\n".join(lines) + "\n"

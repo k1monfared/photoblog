@@ -153,7 +153,7 @@ def find_referenced_assets(text):
 def build_slug_map(posts):
     """Build a map of original markdown filenames to blog URL slugs."""
     slug_map = {}
-    for filename, _date, _slug, url_slug in posts:
+    for filename, _date, _slug, url_slug, _deleted in posts:
         slug_map[filename] = url_slug
     return slug_map
 
@@ -324,10 +324,22 @@ def build(local=False, force=False):
         date, slug, url_slug = parse_filename(f.name)
         if date is None:
             continue
-        posts.append((f.name, date, slug, url_slug))
+        deleted = False
+        json_path = BLOG_DIR / "metadata" / f"{slug}.json"
+        if json_path.exists():
+            try:
+                meta_data = json.loads(json_path.read_text(encoding="utf-8"))
+                deleted = bool(meta_data.get("deleted"))
+            except (json.JSONDecodeError, OSError):
+                pass
+        posts.append((f.name, date, slug, url_slug, deleted))
 
     # Sort newest first
     posts.sort(key=lambda p: p[1], reverse=True)
+
+    # In production mode, exclude deleted posts entirely
+    if not local:
+        posts = [p for p in posts if not p[4]]
 
     # Build slug map for cross-references
     slug_map = build_slug_map(posts)
@@ -356,7 +368,7 @@ def build(local=False, force=False):
     rendered_count = 0
     cached_count = 0
 
-    for filename, date, slug, url_slug in posts:
+    for filename, date, slug, url_slug, deleted in posts:
         filepath = POSTS_DIR / filename
         raw = filepath.read_text(encoding="utf-8")
         raw_hash = content_hash(raw)
@@ -432,7 +444,7 @@ def build(local=False, force=False):
             post_html = render_template(
                 post_tmpl, title=title, date=date_str_full, body=body_html,
                 comments=comments_html, comment_endpoint=COMMENT_ENDPOINT,
-                post_slug=url_slug, tag_chips=tag_chips_html,
+                post_slug=url_slug, tag_chips=tag_chips_html, slug=slug,
             )
             rendered_count += 1
 
@@ -449,6 +461,8 @@ def build(local=False, force=False):
             "date": date,
             "date_str": date_str,
             "url_slug": url_slug,
+            "slug": slug,
+            "deleted": deleted,
             "excerpt": excerpt,
             "tags": tags,
             "thumbnail": thumbnail,
@@ -684,10 +698,13 @@ def build(local=False, force=False):
             post_imgs = p.get("post_images", [])
             images_json = html.escape(json.dumps(post_imgs))
             multi_icon = '<span class="grid-multi-icon" aria-label="Multiple images"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></span>' if len(post_imgs) > 1 else ''
+            deleted_cls = " deleted" if p.get("deleted") else ""
+            deleted_badge = '<span class="deleted-badge">Deleted</span>' if p.get("deleted") else ''
             items.append(
-                f'  <div class="grid-item{" hidden" if page_size and i >= page_size else ""}"'
+                f'  <div class="grid-item{deleted_cls}{" hidden" if page_size and i >= page_size else ""}"'
                 f' data-year="date-{date_y}" data-month="date-{date_ym}"'
                 f' data-url="{p["url_slug"]}/"'
+                f' data-slug="{p["slug"]}"'
                 f' data-title="{html.escape(p["title"])}"'
                 f' data-date="{p["date_str"]}"'
                 f' data-excerpt="{excerpt}"'
@@ -698,6 +715,7 @@ def build(local=False, force=False):
                 f'    <div class="grid-overlay">\n'
                 f'      <span class="grid-overlay-title">{html.escape(p["title"])}</span>\n'
                 f'    </div>\n'
+                f'    {deleted_badge}\n'
                 f'  </div>'
             )
         return "\n".join(items)
@@ -713,9 +731,11 @@ def build(local=False, force=False):
             hidden = ' hidden' if page_size and i >= page_size else ''
             date_y = p["date"].strftime("%Y")
             date_ym = p["date"].strftime("%Y-%m")
+            deleted_cls = " deleted" if p.get("deleted") else ""
             items.append(
-                f'  <article class="feed-card{" hidden" if page_size and i >= page_size else ""}"'
-                f' data-year="date-{date_y}" data-month="date-{date_ym}">\n'
+                f'  <article class="feed-card{deleted_cls}{" hidden" if page_size and i >= page_size else ""}"'
+                f' data-year="date-{date_y}" data-month="date-{date_ym}"'
+                f' data-slug="{p["slug"]}">\n'
                 f'    <a href="{p["url_slug"]}/" class="feed-card-link">\n'
                 f'      {photo_html}\n'
                 f'    </a>\n'

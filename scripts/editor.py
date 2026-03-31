@@ -13,6 +13,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import webbrowser
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import parse_qs
@@ -578,9 +579,12 @@ def main():
     print(f"Building site first...")
     rebuild_site()
 
-    print(f"Starting editor server at http://{host}:{port}")
+    url = f"http://{host}:{port}"
+    print(f"Starting editor server at {url}")
     print(f"Serving from: {SITE_DIR}")
     print(f"Press Ctrl+C to stop.\n")
+
+    webbrowser.open(url)
 
     server = HTTPServer((host, port), EditorHandler)
     try:

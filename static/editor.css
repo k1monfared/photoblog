@@ -1,0 +1,450 @@
+/* Editor UI - local photo editor interface */
+
+/* 1. Edit buttons (pencil icons) */
+.edit-btn {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.edit-btn:hover {
+  color: var(--link);
+  border-color: var(--link);
+}
+
+.edit-btn.visible {
+  display: inline-flex;
+}
+
+.post-meta:hover .edit-btn,
+.post-body p:hover > .edit-btn {
+  display: inline-flex;
+}
+
+/* 2. Caption editor */
+.caption-editor {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.caption-editor textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 8px;
+  font-family: inherit;
+  font-size: inherit;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  resize: vertical;
+}
+
+.caption-editor textarea:focus {
+  outline: none;
+  border-color: var(--link);
+}
+
+.caption-editor .editor-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.save-btn {
+  background: var(--link);
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.save-btn:hover {
+  opacity: 0.85;
+}
+
+.cancel-btn {
+  background: var(--border);
+  color: var(--text);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.cancel-btn:hover {
+  opacity: 0.75;
+}
+
+/* 3. Photo checkboxes */
+.photo-checkbox {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  font-size: 14px;
+  color: #fff;
+  transition: background 0.15s;
+}
+
+.grid-item:hover .photo-checkbox,
+.selection-mode .photo-checkbox {
+  display: flex;
+}
+
+.photo-checkbox.checked {
+  background: var(--link);
+  border-color: var(--link);
+}
+
+.photo-checkbox.checked::after {
+  content: "\2713";
+}
+
+/* 4. Grid items relative positioning */
+.grid-item {
+  position: relative;
+}
+
+/* 5. Photo wrapper */
+.photo-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* 6. Floating toolbar */
+.editor-toolbar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 10px 18px;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.editor-toolbar.visible {
+  display: flex;
+}
+
+.toolbar-count {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.merge-btn,
+.split-btn {
+  background: var(--link);
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.merge-btn:hover,
+.split-btn:hover {
+  opacity: 0.85;
+}
+
+.delete-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.delete-btn:hover {
+  opacity: 0.85;
+}
+
+.cancel-sel-btn {
+  background: var(--border);
+  color: var(--text);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.cancel-sel-btn:hover {
+  opacity: 0.75;
+}
+
+/* 7. Editor dialog modal */
+.editor-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  z-index: 1001;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-dialog-overlay.open {
+  display: flex;
+}
+
+.editor-dialog {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  max-width: 500px;
+  width: 90%;
+  padding: 24px;
+}
+
+.editor-dialog h3 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: var(--text);
+}
+
+.editor-dialog label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.editor-dialog input[type="text"],
+.editor-dialog input[type="date"],
+.editor-dialog textarea {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.editor-dialog input[type="text"]:focus,
+.editor-dialog input[type="date"]:focus,
+.editor-dialog textarea:focus {
+  outline: none;
+  border-color: var(--link);
+}
+
+.editor-dialog textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.btn-primary {
+  background: var(--link);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+.btn-danger {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.btn-danger:hover {
+  opacity: 0.85;
+}
+
+.btn-cancel {
+  background: var(--border);
+  color: var(--text);
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-cancel:hover {
+  opacity: 0.75;
+}
+
+/* 8. Deleted posts */
+.grid-item.deleted {
+  opacity: 0.35;
+  filter: grayscale(0.8);
+}
+
+.deleted-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  pointer-events: none;
+}
+
+.feed-card.deleted {
+  opacity: 0.35;
+  filter: grayscale(0.8);
+}
+
+/* 9. Editor nav controls */
+.editor-nav-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.editor-nav-controls button {
+  background: var(--bg-card);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.editor-nav-controls button:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
+.editor-nav-controls button.active {
+  background: var(--link);
+  color: #fff;
+  border-color: var(--link);
+}
+
+/* 10. Trash view */
+.trash-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.trash-item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.trash-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trash-item-actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  padding: 24px 8px 8px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.trash-item:hover .trash-item-actions {
+  opacity: 1;
+}
+
+.trash-item-actions .restore-btn {
+  background: var(--link);
+  color: #fff;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.trash-item-actions .restore-btn:hover {
+  opacity: 0.85;
+}
+
+.trash-item-actions .purge-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.trash-item-actions .purge-btn:hover {
+  opacity: 0.85;
+}

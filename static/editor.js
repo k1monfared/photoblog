@@ -522,6 +522,41 @@
       openTrashDialog();
     });
 
+    // "Merge" button — enabled when 2+ posts selected
+    var mergeBtn = document.createElement('button');
+    mergeBtn.className = 'nav-show-deleted-btn';
+    mergeBtn.textContent = 'Merge';
+    mergeBtn.title = 'Select 2+ posts then click to merge them';
+    mergeBtn.addEventListener('click', function() {
+      var count = getSelectedCount();
+      if (count < 2) {
+        alert('Select 2 or more posts first (click checkboxes on photos in the grid).');
+        return;
+      }
+      openMergeDialog();
+    });
+
+    // "Delete" button — enabled when 1+ selected
+    var deleteBtn = document.createElement('button');
+    deleteBtn.className = 'nav-show-deleted-btn';
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.title = 'Select posts then click to delete them';
+    deleteBtn.addEventListener('click', function() {
+      var count = getSelectedCount();
+      if (count < 1) {
+        alert('Select one or more posts first (click checkboxes on photos in the grid).');
+        return;
+      }
+      if (isPostPage) {
+        var indices = selected[postSlug] || [];
+        openDeleteDialog(null, indices);
+      } else {
+        openDeleteDialog(Object.keys(selected), null);
+      }
+    });
+
+    nav.appendChild(mergeBtn);
+    nav.appendChild(deleteBtn);
     nav.appendChild(showDeletedBtn);
     nav.appendChild(trashBtn);
   }

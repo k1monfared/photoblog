@@ -9,14 +9,14 @@
   "photos": [
     {
       "web": "files/photoblog/2014-06-08_still_01.jpg",
-      "original": "2014-06-08_still_01.jpg",
+      "original": "2014_06_08_still_01.jpg",
       "alt": "Still",
       "status": "jpeg",
       "exif": {}
     },
     {
       "web": "files/photoblog/2014-06-08_still_02.jpg",
-      "original": "2014-06-08_still_02.jpg",
+      "original": "2014_06_08_still_02.jpg",
       "alt": "Still",
       "status": "jpeg",
       "exif": {}

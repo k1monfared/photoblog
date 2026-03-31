@@ -1,5 +1,4 @@
 _site/
 __pycache__/
 .build_cache.json
-original_photos/
 download_urls.json

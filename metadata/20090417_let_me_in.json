@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-04-17_let_me_in_01.jpg",
-      "original": "2009-04-17_let_me_in_01.jpg",
-      "alt": "Let me in",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-04-17_let_me_in_02.jpg",
-      "original": "2009-04-17_let_me_in_02.jpg",
+      "original": "2009_04_17_let_me_in_01.jpg",
       "alt": "Let me in",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-04-17_let_me_in_01.jpg"
 }

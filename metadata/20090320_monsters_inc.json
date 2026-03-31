@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-03-20_monsters_inc_01.jpg",
-      "original": "2009-03-20_monsters_inc_01.jpg",
-      "alt": "Monsters inc.",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-03-20_monsters_inc_02.jpg",
-      "original": "2009-03-20_monsters_inc_02.jpg",
+      "original": "2009_03_20_monsters_inc_01.jpg",
       "alt": "Monsters inc.",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-03-20_monsters_inc_01.jpg"
 }

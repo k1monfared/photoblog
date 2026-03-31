@@ -8,25 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-10-10_turn_01.jpg",
-      "original": "2009-10-10_turn_01.jpg",
-      "alt": "Turn",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-10-10_turn_02.jpg",
-      "original": "2009-10-10_turn_02.jpg",
-      "alt": "Turn",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-10-10_turn_03.jpg",
-      "original": "2009-10-10_turn_03.jpg",
+      "original": "2009_10_10_turn_01.jpg",
       "alt": "Turn",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-10-10_turn_02.jpg"
 }

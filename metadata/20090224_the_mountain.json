@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_the_mountain_01.jpg",
-      "original": "2009-02-24_the_mountain_01.jpg",
-      "alt": "The Mountain",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_the_mountain_02.jpg",
-      "original": "2009-02-24_the_mountain_02.jpg",
+      "original": "2009_02_24_the_mountain_01.jpg",
       "alt": "The Mountain",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_the_mountain_01.jpg"
 }

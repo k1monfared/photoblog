@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-26_plain_of_guilan_01.jpg",
-      "original": "2009-02-26_plain_of_guilan_01.jpg",
-      "alt": "Plain of Guilan",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-26_plain_of_guilan_02.jpg",
-      "original": "2009-02-26_plain_of_guilan_02.jpg",
+      "original": "2009_02_26_plain_of_guilan_01.jpg",
       "alt": "Plain of Guilan",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-26_plain_of_guilan_01.jpg"
 }

@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-06-05_fasten_while_turning_01.jpg",
-      "original": "2009-06-05_fasten_while_turning_01.jpg",
-      "alt": "fasten while turning",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-06-05_fasten_while_turning_02.jpg",
-      "original": "2009-06-05_fasten_while_turning_02.jpg",
+      "original": "2009_06_05_fasten_while_turning_01.jpg",
       "alt": "fasten while turning",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-06-05_fasten_while_turning_01.jpg"
 }

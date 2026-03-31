@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-04-17_so_far_01.jpg",
-      "original": "2009-04-17_so_far_01.jpg",
-      "alt": "So far!",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-04-17_so_far_02.jpg",
-      "original": "2009-04-17_so_far_02.jpg",
+      "original": "2009_04_17_so_far_01.jpg",
       "alt": "So far!",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-04-17_so_far_01.jpg"
 }

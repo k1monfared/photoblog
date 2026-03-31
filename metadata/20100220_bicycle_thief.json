@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2010-02-20_bicycle_thief_01.jpg",
-      "original": "2010-02-20_bicycle_thief_01.jpg",
-      "alt": "Bicycle thief",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2010-02-20_bicycle_thief_02.jpg",
-      "original": "2010-02-20_bicycle_thief_02.jpg",
+      "original": "2010_02_20_bicycle_thief_01.jpg",
       "alt": "Bicycle thief",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2010-02-20_bicycle_thief_01.jpg"
 }

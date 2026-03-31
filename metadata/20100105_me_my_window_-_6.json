@@ -8,25 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2010-01-05_me_my_window_-_6_01.jpg",
-      "original": "2010-01-05_me_my_window_-_6_01.jpg",
-      "alt": "me & my window - 6",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2010-01-05_me_my_window_-_6_02.jpg",
-      "original": "2010-01-05_me_my_window_-_6_02.jpg",
-      "alt": "me & my window - 6",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2010-01-05_me_my_window_-_6_03.jpg",
-      "original": "2010-01-05_me_my_window_-_6_03.jpg",
+      "original": "2010_01_05_me_my_window_-_6_01.jpg",
       "alt": "me & my window - 6",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2010-01-05_me_my_window_-_6_02.jpg"
 }

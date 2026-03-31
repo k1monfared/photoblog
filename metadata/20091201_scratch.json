@@ -8,18 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-12-01_scratch_01.jpg",
-      "original": "2009-12-01_scratch_01.jpg",
-      "alt": "scratch",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-12-01_scratch_02.jpg",
-      "original": "2009-12-01_scratch_02.jpg",
+      "original": "2009_12_01_scratch_01.jpg",
       "alt": "scratch",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-12-01_scratch_02.jpg"
 }

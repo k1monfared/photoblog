@@ -63,22 +63,15 @@ thumbnail: files/photoblog/2014-05-18_everywhere_the_sky_3_01.jpg
 
 ![Everywhere the sky](files/photoblog/2014-05-18_everywhere_the_sky_3_29.jpg)
 
-![Everywhere the sky](files/photoblog/2014-05-18_everywhere_the_sky_3_30.jpg)
-
-![Everywhere the sky](files/photoblog/2014-05-18_everywhere_the_sky_3_31.jpg)
-
 ![Everywhere the sky](files/photoblog/2014-05-18_everywhere_the_sky_3_32.jpg)
 
 ![Everywhere the sky](files/photoblog/2014-05-18_everywhere_the_sky_3_33.jpg)
 
 ![Everywhere the sky](files/photoblog/2014-05-18_everywhere_the_sky_3_34.jpg)
 
-![Everywhere the sky](files/photoblog/2014-05-18_everywhere_the_sky_3_35.jpg)
-
-![Everywhere the sky](files/photoblog/2014-05-18_everywhere_the_sky_3_36.jpg)
-
 ![Everywhere the sky](files/photoblog/2014-05-18_everywhere_the_sky_3_37.jpg)
 
 ![Everywhere the sky](files/photoblog/2014-05-18_everywhere_the_sky_3_38.jpg)
 
 ![Everywhere the sky](files/photoblog/2014-05-18_everywhere_the_sky_3_39.jpg)
+

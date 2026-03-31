@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-06-05_do_you_01.jpg",
-      "original": "2009-06-05_do_you_01.jpg",
-      "alt": "Do You?",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-06-05_do_you_02.jpg",
-      "original": "2009-06-05_do_you_02.jpg",
+      "original": "2009_06_05_do_you_01.jpg",
       "alt": "Do You?",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-06-05_do_you_01.jpg"
 }

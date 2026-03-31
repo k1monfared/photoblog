@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_tablecloth_01.jpg",
-      "original": "2009-02-24_tablecloth_01.jpg",
-      "alt": "Tablecloth",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_tablecloth_02.jpg",
-      "original": "2009-02-24_tablecloth_02.jpg",
+      "original": "2009_02_24_tablecloth_01.jpg",
       "alt": "Tablecloth",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_tablecloth_01.jpg"
 }

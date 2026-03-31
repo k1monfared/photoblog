@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_poor_tree_01.jpg",
-      "original": "2009-02-24_poor_tree_01.jpg",
-      "alt": "Poor Tree",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_poor_tree_02.jpg",
-      "original": "2009-02-24_poor_tree_02.jpg",
+      "original": "2009_02_24_poor_tree_01.jpg",
       "alt": "Poor Tree",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_poor_tree_01.jpg"
 }

@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_mosque_laleh_park_tehran_01.jpg",
-      "original": "2009-02-24_mosque_laleh_park_tehran_01.jpg",
-      "alt": "Mosque, \"Laleh\" Park, Tehran",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_mosque_laleh_park_tehran_02.jpg",
-      "original": "2009-02-24_mosque_laleh_park_tehran_02.jpg",
+      "original": "2009_02_24_mosque_laleh_park_tehran_01.jpg",
       "alt": "Mosque, \"Laleh\" Park, Tehran",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_mosque_laleh_park_tehran_01.jpg"
 }

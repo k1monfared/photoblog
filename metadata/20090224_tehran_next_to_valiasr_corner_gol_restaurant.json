@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_tehran_next_to_valiasr_corner_gol_restaurant_01.jpg",
-      "original": "2009-02-24_tehran_next_to_valiasr_corner_gol_restaurant_01.jpg",
-      "alt": "Tehran, next to Valiasr corner, Gol restaurant",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_tehran_next_to_valiasr_corner_gol_restaurant_02.jpg",
-      "original": "2009-02-24_tehran_next_to_valiasr_corner_gol_restaurant_02.jpg",
+      "original": "2009_02_24_tehran_next_to_valiasr_corner_gol_restaurant_01.jpg",
       "alt": "Tehran, next to Valiasr corner, Gol restaurant",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_tehran_next_to_valiasr_corner_gol_restaurant_01.jpg"
 }

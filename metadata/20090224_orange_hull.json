@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_orange_hull_01.jpg",
-      "original": "2009-02-24_orange_hull_01.jpg",
-      "alt": "Orange Hull",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_orange_hull_02.jpg",
-      "original": "2009-02-24_orange_hull_02.jpg",
+      "original": "2009_02_24_orange_hull_01.jpg",
       "alt": "Orange Hull",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_orange_hull_01.jpg"
 }

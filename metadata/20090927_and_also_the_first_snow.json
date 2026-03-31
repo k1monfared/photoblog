@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-09-27_and_also_the_first_snow_01.jpg",
-      "original": "2009-09-27_and_also_the_first_snow_01.jpg",
-      "alt": "And also the first snow",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-09-27_and_also_the_first_snow_02.jpg",
-      "original": "2009-09-27_and_also_the_first_snow_02.jpg",
+      "original": "2009_09_27_and_also_the_first_snow_01.jpg",
       "alt": "And also the first snow",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-09-27_and_also_the_first_snow_01.jpg"
 }

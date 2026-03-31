@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-05-25_flight_01.jpg",
-      "original": "2009-05-25_flight_01.jpg",
-      "alt": "Flight",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-05-25_flight_02.jpg",
-      "original": "2009-05-25_flight_02.jpg",
+      "original": "2009_05_25_flight_01.jpg",
       "alt": "Flight",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-05-25_flight_01.jpg"
 }

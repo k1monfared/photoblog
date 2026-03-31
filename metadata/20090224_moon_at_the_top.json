@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_moon_at_the_top_01.jpg",
-      "original": "2009-02-24_moon_at_the_top_01.jpg",
-      "alt": "Moon at the Top",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_moon_at_the_top_02.jpg",
-      "original": "2009-02-24_moon_at_the_top_02.jpg",
+      "original": "2009_02_24_moon_at_the_top_01.jpg",
       "alt": "Moon at the Top",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_moon_at_the_top_01.jpg"
 }

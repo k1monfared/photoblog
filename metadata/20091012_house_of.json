@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-10-12_house_of_01.jpg",
-      "original": "2009-10-12_house_of_01.jpg",
-      "alt": "House of ...",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-10-12_house_of_02.jpg",
-      "original": "2009-10-12_house_of_02.jpg",
+      "original": "2009_10_12_house_of_01.jpg",
       "alt": "House of ...",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-10-12_house_of_01.jpg"
 }

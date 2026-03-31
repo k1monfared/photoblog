@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_artwork_by_steel_and_oil_01.jpg",
-      "original": "2009-02-24_artwork_by_steel_and_oil_01.jpg",
-      "alt": "Artwork by Steel and Oil",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_artwork_by_steel_and_oil_02.jpg",
-      "original": "2009-02-24_artwork_by_steel_and_oil_02.jpg",
+      "original": "2009_02_24_artwork_by_steel_and_oil_01.jpg",
       "alt": "Artwork by Steel and Oil",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_artwork_by_steel_and_oil_01.jpg"
 }

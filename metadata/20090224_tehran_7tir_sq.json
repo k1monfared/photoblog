@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_tehran_7tir_sq_01.jpg",
-      "original": "2009-02-24_tehran_7tir_sq_01.jpg",
-      "alt": "Tehran, 7tir Sq.",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_tehran_7tir_sq_02.jpg",
-      "original": "2009-02-24_tehran_7tir_sq_02.jpg",
+      "original": "2009_02_24_tehran_7tir_sq_01.jpg",
       "alt": "Tehran, 7tir Sq.",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_tehran_7tir_sq_01.jpg"
 }

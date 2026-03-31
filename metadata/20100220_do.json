@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2010-02-20_do_01.jpg",
-      "original": "2010-02-20_do_01.jpg",
-      "alt": "do?",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2010-02-20_do_02.jpg",
-      "original": "2010-02-20_do_02.jpg",
+      "original": "2010_02_20_do_01.jpg",
       "alt": "do?",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2010-02-20_do_01.jpg"
 }

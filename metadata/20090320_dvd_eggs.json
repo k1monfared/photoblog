@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-03-20_dvd_eggs_01.jpg",
-      "original": "2009-03-20_dvd_eggs_01.jpg",
-      "alt": "DVD & Eggs",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-03-20_dvd_eggs_02.jpg",
-      "original": "2009-03-20_dvd_eggs_02.jpg",
+      "original": "2009_03_20_dvd_eggs_01.jpg",
       "alt": "DVD & Eggs",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-03-20_dvd_eggs_01.jpg"
 }

@@ -9,7 +9,7 @@
   "photos": [
     {
       "web": "files/photoblog/2011-01-02_art_piece_01.jpg",
-      "original": "2011-01-02_art_piece_01.jpg",
+      "original": "2011_01_02_art_piece_01.jpg",
       "alt": "art piece",
       "status": "jpeg",
       "exif": {}

@@ -8,25 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-09-27_ramanujan_01.jpg",
-      "original": "2009-09-27_ramanujan_01.jpg",
-      "alt": "Ramanujan",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-09-27_ramanujan_02.jpg",
-      "original": "2009-09-27_ramanujan_02.jpg",
-      "alt": "Ramanujan",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-09-27_ramanujan_03.jpg",
-      "original": "2009-09-27_ramanujan_03.jpg",
+      "original": "2009_09_27_ramanujan_01.jpg",
       "alt": "Ramanujan",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-09-27_ramanujan_02.jpg"
 }

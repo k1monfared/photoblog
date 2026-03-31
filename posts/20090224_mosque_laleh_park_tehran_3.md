@@ -7,4 +7,3 @@ thumbnail: files/photoblog/2009-02-24_mosque_laleh_park_tehran_3_01.jpg
 
 ![Mosque, "Laleh" Park, Tehran](files/photoblog/2009-02-24_mosque_laleh_park_tehran_3_01.jpg)
 
-![Mosque, "Laleh" Park, Tehran](files/photoblog/2009-02-24_mosque_laleh_park_tehran_3_02.jpg)

@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-03-20_to_the_end_01.jpg",
-      "original": "2009-03-20_to_the_end_01.jpg",
-      "alt": "To the End",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-03-20_to_the_end_02.jpg",
-      "original": "2009-03-20_to_the_end_02.jpg",
+      "original": "2009_03_20_to_the_end_01.jpg",
       "alt": "To the End",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-03-20_to_the_end_01.jpg"
 }

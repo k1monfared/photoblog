@@ -9,7 +9,7 @@
   "photos": [
     {
       "web": "files/photoblog/2011-01-02_berlin_01.jpg",
-      "original": "2011-01-02_berlin_01.jpg",
+      "original": "2011_01_02_berlin_01.jpg",
       "alt": "Berlin",
       "status": "jpeg",
       "exif": {}

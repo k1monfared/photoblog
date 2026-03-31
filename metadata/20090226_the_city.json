@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-26_the_city_01.jpg",
-      "original": "2009-02-26_the_city_01.jpg",
-      "alt": "The City",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-26_the_city_02.jpg",
-      "original": "2009-02-26_the_city_02.jpg",
+      "original": "2009_02_26_the_city_01.jpg",
       "alt": "The City",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-26_the_city_01.jpg"
 }

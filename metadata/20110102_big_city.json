@@ -9,7 +9,7 @@
   "photos": [
     {
       "web": "files/photoblog/2011-01-02_big_city_01.jpg",
-      "original": "2011-01-02_big_city_01.jpg",
+      "original": "2011_01_02_big_city_01.jpg",
       "alt": "big city",
       "status": "jpeg",
       "exif": {}

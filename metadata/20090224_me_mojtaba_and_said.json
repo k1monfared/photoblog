@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_me_mojtaba_and_said_01.jpg",
-      "original": "2009-02-24_me_mojtaba_and_said_01.jpg",
-      "alt": "Me, Mojtaba and Sa'id",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_me_mojtaba_and_said_02.jpg",
-      "original": "2009-02-24_me_mojtaba_and_said_02.jpg",
+      "original": "2009_02_24_me_mojtaba_and_said_01.jpg",
       "alt": "Me, Mojtaba and Sa'id",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_me_mojtaba_and_said_01.jpg"
 }

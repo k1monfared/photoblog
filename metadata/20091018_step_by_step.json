@@ -8,25 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-10-18_step_by_step_01.jpg",
-      "original": "2009-10-18_step_by_step_01.jpg",
-      "alt": "Step by step",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-10-18_step_by_step_02.jpg",
-      "original": "2009-10-18_step_by_step_02.jpg",
-      "alt": "Step by step",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-10-18_step_by_step_03.jpg",
-      "original": "2009-10-18_step_by_step_03.jpg",
+      "original": "2009_10_18_step_by_step_01.jpg",
       "alt": "Step by step",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-10-18_step_by_step_02.jpg"
 }

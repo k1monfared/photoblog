@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-26_hamid_s_01.jpg",
-      "original": "2009-02-26_hamid_s_01.jpg",
-      "alt": "Hamid S.",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-26_hamid_s_02.jpg",
-      "original": "2009-02-26_hamid_s_02.jpg",
+      "original": "2009_02_26_hamid_s_01.jpg",
       "alt": "Hamid S.",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-26_hamid_s_01.jpg"
 }

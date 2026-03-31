@@ -8,25 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-06-05_left_up_01.jpg",
-      "original": "2009-06-05_left_up_01.jpg",
-      "alt": "Left up",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-06-05_left_up_02.jpg",
-      "original": "2009-06-05_left_up_02.jpg",
-      "alt": "Left up",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-06-05_left_up_03.jpg",
-      "original": "2009-06-05_left_up_03.jpg",
+      "original": "2009_06_05_left_up_01.jpg",
       "alt": "Left up",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-06-05_left_up_02.jpg"
 }

@@ -8,18 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-12-01_mars_01.jpg",
-      "original": "2009-12-01_mars_01.jpg",
-      "alt": "Mars",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-12-01_mars_02.jpg",
-      "original": "2009-12-01_mars_02.jpg",
+      "original": "2009_12_01_mars_01.jpg",
       "alt": "Mars",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-12-01_mars_02.jpg"
 }

@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-04-17_spaghetti_01.jpg",
-      "original": "2009-04-17_spaghetti_01.jpg",
-      "alt": "Spaghetti",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-04-17_spaghetti_02.jpg",
-      "original": "2009-04-17_spaghetti_02.jpg",
+      "original": "2009_04_17_spaghetti_01.jpg",
       "alt": "Spaghetti",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-04-17_spaghetti_01.jpg"
 }

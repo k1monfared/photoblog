@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-06-05_who_has_moved_my_teeth_01.jpg",
-      "original": "2009-06-05_who_has_moved_my_teeth_01.jpg",
-      "alt": "Who has moved my teeth?",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-06-05_who_has_moved_my_teeth_02.jpg",
-      "original": "2009-06-05_who_has_moved_my_teeth_02.jpg",
+      "original": "2009_06_05_who_has_moved_my_teeth_01.jpg",
       "alt": "Who has moved my teeth?",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-06-05_who_has_moved_my_teeth_01.jpg"
 }

@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_vibrant_city_lights_01.jpg",
-      "original": "2009-02-24_vibrant_city_lights_01.jpg",
-      "alt": "Vibrant City Lights",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_vibrant_city_lights_02.jpg",
-      "original": "2009-02-24_vibrant_city_lights_02.jpg",
+      "original": "2009_02_24_vibrant_city_lights_01.jpg",
       "alt": "Vibrant City Lights",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_vibrant_city_lights_01.jpg"
 }

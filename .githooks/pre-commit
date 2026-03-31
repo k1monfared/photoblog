@@ -1,8 +1,8 @@
 #!/bin/bash
-output=$(python process_photos.py 2>&1)
-if echo "$output" | grep -q "Processed [1-9]"; then
+output=$(python scripts/process_photos.py 2>&1)
+if echo "$output" | grep -qE "Processed [1-9]|Removed [1-9]|Regenerated [1-9]"; then
     echo "$output"
-    git add metadata/ files/photoblog/ posts/*.md
-    echo "New photos processed and staged. Review then re-commit."
+    git add metadata/ files/photoblog/ files/thumbs/ posts/*.md
+    echo "Photos updated and staged. Review then re-commit."
     exit 1
 fi

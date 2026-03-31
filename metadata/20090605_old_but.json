@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-06-05_old_but_01.jpg",
-      "original": "2009-06-05_old_but_01.jpg",
-      "alt": "Old, but ...",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-06-05_old_but_02.jpg",
-      "original": "2009-06-05_old_but_02.jpg",
+      "original": "2009_06_05_old_but_01.jpg",
       "alt": "Old, but ...",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-06-05_old_but_01.jpg"
 }

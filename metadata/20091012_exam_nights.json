@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-10-12_exam_nights_01.jpg",
-      "original": "2009-10-12_exam_nights_01.jpg",
-      "alt": "Exam nights",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-10-12_exam_nights_02.jpg",
-      "original": "2009-10-12_exam_nights_02.jpg",
+      "original": "2009_10_12_exam_nights_01.jpg",
       "alt": "Exam nights",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-10-12_exam_nights_01.jpg"
 }

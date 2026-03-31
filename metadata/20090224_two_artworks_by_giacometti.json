@@ -8,25 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-02-24_two_artworks_by_giacometti_01.jpg",
-      "original": "2009-02-24_two_artworks_by_giacometti_01.jpg",
-      "alt": "Two Artworks by Giacometti",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-02-24_two_artworks_by_giacometti_02.jpg",
-      "original": "2009-02-24_two_artworks_by_giacometti_02.jpg",
-      "alt": "Two Artworks by Giacometti",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_two_artworks_by_giacometti_03.jpg",
-      "original": "2009-02-24_two_artworks_by_giacometti_03.jpg",
+      "original": "2009_02_24_two_artworks_by_giacometti_01.jpg",
       "alt": "Two Artworks by Giacometti",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_two_artworks_by_giacometti_02.jpg"
 }

@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2010-02-20_cheetos_01.jpg",
-      "original": "2010-02-20_cheetos_01.jpg",
-      "alt": "Cheetos!",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2010-02-20_cheetos_02.jpg",
-      "original": "2010-02-20_cheetos_02.jpg",
+      "original": "2010_02_20_cheetos_01.jpg",
       "alt": "Cheetos!",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2010-02-20_cheetos_01.jpg"
 }

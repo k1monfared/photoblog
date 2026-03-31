@@ -9,7 +9,7 @@
   "photos": [
     {
       "web": "files/photoblog/2011-03-13_engineering_01.jpg",
-      "original": "2011-03-13_engineering_01.jpg",
+      "original": "2011_03_13_engineering_01.jpg",
       "alt": "Engineering",
       "status": "jpeg",
       "exif": {}

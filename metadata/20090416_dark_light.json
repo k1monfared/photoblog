@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-04-16_dark_light_01.jpg",
-      "original": "2009-04-16_dark_light_01.jpg",
-      "alt": "Dark Light",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-04-16_dark_light_02.jpg",
-      "original": "2009-04-16_dark_light_02.jpg",
+      "original": "2009_04_16_dark_light_01.jpg",
       "alt": "Dark Light",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-04-16_dark_light_01.jpg"
 }

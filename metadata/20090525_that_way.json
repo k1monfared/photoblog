@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-05-25_that_way_01.jpg",
-      "original": "2009-05-25_that_way_01.jpg",
-      "alt": "That way",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-05-25_that_way_02.jpg",
-      "original": "2009-05-25_that_way_02.jpg",
+      "original": "2009_05_25_that_way_01.jpg",
       "alt": "That way",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-05-25_that_way_01.jpg"
 }

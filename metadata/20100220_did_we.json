@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2010-02-20_did_we_01.jpg",
-      "original": "2010-02-20_did_we_01.jpg",
-      "alt": "Did we?",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2010-02-20_did_we_02.jpg",
-      "original": "2010-02-20_did_we_02.jpg",
+      "original": "2010_02_20_did_we_01.jpg",
       "alt": "Did we?",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2010-02-20_did_we_01.jpg"
 }

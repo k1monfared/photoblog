@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-03-20_me_you_and_anar_01.jpg",
-      "original": "2009-03-20_me_you_and_anar_01.jpg",
-      "alt": "Me, you and Anar",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-03-20_me_you_and_anar_02.jpg",
-      "original": "2009-03-20_me_you_and_anar_02.jpg",
+      "original": "2009_03_20_me_you_and_anar_01.jpg",
       "alt": "Me, you and Anar",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-03-20_me_you_and_anar_01.jpg"
 }

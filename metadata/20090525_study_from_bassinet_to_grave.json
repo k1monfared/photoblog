@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-05-25_study_from_bassinet_to_grave_01.jpg",
-      "original": "2009-05-25_study_from_bassinet_to_grave_01.jpg",
-      "alt": "Study from bassinet to grave",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-05-25_study_from_bassinet_to_grave_02.jpg",
-      "original": "2009-05-25_study_from_bassinet_to_grave_02.jpg",
+      "original": "2009_05_25_study_from_bassinet_to_grave_01.jpg",
       "alt": "Study from bassinet to grave",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-05-25_study_from_bassinet_to_grave_01.jpg"
 }

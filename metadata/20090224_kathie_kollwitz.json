@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_kathie_kollwitz_01.jpg",
-      "original": "2009-02-24_kathie_kollwitz_01.jpg",
-      "alt": "Kathie Kollwitz",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_kathie_kollwitz_02.jpg",
-      "original": "2009-02-24_kathie_kollwitz_02.jpg",
+      "original": "2009_02_24_kathie_kollwitz_01.jpg",
       "alt": "Kathie Kollwitz",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_kathie_kollwitz_01.jpg"
 }

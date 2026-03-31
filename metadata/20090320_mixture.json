@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-03-20_mixture_01.jpg",
-      "original": "2009-03-20_mixture_01.jpg",
-      "alt": "Mixture",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-03-20_mixture_02.jpg",
-      "original": "2009-03-20_mixture_02.jpg",
+      "original": "2009_03_20_mixture_01.jpg",
       "alt": "Mixture",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-03-20_mixture_01.jpg"
 }

@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-09-27_the_first_one_01.jpg",
-      "original": "2009-09-27_the_first_one_01.jpg",
-      "alt": "The first one",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-09-27_the_first_one_02.jpg",
-      "original": "2009-09-27_the_first_one_02.jpg",
+      "original": "2009_09_27_the_first_one_01.jpg",
       "alt": "The first one",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-09-27_the_first_one_01.jpg"
 }

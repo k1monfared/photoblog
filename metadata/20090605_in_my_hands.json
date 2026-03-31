@@ -8,25 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-06-05_in_my_hands_01.jpg",
-      "original": "2009-06-05_in_my_hands_01.jpg",
-      "alt": "In my hands",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-06-05_in_my_hands_02.jpg",
-      "original": "2009-06-05_in_my_hands_02.jpg",
-      "alt": "In my hands",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-06-05_in_my_hands_03.jpg",
-      "original": "2009-06-05_in_my_hands_03.jpg",
+      "original": "2009_06_05_in_my_hands_01.jpg",
       "alt": "In my hands",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-06-05_in_my_hands_02.jpg"
 }

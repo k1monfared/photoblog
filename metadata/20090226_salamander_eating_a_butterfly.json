@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-26_salamander_eating_a_butterfly_01.jpg",
-      "original": "2009-02-26_salamander_eating_a_butterfly_01.jpg",
-      "alt": "Salamander Eating a Butterfly",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-26_salamander_eating_a_butterfly_02.jpg",
-      "original": "2009-02-26_salamander_eating_a_butterfly_02.jpg",
+      "original": "2009_02_26_salamander_eating_a_butterfly_01.jpg",
       "alt": "Salamander Eating a Butterfly",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-26_salamander_eating_a_butterfly_01.jpg"
 }

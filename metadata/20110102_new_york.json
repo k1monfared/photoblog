@@ -9,7 +9,7 @@
   "photos": [
     {
       "web": "files/photoblog/2011-01-02_new_york_01.jpg",
-      "original": "2011-01-02_new_york_01.jpg",
+      "original": "2011_01_02_new_york_01.jpg",
       "alt": "new york",
       "status": "jpeg",
       "exif": {}

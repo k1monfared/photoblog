@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_toshiba_01.jpg",
-      "original": "2009-02-24_toshiba_01.jpg",
-      "alt": "Toshiba",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_toshiba_02.jpg",
-      "original": "2009-02-24_toshiba_02.jpg",
+      "original": "2009_02_24_toshiba_01.jpg",
       "alt": "Toshiba",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_toshiba_01.jpg"
 }

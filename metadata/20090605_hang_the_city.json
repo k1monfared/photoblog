@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-06-05_hang_the_city_01.jpg",
-      "original": "2009-06-05_hang_the_city_01.jpg",
-      "alt": "Hang the City",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-06-05_hang_the_city_02.jpg",
-      "original": "2009-06-05_hang_the_city_02.jpg",
+      "original": "2009_06_05_hang_the_city_01.jpg",
       "alt": "Hang the City",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-06-05_hang_the_city_01.jpg"
 }

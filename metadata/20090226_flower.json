@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-26_flower_01.jpg",
-      "original": "2009-02-26_flower_01.jpg",
-      "alt": "Flower",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-26_flower_02.jpg",
-      "original": "2009-02-26_flower_02.jpg",
+      "original": "2009_02_26_flower_01.jpg",
       "alt": "Flower",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-26_flower_01.jpg"
 }

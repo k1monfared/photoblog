@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_ouch_01.jpg",
-      "original": "2009-02-24_ouch_01.jpg",
-      "alt": "Ouch",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_ouch_02.jpg",
-      "original": "2009-02-24_ouch_02.jpg",
+      "original": "2009_02_24_ouch_01.jpg",
       "alt": "Ouch",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_ouch_01.jpg"
 }

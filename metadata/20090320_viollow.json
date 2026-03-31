@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-03-20_viollow_01.jpg",
-      "original": "2009-03-20_viollow_01.jpg",
-      "alt": "Viollow",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-03-20_viollow_02.jpg",
-      "original": "2009-03-20_viollow_02.jpg",
+      "original": "2009_03_20_viollow_01.jpg",
       "alt": "Viollow",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-03-20_viollow_01.jpg"
 }

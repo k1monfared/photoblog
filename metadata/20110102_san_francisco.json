@@ -9,7 +9,7 @@
   "photos": [
     {
       "web": "files/photoblog/2011-01-02_san_francisco_01.jpg",
-      "original": "2011-01-02_san_francisco_01.jpg",
+      "original": "2011_01_02_san_francisco_01.jpg",
       "alt": "San Francisco",
       "status": "jpeg",
       "exif": {}

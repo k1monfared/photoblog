@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_poster_100film_01.jpg",
-      "original": "2009-02-24_poster_100film_01.jpg",
-      "alt": "Poster, 100Film",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_poster_100film_02.jpg",
-      "original": "2009-02-24_poster_100film_02.jpg",
+      "original": "2009_02_24_poster_100film_01.jpg",
       "alt": "Poster, 100Film",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_poster_100film_01.jpg"
 }

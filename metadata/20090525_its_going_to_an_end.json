@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-05-25_its_going_to_an_end_01.jpg",
-      "original": "2009-05-25_its_going_to_an_end_01.jpg",
-      "alt": "It's going to an end",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-05-25_its_going_to_an_end_02.jpg",
-      "original": "2009-05-25_its_going_to_an_end_02.jpg",
+      "original": "2009_05_25_its_going_to_an_end_01.jpg",
       "alt": "It's going to an end",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-05-25_its_going_to_an_end_01.jpg"
 }

@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-06-05_im_going_home_01.jpg",
-      "original": "2009-06-05_im_going_home_01.jpg",
-      "alt": "I'm going home",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-06-05_im_going_home_02.jpg",
-      "original": "2009-06-05_im_going_home_02.jpg",
+      "original": "2009_06_05_im_going_home_01.jpg",
       "alt": "I'm going home",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-06-05_im_going_home_01.jpg"
 }

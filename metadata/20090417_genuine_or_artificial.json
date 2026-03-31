@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-04-17_genuine_or_artificial_01.jpg",
-      "original": "2009-04-17_genuine_or_artificial_01.jpg",
-      "alt": "Genuine or Artificial?",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-04-17_genuine_or_artificial_02.jpg",
-      "original": "2009-04-17_genuine_or_artificial_02.jpg",
+      "original": "2009_04_17_genuine_or_artificial_01.jpg",
       "alt": "Genuine or Artificial?",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-04-17_genuine_or_artificial_01.jpg"
 }

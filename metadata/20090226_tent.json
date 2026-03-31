@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-26_tent_01.jpg",
-      "original": "2009-02-26_tent_01.jpg",
-      "alt": "Tent",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-26_tent_02.jpg",
-      "original": "2009-02-26_tent_02.jpg",
+      "original": "2009_02_26_tent_01.jpg",
       "alt": "Tent",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-26_tent_01.jpg"
 }

@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_passing_theran_subway_station_01.jpg",
-      "original": "2009-02-24_passing_theran_subway_station_01.jpg",
-      "alt": "Passing, Theran, Subway Station",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_passing_theran_subway_station_02.jpg",
-      "original": "2009-02-24_passing_theran_subway_station_02.jpg",
+      "original": "2009_02_24_passing_theran_subway_station_01.jpg",
       "alt": "Passing, Theran, Subway Station",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_passing_theran_subway_station_01.jpg"
 }

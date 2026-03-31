@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-26_under_the_bridge_01.jpg",
-      "original": "2009-02-26_under_the_bridge_01.jpg",
-      "alt": "Under the Bridge",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-26_under_the_bridge_02.jpg",
-      "original": "2009-02-26_under_the_bridge_02.jpg",
+      "original": "2009_02_26_under_the_bridge_01.jpg",
       "alt": "Under the Bridge",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-26_under_the_bridge_01.jpg"
 }

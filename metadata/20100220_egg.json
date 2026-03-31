@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2010-02-20_egg_01.jpg",
-      "original": "2010-02-20_egg_01.jpg",
-      "alt": "egg?",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2010-02-20_egg_02.jpg",
-      "original": "2010-02-20_egg_02.jpg",
+      "original": "2010_02_20_egg_01.jpg",
       "alt": "egg?",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2010-02-20_egg_01.jpg"
 }

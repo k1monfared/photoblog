@@ -8,18 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2011-01-03_k1fc_01.jpg",
-      "original": "2011-01-03_k1fc_01.jpg",
-      "alt": "K1FC",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2011-01-03_k1fc_02.jpg",
-      "original": "2011-01-03_k1fc_02.jpg",
+      "original": "2011_01_03_k1fc_01.jpg",
       "alt": "K1FC",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2011-01-03_k1fc_02.jpg"
 }

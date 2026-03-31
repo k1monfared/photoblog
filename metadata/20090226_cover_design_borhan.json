@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-26_cover_design_borhan_01.jpg",
-      "original": "2009-02-26_cover_design_borhan_01.jpg",
-      "alt": "Cover Design, Borhan",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-26_cover_design_borhan_02.jpg",
-      "original": "2009-02-26_cover_design_borhan_02.jpg",
+      "original": "2009_02_26_cover_design_borhan_01.jpg",
       "alt": "Cover Design, Borhan",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-26_cover_design_borhan_01.jpg"
 }

@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-04-17_salvation_is_in_solution_01.jpg",
-      "original": "2009-04-17_salvation_is_in_solution_01.jpg",
-      "alt": "Salvation is in solution",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-04-17_salvation_is_in_solution_02.jpg",
-      "original": "2009-04-17_salvation_is_in_solution_02.jpg",
+      "original": "2009_04_17_salvation_is_in_solution_01.jpg",
       "alt": "Salvation is in solution",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-04-17_salvation_is_in_solution_01.jpg"
 }

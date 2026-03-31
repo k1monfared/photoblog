@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-06-05_mask_01.jpg",
-      "original": "2009-06-05_mask_01.jpg",
-      "alt": "mASK",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-06-05_mask_02.jpg",
-      "original": "2009-06-05_mask_02.jpg",
+      "original": "2009_06_05_mask_01.jpg",
       "alt": "mASK",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-06-05_mask_01.jpg"
 }

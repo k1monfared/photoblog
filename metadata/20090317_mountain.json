@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-03-17_mountain_01.jpg",
-      "original": "2009-03-17_mountain_01.jpg",
-      "alt": "Mountain",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-03-17_mountain_02.jpg",
-      "original": "2009-03-17_mountain_02.jpg",
+      "original": "2009_03_17_mountain_01.jpg",
       "alt": "Mountain",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-03-17_mountain_01.jpg"
 }

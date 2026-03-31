@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_amirkabir_university_boys_buffet_01.jpg",
-      "original": "2009-02-24_amirkabir_university_boys_buffet_01.jpg",
-      "alt": "Amirkabir University, Boys Buffet",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_amirkabir_university_boys_buffet_02.jpg",
-      "original": "2009-02-24_amirkabir_university_boys_buffet_02.jpg",
+      "original": "2009_02_24_amirkabir_university_boys_buffet_01.jpg",
       "alt": "Amirkabir University, Boys Buffet",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_amirkabir_university_boys_buffet_01.jpg"
 }

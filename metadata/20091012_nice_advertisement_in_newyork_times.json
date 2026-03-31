@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-10-12_nice_advertisement_in_newyork_times_01.jpg",
-      "original": "2009-10-12_nice_advertisement_in_newyork_times_01.jpg",
-      "alt": "Nice Advertisement in NewYork Times",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-10-12_nice_advertisement_in_newyork_times_02.jpg",
-      "original": "2009-10-12_nice_advertisement_in_newyork_times_02.jpg",
+      "original": "2009_10_12_nice_advertisement_in_newyork_times_01.jpg",
       "alt": "Nice Advertisement in NewYork Times",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-10-12_nice_advertisement_in_newyork_times_01.jpg"
 }

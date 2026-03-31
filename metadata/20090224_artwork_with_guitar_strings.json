@@ -8,25 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-02-24_artwork_with_guitar_strings_01.jpg",
-      "original": "2009-02-24_artwork_with_guitar_strings_01.jpg",
-      "alt": "Artwork with Guitar Strings",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-02-24_artwork_with_guitar_strings_02.jpg",
-      "original": "2009-02-24_artwork_with_guitar_strings_02.jpg",
-      "alt": "Artwork with Guitar Strings",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_artwork_with_guitar_strings_03.jpg",
-      "original": "2009-02-24_artwork_with_guitar_strings_03.jpg",
+      "original": "2009_02_24_artwork_with_guitar_strings_01.jpg",
       "alt": "Artwork with Guitar Strings",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_artwork_with_guitar_strings_02.jpg"
 }

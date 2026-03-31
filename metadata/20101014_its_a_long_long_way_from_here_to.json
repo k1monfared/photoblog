@@ -9,7 +9,7 @@
   "photos": [
     {
       "web": "files/photoblog/2010-10-14_its_a_long_long_way_from_here_to_01.jpg",
-      "original": "2010-10-14_its_a_long_long_way_from_here_to_01.jpg",
+      "original": "2010_10_14_its_a_long_long_way_from_here_to_01.jpg",
       "alt": "It's a long long way from here to ...",
       "status": "jpeg",
       "exif": {}

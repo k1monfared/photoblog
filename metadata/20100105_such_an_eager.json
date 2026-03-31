@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2010-01-05_such_an_eager_01.jpg",
-      "original": "2010-01-05_such_an_eager_01.jpg",
-      "alt": "such an eager",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2010-01-05_such_an_eager_02.jpg",
-      "original": "2010-01-05_such_an_eager_02.jpg",
+      "original": "2010_01_05_such_an_eager_01.jpg",
       "alt": "such an eager",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2010-01-05_such_an_eager_01.jpg"
 }

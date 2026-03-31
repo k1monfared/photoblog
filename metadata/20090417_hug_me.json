@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-04-17_hug_me_01.jpg",
-      "original": "2009-04-17_hug_me_01.jpg",
-      "alt": "Hug me",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-04-17_hug_me_02.jpg",
-      "original": "2009-04-17_hug_me_02.jpg",
+      "original": "2009_04_17_hug_me_01.jpg",
       "alt": "Hug me",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-04-17_hug_me_01.jpg"
 }

@@ -8,39 +8,19 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-10-12_escher_01.jpg",
-      "original": "2009-10-12_escher_01.jpg",
-      "alt": "Escher",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-10-12_escher_02.jpg",
-      "original": "2009-10-12_escher_02.jpg",
+      "original": "2009_10_12_escher_01.jpg",
       "alt": "Escher",
       "status": "jpeg",
       "exif": {}
     },
     {
       "web": "files/photoblog/2009-10-12_escher_03.jpg",
-      "original": "2009-10-12_escher_03.jpg",
-      "alt": "Escher",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-10-12_escher_04.jpg",
-      "original": "2009-10-12_escher_04.jpg",
-      "alt": "Escher",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-10-12_escher_05.jpg",
-      "original": "2009-10-12_escher_05.jpg",
+      "original": "2009_10_12_escher_02.jpg",
       "alt": "Escher",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-10-12_escher_02.jpg"
 }

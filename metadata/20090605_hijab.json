@@ -8,25 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-06-05_hijab_01.jpg",
-      "original": "2009-06-05_hijab_01.jpg",
-      "alt": "Hijab!",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-06-05_hijab_02.jpg",
-      "original": "2009-06-05_hijab_02.jpg",
-      "alt": "Hijab!",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-06-05_hijab_03.jpg",
-      "original": "2009-06-05_hijab_03.jpg",
+      "original": "2009_06_05_hijab_01.jpg",
       "alt": "Hijab!",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-06-05_hijab_02.jpg"
 }

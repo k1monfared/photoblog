@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-06-05_milad_tower_01.jpg",
-      "original": "2009-06-05_milad_tower_01.jpg",
-      "alt": "Milad Tower",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-06-05_milad_tower_02.jpg",
-      "original": "2009-06-05_milad_tower_02.jpg",
+      "original": "2009_06_05_milad_tower_01.jpg",
       "alt": "Milad Tower",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-06-05_milad_tower_01.jpg"
 }

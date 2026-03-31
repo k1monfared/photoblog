@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2010-02-20_as_you_like_it_01.jpg",
-      "original": "2010-02-20_as_you_like_it_01.jpg",
-      "alt": "As you like it",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2010-02-20_as_you_like_it_02.jpg",
-      "original": "2010-02-20_as_you_like_it_02.jpg",
+      "original": "2010_02_20_as_you_like_it_01.jpg",
       "alt": "As you like it",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2010-02-20_as_you_like_it_01.jpg"
 }

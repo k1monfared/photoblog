@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_tehran_pasteur_sq_glasshouse_01.jpg",
-      "original": "2009-02-24_tehran_pasteur_sq_glasshouse_01.jpg",
-      "alt": "Tehran, Pasteur Sq., Glasshouse",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_tehran_pasteur_sq_glasshouse_02.jpg",
-      "original": "2009-02-24_tehran_pasteur_sq_glasshouse_02.jpg",
+      "original": "2009_02_24_tehran_pasteur_sq_glasshouse_01.jpg",
       "alt": "Tehran, Pasteur Sq., Glasshouse",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_tehran_pasteur_sq_glasshouse_01.jpg"
 }

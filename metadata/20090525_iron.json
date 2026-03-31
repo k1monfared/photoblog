@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-05-25_iron_01.jpg",
-      "original": "2009-05-25_iron_01.jpg",
-      "alt": "Iron",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-05-25_iron_02.jpg",
-      "original": "2009-05-25_iron_02.jpg",
+      "original": "2009_05_25_iron_01.jpg",
       "alt": "Iron",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-05-25_iron_01.jpg"
 }

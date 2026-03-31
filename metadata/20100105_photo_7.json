@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2010-01-05_photo_7_01.jpg",
-      "original": "2010-01-05_photo_7_01.jpg",
-      "alt": ":)",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2010-01-05_photo_7_02.jpg",
-      "original": "2010-01-05_photo_7_02.jpg",
+      "original": "2010_01_05_photo_7_01.jpg",
       "alt": ":)",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2010-01-05_photo_7_01.jpg"
 }

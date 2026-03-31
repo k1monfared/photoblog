@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_roses_for_citizen_01.jpg",
-      "original": "2009-02-24_roses_for_citizen_01.jpg",
-      "alt": "Roses for Citizen",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_roses_for_citizen_02.jpg",
-      "original": "2009-02-24_roses_for_citizen_02.jpg",
+      "original": "2009_02_24_roses_for_citizen_01.jpg",
       "alt": "Roses for Citizen",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_roses_for_citizen_01.jpg"
 }

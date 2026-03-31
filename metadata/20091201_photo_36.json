@@ -8,18 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-12-01_photo_36_01.jpg",
-      "original": "2009-12-01_photo_36_01.jpg",
-      "alt": "-",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-12-01_photo_36_02.jpg",
-      "original": "2009-12-01_photo_36_02.jpg",
+      "original": "2009_12_01_photo_36_01.jpg",
       "alt": "-",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-12-01_photo_36_02.jpg"
 }

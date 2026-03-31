@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-04-16_13_01.jpg",
-      "original": "2009-04-16_13_01.jpg",
-      "alt": "13",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-04-16_13_02.jpg",
-      "original": "2009-04-16_13_02.jpg",
+      "original": "2009_04_16_13_01.jpg",
       "alt": "13",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-04-16_13_01.jpg"
 }

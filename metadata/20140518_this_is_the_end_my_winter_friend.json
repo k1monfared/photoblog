@@ -9,14 +9,14 @@
   "photos": [
     {
       "web": "files/photoblog/2014-05-18_this_is_the_end_my_winter_friend_01.jpg",
-      "original": "2014-05-18_this_is_the_end_my_winter_friend_01.jpg",
+      "original": "2014_05_18_this_is_the_end_my_winter_friend_01.jpg",
       "alt": "This is the end my winter friend",
       "status": "jpeg",
       "exif": {}
     },
     {
       "web": "files/photoblog/2014-05-18_this_is_the_end_my_winter_friend_02.jpg",
-      "original": "2014-05-18_this_is_the_end_my_winter_friend_02.jpg",
+      "original": "2014_05_18_this_is_the_end_my_winter_friend_02.jpg",
       "alt": "This is the end my winter friend",
       "status": "jpeg",
       "exif": {}

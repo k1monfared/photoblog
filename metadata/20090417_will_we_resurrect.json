@@ -8,25 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-04-17_will_we_resurrect_01.jpg",
-      "original": "2009-04-17_will_we_resurrect_01.jpg",
-      "alt": "Will we resurrect?",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-04-17_will_we_resurrect_02.jpg",
-      "original": "2009-04-17_will_we_resurrect_02.jpg",
-      "alt": "Will we resurrect?",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-04-17_will_we_resurrect_03.jpg",
-      "original": "2009-04-17_will_we_resurrect_03.jpg",
+      "original": "2009_04_17_will_we_resurrect_01.jpg",
       "alt": "Will we resurrect?",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-04-17_will_we_resurrect_02.jpg"
 }

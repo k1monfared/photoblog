@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_fruit_daily_market_01.jpg",
-      "original": "2009-02-24_fruit_daily_market_01.jpg",
-      "alt": "Fruit Daily Market",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_fruit_daily_market_02.jpg",
-      "original": "2009-02-24_fruit_daily_market_02.jpg",
+      "original": "2009_02_24_fruit_daily_market_01.jpg",
       "alt": "Fruit Daily Market",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_fruit_daily_market_01.jpg"
 }

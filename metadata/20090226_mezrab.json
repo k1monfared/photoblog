@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-26_mezrab_01.jpg",
-      "original": "2009-02-26_mezrab_01.jpg",
-      "alt": "Mezrab",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-26_mezrab_02.jpg",
-      "original": "2009-02-26_mezrab_02.jpg",
+      "original": "2009_02_26_mezrab_01.jpg",
       "alt": "Mezrab",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-26_mezrab_01.jpg"
 }

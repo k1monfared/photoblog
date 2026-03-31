@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2010-02-20_that_hope_01.jpg",
-      "original": "2010-02-20_that_hope_01.jpg",
-      "alt": "That hope",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2010-02-20_that_hope_02.jpg",
-      "original": "2010-02-20_that_hope_02.jpg",
+      "original": "2010_02_20_that_hope_01.jpg",
       "alt": "That hope",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2010-02-20_that_hope_01.jpg"
 }

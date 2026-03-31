@@ -8,25 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-10-10_house_of_snow_01.jpg",
-      "original": "2009-10-10_house_of_snow_01.jpg",
-      "alt": "House of snow",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-10-10_house_of_snow_02.jpg",
-      "original": "2009-10-10_house_of_snow_02.jpg",
-      "alt": "House of snow",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-10-10_house_of_snow_03.jpg",
-      "original": "2009-10-10_house_of_snow_03.jpg",
+      "original": "2009_10_10_house_of_snow_01.jpg",
       "alt": "House of snow",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-10-10_house_of_snow_02.jpg"
 }

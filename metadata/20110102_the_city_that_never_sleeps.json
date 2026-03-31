@@ -9,7 +9,7 @@
   "photos": [
     {
       "web": "files/photoblog/2011-01-02_the_city_that_never_sleeps_01.jpg",
-      "original": "2011-01-02_the_city_that_never_sleeps_01.jpg",
+      "original": "2011_01_02_the_city_that_never_sleeps_01.jpg",
       "alt": "The city that never sleeps",
       "status": "jpeg",
       "exif": {}

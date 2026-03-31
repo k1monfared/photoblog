@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-12-26_me_my_window_-_1_01.jpg",
-      "original": "2009-12-26_me_my_window_-_1_01.jpg",
-      "alt": "me & my window - 1",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-12-26_me_my_window_-_1_02.jpg",
-      "original": "2009-12-26_me_my_window_-_1_02.jpg",
+      "original": "2009_12_26_me_my_window_-_1_01.jpg",
       "alt": "me & my window - 1",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-12-26_me_my_window_-_1_01.jpg"
 }

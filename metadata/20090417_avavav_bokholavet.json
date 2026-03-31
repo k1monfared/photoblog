@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-04-17_avavav_bokholavet_01.jpg",
-      "original": "2009-04-17_avavav_bokholavet_01.jpg",
-      "alt": "avavav, bokholavet?",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-04-17_avavav_bokholavet_02.jpg",
-      "original": "2009-04-17_avavav_bokholavet_02.jpg",
+      "original": "2009_04_17_avavav_bokholavet_01.jpg",
       "alt": "avavav, bokholavet?",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-04-17_avavav_bokholavet_01.jpg"
 }

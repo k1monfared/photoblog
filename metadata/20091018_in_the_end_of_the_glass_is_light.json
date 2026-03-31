@@ -8,25 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2009-10-18_in_the_end_of_the_glass_is_light_01.jpg",
-      "original": "2009-10-18_in_the_end_of_the_glass_is_light_01.jpg",
-      "alt": "In the end of the glass is light!",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2009-10-18_in_the_end_of_the_glass_is_light_02.jpg",
-      "original": "2009-10-18_in_the_end_of_the_glass_is_light_02.jpg",
-      "alt": "In the end of the glass is light!",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-10-18_in_the_end_of_the_glass_is_light_03.jpg",
-      "original": "2009-10-18_in_the_end_of_the_glass_is_light_03.jpg",
+      "original": "2009_10_18_in_the_end_of_the_glass_is_light_01.jpg",
       "alt": "In the end of the glass is light!",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-10-18_in_the_end_of_the_glass_is_light_02.jpg"
 }

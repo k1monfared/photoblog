@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_ladder_me_camera_amd_the_mirror_01.jpg",
-      "original": "2009-02-24_ladder_me_camera_amd_the_mirror_01.jpg",
-      "alt": "Ladder, Me, Camera amd the Mirror",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_ladder_me_camera_amd_the_mirror_02.jpg",
-      "original": "2009-02-24_ladder_me_camera_amd_the_mirror_02.jpg",
+      "original": "2009_02_24_ladder_me_camera_amd_the_mirror_01.jpg",
       "alt": "Ladder, Me, Camera amd the Mirror",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_ladder_me_camera_amd_the_mirror_01.jpg"
 }

@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_the_cat_of_the_city_theater_or_the_phantom_of_the__01.jpg",
-      "original": "2009-02-24_the_cat_of_the_city_theater_or_the_phantom_of_the__01.jpg",
-      "alt": "The Cat of the City Theater (or The Phantom of the Opera)",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_the_cat_of_the_city_theater_or_the_phantom_of_the__02.jpg",
-      "original": "2009-02-24_the_cat_of_the_city_theater_or_the_phantom_of_the__02.jpg",
+      "original": "2009_02_24_the_cat_of_the_city_theater_or_the_phantom_of_the__01.jpg",
       "alt": "The Cat of the City Theater (or The Phantom of the Opera)",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_the_cat_of_the_city_theater_or_the_phantom_of_the__01.jpg"
 }

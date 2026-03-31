@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-03-17_a_calm_chaos_01.jpg",
-      "original": "2009-03-17_a_calm_chaos_01.jpg",
-      "alt": "A Calm Chaos",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-03-17_a_calm_chaos_02.jpg",
-      "original": "2009-03-17_a_calm_chaos_02.jpg",
+      "original": "2009_03_17_a_calm_chaos_01.jpg",
       "alt": "A Calm Chaos",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-03-17_a_calm_chaos_01.jpg"
 }

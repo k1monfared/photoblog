@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-04-17_who_has_shaved_my_head_01.jpg",
-      "original": "2009-04-17_who_has_shaved_my_head_01.jpg",
-      "alt": "Who has shaved my head?",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-04-17_who_has_shaved_my_head_02.jpg",
-      "original": "2009-04-17_who_has_shaved_my_head_02.jpg",
+      "original": "2009_04_17_who_has_shaved_my_head_01.jpg",
       "alt": "Who has shaved my head?",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-04-17_who_has_shaved_my_head_01.jpg"
 }

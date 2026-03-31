@@ -8,18 +8,12 @@
   ],
   "photos": [
     {
-      "web": "files/photoblog/2011-01-02_be_me_beauty_p_01.jpg",
-      "original": "2011-01-02_be_me_beauty_p_01.jpg",
-      "alt": "Be Me Beauty :p",
-      "status": "dead",
-      "exif": {}
-    },
-    {
       "web": "files/photoblog/2011-01-02_be_me_beauty_p_02.jpg",
-      "original": "2011-01-02_be_me_beauty_p_02.jpg",
+      "original": "2011_01_02_be_me_beauty_p_01.jpg",
       "alt": "Be Me Beauty :p",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2011-01-02_be_me_beauty_p_02.jpg"
 }

@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2009-02-24_adav_01.jpg",
-      "original": "2009-02-24_adav_01.jpg",
-      "alt": "Adav",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2009-02-24_adav_02.jpg",
-      "original": "2009-02-24_adav_02.jpg",
+      "original": "2009_02_24_adav_01.jpg",
       "alt": "Adav",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2009-02-24_adav_01.jpg"
 }

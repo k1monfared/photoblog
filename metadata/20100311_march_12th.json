@@ -9,31 +9,18 @@
   "photos": [
     {
       "web": "files/photoblog/2010-03-11_march_12th_01.jpg",
-      "original": "2010-03-11_march_12th_01.jpg",
+      "original": "2010_03_11_march_12th_01.jpg",
       "alt": "March 12th",
       "status": "jpeg",
       "exif": {}
     },
     {
       "web": "files/photoblog/2010-03-11_march_12th_02.jpg",
-      "original": "2010-03-11_march_12th_02.jpg",
-      "alt": "March 12th",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2010-03-11_march_12th_03.jpg",
-      "original": "2010-03-11_march_12th_03.jpg",
-      "alt": "March 12th",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2010-03-11_march_12th_04.jpg",
-      "original": "2010-03-11_march_12th_04.jpg",
+      "original": "2010_03_11_march_12th_02.jpg",
       "alt": "March 12th",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2010-03-11_march_12th_01.jpg"
 }

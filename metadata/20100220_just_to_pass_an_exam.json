@@ -9,17 +9,11 @@
   "photos": [
     {
       "web": "files/photoblog/2010-02-20_just_to_pass_an_exam_01.jpg",
-      "original": "2010-02-20_just_to_pass_an_exam_01.jpg",
-      "alt": "Just to pass an exam",
-      "status": "jpeg",
-      "exif": {}
-    },
-    {
-      "web": "files/photoblog/2010-02-20_just_to_pass_an_exam_02.jpg",
-      "original": "2010-02-20_just_to_pass_an_exam_02.jpg",
+      "original": "2010_02_20_just_to_pass_an_exam_01.jpg",
       "alt": "Just to pass an exam",
       "status": "jpeg",
       "exif": {}
     }
-  ]
+  ],
+  "thumbnail": "files/photoblog/2010-02-20_just_to_pass_an_exam_01.jpg"
 }

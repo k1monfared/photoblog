@@ -9,7 +9,7 @@
   "photos": [
     {
       "web": "files/photoblog/2011-01-02_santa_maria_01.jpg",
-      "original": "2011-01-02_santa_maria_01.jpg",
+      "original": "2011_01_02_santa_maria_01.jpg",
       "alt": "Santa Maria",
       "status": "jpeg",
       "exif": {}

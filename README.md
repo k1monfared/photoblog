@@ -112,10 +112,75 @@ python scripts/build.py --local --force
 
 The site is generated in `_site/`. Open `_site/index.html` in a browser.
 
+## Edit mode
+
+A local editor for browsing and editing posts visually. Start it with:
+
+```bash
+python scripts/editor.py
+```
+
+Then open `http://localhost:8000`. The editor injects controls into the normal site pages. All changes save to metadata JSON, regenerate markdown, and rebuild automatically.
+
+### Adding a new post
+
+Click the **+** button in the header nav. A dialog opens where you can:
+
+- Pick one or more image files from your computer
+- Set the date, slug, title, caption, and tags
+- Preview thumbnails before submitting
+
+Photos are resized to web size and EXIF data is extracted automatically.
+
+### Editing captions
+
+On any post page, pencil icons appear next to the post caption area and after each photo. Click one to open an inline textarea. Edit the text and click Save.
+
+### Selecting posts (grid/feed view)
+
+Hover over any photo in the grid to see a checkbox in the top-left corner. Click it to select. Once one is selected, all photos show checkboxes. A toolbar appears at the bottom:
+
+- **Merge selected**: Combine multiple posts into one. A dialog lets you pick a date, slug name, and edit the combined caption before merging. Original posts go to trash (restorable).
+- **Delete selected**: Soft-delete posts. They appear greyed out in the editor but are hidden on the live site.
+
+### Selecting photos (post detail view)
+
+Inside a post with multiple photos, hover over photos to see checkboxes. Select one or more, then:
+
+- **Split to new post**: Move selected photos to a new post with its own date, slug, and caption.
+- **Delete photos**: Remove selected photos from the post. If all photos are deleted, the post is deleted too.
+
+### Trash
+
+Click **Trash** in the header to see all deleted posts. From there you can:
+
+- **Restore**: Bring a post back to the live site
+- **Permanently delete**: Remove all files (images, metadata, markdown) from disk. This cannot be undone.
+
+Click **Show deleted** to toggle visibility of deleted posts in the grid (they appear greyed out).
+
+### How it works
+
+The editor is a Python HTTP server that serves the built site and injects `editor.js` and `editor.css` into every page. API endpoints handle mutations:
+
+| Endpoint | Action |
+|----------|--------|
+| `POST /api/add` | Add a new post with uploaded photos |
+| `POST /api/caption` | Update post or photo caption |
+| `POST /api/merge` | Merge multiple posts into one |
+| `POST /api/split` | Split photos from a post into a new post |
+| `POST /api/delete` | Soft-delete posts or photos |
+| `POST /api/restore` | Restore from trash |
+| `POST /api/purge` | Permanently delete files |
+| `GET /api/trash` | List all deleted posts |
+
+After each mutation, the server updates metadata JSON, regenerates markdown, and runs an incremental build.
+
 ## Scripts
 
 | Script | Purpose |
 |--------|---------|
 | `scripts/build.py` | Build the static site from posts |
 | `scripts/process_photos.py` | Process new photos, detect deletions, regenerate markdown |
+| `scripts/editor.py` | Local editor server with visual editing controls |
 | `scripts/migrate_existing.py` | One-time migration from old blog format (already run) |

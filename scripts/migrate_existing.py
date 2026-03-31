@@ -229,7 +229,7 @@ def migrate():
                 if settings_parts:
                     parts.append(f"**Settings:** {' | '.join(settings_parts)}")
                 if parts:
-                    new_content += "\n" + "\n\n".join(parts) + "\n"
+                    new_content += "\n" + "  \n".join(parts) + "\n"
 
             new_md_path.write_text(new_content.strip() + "\n", encoding="utf-8")
             filepath.unlink()

@@ -614,11 +614,199 @@
     }
   }
 
+  // --- 9. Add Post ---
+
+  function setupAddButton() {
+    var nav = document.querySelector('header nav');
+    if (!nav) return;
+
+    var addBtn = document.createElement('button');
+    addBtn.className = 'nav-add-btn';
+    addBtn.textContent = '+';
+    addBtn.title = 'Add new post';
+    addBtn.addEventListener('click', openAddDialog);
+
+    // Insert before Show deleted button
+    var showDelBtn = nav.querySelector('.nav-show-deleted-btn');
+    if (showDelBtn) {
+      nav.insertBefore(addBtn, showDelBtn);
+    } else {
+      nav.appendChild(addBtn);
+    }
+  }
+
+  function openAddDialog() {
+    var today = new Date().toISOString().slice(0, 10);
+    var overlay = document.createElement('div');
+    overlay.className = 'editor-dialog-overlay open';
+
+    overlay.innerHTML =
+      '<div class="editor-dialog add-dialog">' +
+      '<h3>Add new post</h3>' +
+      '<label>Photos</label>' +
+      '<div class="add-dropzone" id="add-dropzone">' +
+      '<input type="file" id="add-files" multiple accept="image/*" style="display:none">' +
+      '<p class="dropzone-text">Click to choose photos or drag and drop</p>' +
+      '<div class="add-previews" id="add-previews"></div>' +
+      '</div>' +
+      '<label>Date</label>' +
+      '<input type="date" id="add-date" value="' + today + '">' +
+      '<label>Slug (lowercase letters, numbers, underscores)</label>' +
+      '<input type="text" id="add-slug" placeholder="my_photo">' +
+      '<label>Title</label>' +
+      '<input type="text" id="add-title" placeholder="' + today + '" value="' + today + '">' +
+      '<label>Caption</label>' +
+      '<textarea id="add-caption" placeholder="Optional caption..."></textarea>' +
+      '<label>Tags (comma-separated)</label>' +
+      '<input type="text" id="add-tags" value="photoblog">' +
+      '<div class="dialog-actions">' +
+      '<button class="btn-cancel">Cancel</button>' +
+      '<button class="btn-primary" id="add-submit">Add post</button>' +
+      '</div>' +
+      '</div>';
+
+    document.body.appendChild(overlay);
+
+    var fileInput = overlay.querySelector('#add-files');
+    var dropzone = overlay.querySelector('#add-dropzone');
+    var previews = overlay.querySelector('#add-previews');
+    var selectedFiles = [];
+
+    // Click dropzone to open file picker
+    dropzone.addEventListener('click', function(e) {
+      if (e.target === fileInput) return;
+      fileInput.click();
+    });
+
+    // Drag and drop
+    dropzone.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    });
+    dropzone.addEventListener('dragleave', function() {
+      dropzone.classList.remove('dragover');
+    });
+    dropzone.addEventListener('drop', function(e) {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      addFiles(e.dataTransfer.files);
+    });
+
+    fileInput.addEventListener('change', function() {
+      addFiles(fileInput.files);
+    });
+
+    function addFiles(fileList) {
+      for (var i = 0; i < fileList.length; i++) {
+        var f = fileList[i];
+        if (!f.type.startsWith('image/')) continue;
+        selectedFiles.push(f);
+        var reader = new FileReader();
+        (function(file) {
+          reader.onload = function(ev) {
+            var thumb = document.createElement('div');
+            thumb.className = 'add-preview-thumb';
+            thumb.innerHTML = '<img src="' + ev.target.result + '">' +
+              '<span class="add-preview-name">' + escapeHTML(file.name) + '</span>' +
+              '<button class="add-preview-remove" title="Remove">&times;</button>';
+            thumb.querySelector('.add-preview-remove').addEventListener('click', function(e) {
+              e.stopPropagation();
+              var idx = selectedFiles.indexOf(file);
+              if (idx >= 0) selectedFiles.splice(idx, 1);
+              thumb.parentNode.removeChild(thumb);
+              updateDropzoneText();
+            });
+            previews.appendChild(thumb);
+            updateDropzoneText();
+          };
+          reader.readAsDataURL(file);
+        })(f);
+      }
+    }
+
+    function updateDropzoneText() {
+      var text = dropzone.querySelector('.dropzone-text');
+      if (selectedFiles.length > 0) {
+        text.textContent = selectedFiles.length + ' photo(s) selected. Click to add more.';
+      } else {
+        text.textContent = 'Click to choose photos or drag and drop';
+      }
+    }
+
+    // Cancel
+    overlay.querySelector('.btn-cancel').addEventListener('click', function() {
+      document.body.removeChild(overlay);
+    });
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) document.body.removeChild(overlay);
+    });
+
+    // Submit
+    overlay.querySelector('#add-submit').addEventListener('click', function() {
+      var date = overlay.querySelector('#add-date').value;
+      var slugName = overlay.querySelector('#add-slug').value.replace(/[^a-z0-9_]/gi, '_').toLowerCase();
+      var title = overlay.querySelector('#add-title').value || date;
+      var caption = overlay.querySelector('#add-caption').value;
+      var tags = overlay.querySelector('#add-tags').value;
+
+      if (!date || !slugName) {
+        alert('Date and slug are required.');
+        return;
+      }
+      if (selectedFiles.length === 0) {
+        alert('Please select at least one photo.');
+        return;
+      }
+
+      // Read all files as base64
+      var submitBtn = overlay.querySelector('#add-submit');
+      submitBtn.textContent = 'Uploading...';
+      submitBtn.disabled = true;
+
+      var fileData = [];
+      var loaded = 0;
+
+      for (var i = 0; i < selectedFiles.length; i++) {
+        (function(file, idx) {
+          var reader = new FileReader();
+          reader.onload = function(ev) {
+            // ev.target.result is "data:image/jpeg;base64,XXXX"
+            var b64 = ev.target.result.split(',')[1];
+            fileData[idx] = { name: file.name, data: b64 };
+            loaded++;
+            if (loaded === selectedFiles.length) {
+              // All files read, send to API
+              api('POST', '/api/add', {
+                date: date,
+                slug_name: slugName,
+                title: title,
+                caption: caption,
+                tags: tags,
+                files: fileData
+              }).then(function(res) {
+                if (res.error) {
+                  alert('Error: ' + res.error);
+                  submitBtn.textContent = 'Add post';
+                  submitBtn.disabled = false;
+                } else {
+                  document.body.removeChild(overlay);
+                  window.location.href = res.url || '/';
+                }
+              });
+            }
+          };
+          reader.readAsDataURL(file);
+        })(selectedFiles[i], i);
+      }
+    });
+  }
+
   // --- Initialization ---
 
   function init() {
     hideDeletedItems();
     setupTrashUI();
+    setupAddButton();
     createToolbar();
 
     if (isPostPage) {

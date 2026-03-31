@@ -6,11 +6,13 @@ and provides API endpoints for editing metadata, merging/splitting
 posts, deleting, restoring, and purging.
 """
 
+import base64
 import json
 import os
 import shutil
 import subprocess
 import sys
+import tempfile
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import parse_qs
@@ -25,7 +27,7 @@ STATIC_DIR = BLOG_DIR / "static"
 BUILD_CMD = [sys.executable, str(BLOG_DIR / "scripts" / "build.py"), "--local"]
 
 sys.path.insert(0, str(BLOG_DIR / "scripts"))
-from process_photos import generate_markdown_from_json
+from process_photos import generate_markdown_from_json, resize_image, read_exif
 
 
 def load_metadata(slug):
@@ -111,6 +113,7 @@ class EditorHandler(SimpleHTTPRequestHandler):
             "/api/delete": self.handle_delete,
             "/api/restore": self.handle_restore,
             "/api/purge": self.handle_purge,
+            "/api/add": self.handle_add,
         }
         handler = handlers.get(path)
         if handler:
@@ -442,6 +445,91 @@ class EditorHandler(SimpleHTTPRequestHandler):
 
         rebuild_site()
         return {"ok": True}
+
+    def handle_add(self, body):
+        """Add a new post from uploaded images.
+
+        Expects JSON body:
+        {
+            "date": "YYYY-MM-DD",
+            "slug_name": "my_post",
+            "title": "My Post",
+            "caption": "",
+            "tags": ["photoblog"],
+            "files": [{"name": "photo.jpg", "data": "<base64>"}]
+        }
+        """
+        date_str = body.get("date", "")
+        slug_name = body.get("slug_name", "")
+        title = body.get("title", date_str)
+        caption = body.get("caption", "")
+        tags = body.get("tags", ["photoblog"])
+        files = body.get("files", [])
+
+        if not date_str or not slug_name or not files:
+            return {"error": "date, slug_name, and at least one file are required"}
+
+        date_part = date_str.replace("-", "")[:8]
+        new_slug = f"{date_part}_{slug_name}"
+
+        # Check for existing post with same slug
+        if (METADATA_DIR / f"{new_slug}.json").exists():
+            return {"error": f"Post with slug {new_slug} already exists"}
+
+        photos = []
+        for seq, file_info in enumerate(files, 1):
+            fname = file_info.get("name", f"photo_{seq}.jpg")
+            b64data = file_info.get("data", "")
+            if not b64data:
+                continue
+
+            # Decode base64 and save to temp file
+            img_bytes = base64.b64decode(b64data)
+            suffix = Path(fname).suffix or ".jpg"
+            with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+                tmp.write(img_bytes)
+                tmp_path = Path(tmp.name)
+
+            try:
+                # Read EXIF before resize strips it
+                exif = read_exif(tmp_path)
+
+                # Resize to web version
+                web_fname = f"{date_str}_{slug_name}_{seq:02d}.jpg"
+                web_path = WEB_DIR / web_fname
+                resize_image(tmp_path, web_path)
+
+                photos.append({
+                    "web": f"files/photoblog/{web_fname}",
+                    "original": fname,
+                    "alt": f"{title} - {seq}" if len(files) > 1 else title,
+                    "caption": "",
+                    "status": "jpeg",
+                    "exif": exif,
+                })
+            finally:
+                tmp_path.unlink(missing_ok=True)
+
+        if not photos:
+            return {"error": "No valid images provided"}
+
+        # Create metadata
+        meta = {
+            "title": title,
+            "date": date_str,
+            "slug": new_slug,
+            "caption": caption,
+            "tags": tags if isinstance(tags, list) else [t.strip() for t in tags.split(",")],
+            "photos": photos,
+        }
+
+        meta_path = METADATA_DIR / f"{new_slug}.json"
+        save_metadata(meta, meta_path)
+        regenerate_markdown(new_slug)
+        rebuild_site()
+
+        url_slug = new_slug[:8] + "-" + new_slug[9:].replace("_", "-")
+        return {"ok": True, "url": f"/{url_slug}/"}
 
     def handle_trash(self):
         """Return all deleted posts."""

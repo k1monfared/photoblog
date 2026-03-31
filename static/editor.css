@@ -461,8 +461,96 @@
   font-size: 12px;
   margin-left: 6px;
 }
+.nav-add-btn {
+  background: var(--link);
+  border: none;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1;
+  margin-left: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-add-btn:hover { opacity: 0.85; }
+
 .nav-show-deleted-btn:hover,
 .nav-trash-btn:hover {
   color: var(--text);
   border-color: var(--text-muted);
 }
+
+/* Add post dialog */
+.add-dropzone {
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.add-dropzone:hover,
+.add-dropzone.dragover {
+  border-color: var(--link);
+  background: rgba(0, 149, 246, 0.05);
+}
+.dropzone-text {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin: 0 0 8px;
+}
+.add-previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.add-preview-thumb {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.add-preview-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.add-preview-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 9px;
+  padding: 2px 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.add-preview-remove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.add-preview-remove:hover { background: #e74c3c; }

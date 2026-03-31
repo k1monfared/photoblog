@@ -229,16 +229,18 @@ class EditorHandler(SimpleHTTPRequestHandler):
             new_web_name = f"{date}_{slug_name}_{nn}.jpg"
             new_web_rel = f"files/photoblog/{new_web_name}"
 
-            # Copy the web image
+            # Copy the web image from source to new path
             src_web = BLOG_DIR / photo["web"]
             dst_web = BLOG_DIR / new_web_rel
+            dst_web.parent.mkdir(parents=True, exist_ok=True)
             if src_web.exists():
-                dst_web.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(str(src_web), str(dst_web))
+            else:
+                print(f"WARNING: merge source image missing: {photo['web']}")
 
             new_photo = dict(photo)
             new_photo["web"] = new_web_rel
-            new_photo.pop("deleted", None)  # ensure new photos are not marked deleted
+            new_photo.pop("deleted", None)
             new_photos.append(new_photo)
 
         # Build new metadata

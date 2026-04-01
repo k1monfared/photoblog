@@ -77,13 +77,13 @@ async function showGrid() {
       <header class="app-header">
         <h1>Photoblog</h1>
         <div class="header-actions">
+          <button id="add-btn" class="nav-add-btn" title="Add post">+</button>
           <button id="show-deleted-btn" class="btn small">${showingDeleted ? 'Hide deleted' : 'Show deleted'}</button>
           <button id="refresh-btn" class="btn icon" title="Refresh">&#8635;</button>
           <button id="trash-btn" class="btn icon" title="Trash">&#128465;</button>
           <button id="settings-btn" class="btn icon" title="Settings">&#9881;</button>
         </div>
       </header>
-      <button id="add-btn" class="btn primary full-width">+ Add Post</button>
       <div id="tag-filter" class="tag-filter"></div>
       <div id="grid" class="photo-grid">
         <div class="loading">Loading posts...</div>
@@ -311,17 +311,16 @@ async function showPostDetail(slug) {
     const content = app.querySelector('#post-content');
     selectedPhotos = [];
 
-    // Post caption
-    let html = '';
-    if (post.caption) {
-      html += `<p style="padding:0 0 8px;color:var(--fg2)">${escapeHtml(post.caption)}</p>`;
-    }
-
-    // Date + tags
-    html += `<div class="post-tags">
+    // Date + tags (matches local post-meta)
+    let html = `<div class="post-tags">
       <span class="tag-pill">${escapeHtml(post.date)}</span>
       ${post.tags.map(t => `<span class="tag-pill">${escapeHtml(t)}</span>`).join('')}
     </div>`;
+
+    // Post caption
+    if (post.caption) {
+      html += `<div class="post-caption">${escapeHtml(post.caption)}</div>`;
+    }
 
     // Photos
     html += photos.map((photo, i) => {

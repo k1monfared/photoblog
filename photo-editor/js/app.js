@@ -1,7 +1,7 @@
 // Main app controller and screen router
 
 import { isAuthenticated, getToken, setToken, clearToken, validateToken } from './auth.js';
-import { fetchPostList, fetchPost, updateCaption, deletePosts, restorePosts, purgePosts, mergePosts, splitPhotos, addPost, rawUrl, thumbUrl } from './posts.js';
+import { fetchPostList, fetchPost, fetchPostRaw, updateCaption, deletePosts, restorePosts, purgePosts, mergePosts, splitPhotos, addPost, rawUrl, thumbUrl } from './posts.js';
 import { pickImages, storeImage, getStoredImages, removeStoredImage, createThumbnailUrl } from './images.js';
 import { getAllTags } from './tags.js';
 import { clearSessionImages } from './storage.js';
@@ -123,7 +123,7 @@ async function loadGrid(force = false) {
         <div class="grid-item" data-slug="${escapeHtml(s.slug)}">
           <img src="" alt="${escapeHtml(s.slug)}" loading="lazy"
                onerror="this.style.display='none'" style="display:none">
-          <div class="check">&#10003;</div>
+          <div class="check"></div>
           <div class="title-overlay">${escapeHtml(namePart.replace(/_/g, ' '))}</div>
         </div>
       `;
@@ -144,13 +144,23 @@ async function loadGrid(force = false) {
 function attachGridHandlers(gridEl) {
   gridEl.querySelectorAll('.grid-item').forEach(el => {
     let longPressTimer = null;
+    let longPressTriggered = false;
 
+    // Checkbox click (separate from item click)
+    const check = el.querySelector('.check');
+    if (check) {
+      check.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!el.classList.contains('deleted')) {
+          toggleSelection(el, el.dataset.slug);
+        }
+      });
+    }
+
+    // Item click: open post (unless in selection mode)
     el.addEventListener('click', (e) => {
+      if (longPressTriggered) { longPressTriggered = false; return; }
       const slug = el.dataset.slug;
-      if (el.classList.contains('deleted') && selectedSlugs.length === 0) {
-        showPostDetail(slug);
-        return;
-      }
       if (selectedSlugs.length > 0) {
         if (!el.classList.contains('deleted')) toggleSelection(el, slug);
       } else {
@@ -167,7 +177,9 @@ function attachGridHandlers(gridEl) {
 
     // Long press for mobile
     el.addEventListener('touchstart', () => {
+      longPressTriggered = false;
       longPressTimer = setTimeout(() => {
+        longPressTriggered = true;
         if (!el.classList.contains('deleted')) {
           toggleSelection(el, el.dataset.slug);
         }
@@ -180,14 +192,14 @@ function attachGridHandlers(gridEl) {
 }
 
 async function loadThumbnails(gridEl, summaries) {
-  const BATCH = 20;
+  const BATCH = 30;
   for (let i = 0; i < summaries.length; i += BATCH) {
     if (!gridEl.isConnected) break;
     const batch = summaries.slice(i, i + BATCH);
     await Promise.all(batch.map(async (s) => {
       try {
-        const post = await fetchPost(s.slug);
-        if (!gridEl.isConnected) return;
+        const post = await fetchPostRaw(s.slug);
+        if (!post || !gridEl.isConnected) return;
         const el = gridEl.querySelector(`[data-slug="${s.slug}"]`);
         if (!el) return;
 
@@ -333,7 +345,7 @@ async function showPostDetail(slug) {
 
       return `
         <div class="post-photo" data-index="${i}">
-          <div class="check">&#10003;</div>
+          <div class="check"></div>
           <img src="${imgUrl}" alt="${escapeHtml(photo.alt)}" loading="lazy">
         </div>
         <div class="caption-row">

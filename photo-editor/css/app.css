@@ -266,6 +266,10 @@ textarea { min-height: 80px; resize: vertical; }
   border-color: var(--link);
 }
 
+.grid-item.selected .check::after {
+  content: "\2713";
+}
+
 /* Title overlay (like local grid-overlay) */
 .grid-item .title-overlay {
   position: absolute;
@@ -362,6 +366,10 @@ textarea { min-height: 80px; resize: vertical; }
 .post-photo.selected .check {
   background: var(--link);
   border-color: var(--link);
+}
+
+.post-photo.selected .check::after {
+  content: "\2713";
 }
 
 .caption-row {

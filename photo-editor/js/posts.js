@@ -42,7 +42,7 @@ export async function fetchPostList(force = false) {
   return summaries;
 }
 
-// Fetch full metadata for a single post
+// Fetch full metadata for a single post (uses authenticated API)
 export async function fetchPost(slug) {
   const cacheKey = `post_${slug}`;
   const cached = await getCache(cacheKey, 2 * 60 * 1000);
@@ -50,6 +50,20 @@ export async function fetchPost(slug) {
 
   const file = await getFile(`metadata/${slug}.json`);
   const post = JSON.parse(file.content);
+  await setCache(cacheKey, post);
+  return post;
+}
+
+// Fetch metadata via raw.githubusercontent.com (faster, no auth, no rate limit)
+export async function fetchPostRaw(slug) {
+  const cacheKey = `post_${slug}`;
+  const cached = await getCache(cacheKey, 10 * 60 * 1000);
+  if (cached) return cached;
+
+  const url = rawUrl(`metadata/${slug}.json`);
+  const res = await fetch(url);
+  if (!res.ok) return null;
+  const post = await res.json();
   await setCache(cacheKey, post);
   return post;
 }

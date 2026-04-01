@@ -363,6 +363,14 @@ def build(local=False, force=False):
     with open(static_out / "style.css", "a") as f:
         f.write(f"\n{pygments_css}")
 
+    # Copy photo-editor PWA
+    pe_src = BLOG_DIR / "photo-editor"
+    if pe_src.exists():
+        pe_out = SITE_DIR / "photo-editor"
+        if pe_out.exists():
+            shutil.rmtree(pe_out)
+        shutil.copytree(pe_src, pe_out)
+
     # Process posts — two-pass: fast metadata, then expensive rendering only if changed
     all_assets = set()
     posts_data = []

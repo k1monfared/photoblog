@@ -10,6 +10,7 @@ const app = document.getElementById('app');
 let selectedSlugs = [];
 let selectedPhotos = [];
 let currentPostCache = {}; // slug -> post data
+let showingDeleted = false;
 
 function escapeHtml(str) {
   const div = document.createElement('div');
@@ -76,6 +77,7 @@ async function showGrid() {
       <header class="app-header">
         <h1>Photoblog</h1>
         <div class="header-actions">
+          <button id="show-deleted-btn" class="btn small">${showingDeleted ? 'Hide deleted' : 'Show deleted'}</button>
           <button id="refresh-btn" class="btn icon" title="Refresh">&#8635;</button>
           <button id="trash-btn" class="btn icon" title="Trash">&#128465;</button>
           <button id="settings-btn" class="btn icon" title="Settings">&#9881;</button>
@@ -93,6 +95,15 @@ async function showGrid() {
   app.querySelector('#refresh-btn').addEventListener('click', () => loadGrid(true));
   app.querySelector('#trash-btn').addEventListener('click', showTrash);
   app.querySelector('#settings-btn').addEventListener('click', showSettings);
+  app.querySelector('#show-deleted-btn').addEventListener('click', () => {
+    showingDeleted = !showingDeleted;
+    const btn = app.querySelector('#show-deleted-btn');
+    if (btn) btn.textContent = showingDeleted ? 'Hide deleted' : 'Show deleted';
+    // Toggle visibility of deleted items
+    document.querySelectorAll('.grid-item.deleted').forEach(el => {
+      el.style.display = showingDeleted ? '' : 'none';
+    });
+  });
 
   await loadGrid();
 }
@@ -105,7 +116,7 @@ async function loadGrid(force = false) {
     const summaries = await fetchPostList(force);
     if (!gridEl.isConnected) return;
 
-    // Render grid with placeholders, then lazy-load real thumbnails from metadata
+    // Render grid with placeholders
     gridEl.innerHTML = summaries.map(s => {
       const namePart = s.slug.replace(/^\d{8}_/, '');
       return `
@@ -118,60 +129,84 @@ async function loadGrid(force = false) {
       `;
     }).join('');
 
-    // Lazy-load thumbnails by fetching metadata in batches
-    const BATCH = 20;
-    for (let i = 0; i < summaries.length; i += BATCH) {
-      if (!gridEl.isConnected) break;
-      const batch = summaries.slice(i, i + BATCH);
-      await Promise.all(batch.map(async (s) => {
-        try {
-          const post = await fetchPost(s.slug);
-          if (!gridEl.isConnected) return;
-          if (post.deleted) return;
-          const thumb = post.thumbnail || (post.photos && post.photos[0] && post.photos[0].web);
-          if (!thumb) return;
-          const thumbName = thumb.split('/').pop().replace(/\.\w+$/, '.png');
-          const url = rawUrl(`files/thumbs/${thumbName}`);
-          const el = gridEl.querySelector(`[data-slug="${s.slug}"] img`);
-          if (el) { el.src = url; el.style.display = ''; }
-        } catch { /* skip failures */ }
-      }));
-    }
+    // Attach click handlers IMMEDIATELY (before thumbnail loading)
+    attachGridHandlers(gridEl);
 
-    // Click handlers
-    gridEl.querySelectorAll('.grid-item').forEach(el => {
-      let longPressTimer = null;
-
-      el.addEventListener('click', (e) => {
-        const slug = el.dataset.slug;
-        if (selectedSlugs.length > 0) {
-          toggleSelection(el, slug);
-        } else {
-          showPostDetail(slug);
-        }
-      });
-
-      el.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        const slug = el.dataset.slug;
-        toggleSelection(el, slug);
-      });
-
-      // Long press for mobile
-      el.addEventListener('touchstart', () => {
-        longPressTimer = setTimeout(() => {
-          const slug = el.dataset.slug;
-          toggleSelection(el, slug);
-        }, 500);
-      }, { passive: true });
-
-      el.addEventListener('touchend', () => clearTimeout(longPressTimer));
-      el.addEventListener('touchmove', () => clearTimeout(longPressTimer));
-    });
+    // Lazy-load thumbnails in background batches
+    loadThumbnails(gridEl, summaries);
   } catch (err) {
     if (gridEl.isConnected) {
       gridEl.innerHTML = `<div class="error">Failed to load: ${escapeHtml(err.message)}</div>`;
     }
+  }
+}
+
+function attachGridHandlers(gridEl) {
+  gridEl.querySelectorAll('.grid-item').forEach(el => {
+    let longPressTimer = null;
+
+    el.addEventListener('click', (e) => {
+      const slug = el.dataset.slug;
+      if (el.classList.contains('deleted') && selectedSlugs.length === 0) {
+        showPostDetail(slug);
+        return;
+      }
+      if (selectedSlugs.length > 0) {
+        if (!el.classList.contains('deleted')) toggleSelection(el, slug);
+      } else {
+        showPostDetail(slug);
+      }
+    });
+
+    el.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      if (!el.classList.contains('deleted')) {
+        toggleSelection(el, el.dataset.slug);
+      }
+    });
+
+    // Long press for mobile
+    el.addEventListener('touchstart', () => {
+      longPressTimer = setTimeout(() => {
+        if (!el.classList.contains('deleted')) {
+          toggleSelection(el, el.dataset.slug);
+        }
+      }, 500);
+    }, { passive: true });
+
+    el.addEventListener('touchend', () => clearTimeout(longPressTimer));
+    el.addEventListener('touchmove', () => clearTimeout(longPressTimer));
+  });
+}
+
+async function loadThumbnails(gridEl, summaries) {
+  const BATCH = 20;
+  for (let i = 0; i < summaries.length; i += BATCH) {
+    if (!gridEl.isConnected) break;
+    const batch = summaries.slice(i, i + BATCH);
+    await Promise.all(batch.map(async (s) => {
+      try {
+        const post = await fetchPost(s.slug);
+        if (!gridEl.isConnected) return;
+        const el = gridEl.querySelector(`[data-slug="${s.slug}"]`);
+        if (!el) return;
+
+        if (post.deleted) {
+          if (!showingDeleted) {
+            el.style.display = 'none';
+          } else {
+            el.classList.add('deleted');
+          }
+        }
+
+        const thumb = post.thumbnail || (post.photos && post.photos[0] && post.photos[0].web);
+        if (!thumb) return;
+        const thumbName = thumb.split('/').pop().replace(/\.\w+$/, '.png');
+        const url = rawUrl(`files/thumbs/${thumbName}`);
+        const img = el.querySelector('img');
+        if (img) { img.src = url; img.style.display = ''; }
+      } catch { /* skip failures */ }
+    }));
   }
 }
 
@@ -250,6 +285,23 @@ async function showPostDetail(slug) {
     currentPostCache[slug] = post;
 
     app.querySelector('#post-title').textContent = post.title;
+
+    // Show restore button for deleted posts
+    if (post.deleted) {
+      const header = app.querySelector('.header-actions');
+      const restoreBtn = document.createElement('button');
+      restoreBtn.className = 'btn small primary';
+      restoreBtn.textContent = 'Restore';
+      restoreBtn.addEventListener('click', async () => {
+        restoreBtn.disabled = true;
+        restoreBtn.textContent = 'Restoring...';
+        try {
+          await restorePosts([slug]);
+          showPostDetail(slug);
+        } catch (err) { alert('Error: ' + err.message); restoreBtn.disabled = false; restoreBtn.textContent = 'Restore'; }
+      });
+      header.prepend(restoreBtn);
+    }
 
     app.querySelector('#edit-caption-btn').addEventListener('click', () => {
       showCaptionDialog(slug, null, post.caption);

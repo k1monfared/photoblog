@@ -150,6 +150,11 @@ input:focus, textarea:focus {
   outline-offset: -3px;
 }
 
+.grid-item.deleted {
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
 .grid-item .check {
   position: absolute;
   top: 4px;

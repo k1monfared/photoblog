@@ -105,24 +105,38 @@ async function loadGrid(force = false) {
     const summaries = await fetchPostList(force);
     if (!gridEl.isConnected) return;
 
-    // Load metadata for visible posts to get thumbnails
-    // For speed, just use the slug to construct a likely thumbnail path
+    // Render grid with placeholders, then lazy-load real thumbnails from metadata
     gridEl.innerHTML = summaries.map(s => {
-      // Thumbnail: guess from slug pattern YYYYMMDD_name -> YYYY-MM-DD_name_01.png
-      const dateStr = parseDateFromSlug(s.slug);
       const namePart = s.slug.replace(/^\d{8}_/, '');
-      const thumbPath = `files/thumbs/${dateStr}_${namePart}_01.png`;
-      const url = rawUrl(thumbPath);
-
       return `
         <div class="grid-item" data-slug="${escapeHtml(s.slug)}">
-          <img src="${url}" alt="${escapeHtml(s.slug)}" loading="lazy"
-               onerror="this.style.display='none'">
+          <img src="" alt="${escapeHtml(s.slug)}" loading="lazy"
+               onerror="this.style.display='none'" style="display:none">
           <div class="check">&#10003;</div>
           <div class="title-overlay">${escapeHtml(namePart.replace(/_/g, ' '))}</div>
         </div>
       `;
     }).join('');
+
+    // Lazy-load thumbnails by fetching metadata in batches
+    const BATCH = 20;
+    for (let i = 0; i < summaries.length; i += BATCH) {
+      if (!gridEl.isConnected) break;
+      const batch = summaries.slice(i, i + BATCH);
+      await Promise.all(batch.map(async (s) => {
+        try {
+          const post = await fetchPost(s.slug);
+          if (!gridEl.isConnected) return;
+          if (post.deleted) return;
+          const thumb = post.thumbnail || (post.photos && post.photos[0] && post.photos[0].web);
+          if (!thumb) return;
+          const thumbName = thumb.split('/').pop().replace(/\.\w+$/, '.png');
+          const url = rawUrl(`files/thumbs/${thumbName}`);
+          const el = gridEl.querySelector(`[data-slug="${s.slug}"] img`);
+          if (el) { el.src = url; el.style.display = ''; }
+        } catch { /* skip failures */ }
+      }));
+    }
 
     // Click handlers
     gridEl.querySelectorAll('.grid-item').forEach(el => {

@@ -2,9 +2,9 @@
 
 import { isAuthenticated, getToken, setToken, clearToken, validateToken } from './auth.js';
 import { fetchPostList, fetchPost, updateCaption, deletePosts, restorePosts, purgePosts, mergePosts, splitPhotos, addPost, rawUrl, thumbUrl } from './posts.js';
-import { pickImages, storeImage, getStoredImages, removeStoredImage, createThumbnailUrl, clearSessionImages } from './images.js';
+import { pickImages, storeImage, getStoredImages, removeStoredImage, createThumbnailUrl } from './images.js';
 import { getAllTags } from './tags.js';
-import { clearSessionImages as clearImages } from './storage.js';
+import { clearSessionImages } from './storage.js';
 
 const app = document.getElementById('app');
 let selectedSlugs = [];

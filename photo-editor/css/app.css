@@ -699,6 +699,73 @@ textarea { min-height: 80px; resize: vertical; }
 }
 .carousel-counter.visible { display: block; }
 
+/* Per-photo caption overlay at bottom of modal photo */
+.modal-photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 16px 12px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: #fff;
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.4;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.modal-photo-caption .caption-text { flex: 1; }
+
+.modal-photo-caption .caption-edit-icon {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-photo-caption .caption-edit-icon:hover { background: rgba(255,255,255,0.4); }
+
+/* Post caption in modal details */
+.modal-post-caption {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.modal-post-caption-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.modal-post-caption-row p { flex: 1; margin: 0; }
+
+#edit-post-caption-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#edit-post-caption-btn:hover { color: var(--link); border-color: var(--link); }
+
 .modal-details {
   flex: 1 1 45%;
   padding: 24px;

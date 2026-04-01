@@ -386,6 +386,29 @@ main {
 
 .carousel-counter.visible { display: block; }
 
+/* Per-photo caption overlay at bottom of modal photo */
+.modal-photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 16px 12px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: #fff;
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.4;
+  z-index: 3;
+}
+
+/* Post caption in modal details */
+.modal-post-caption {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.5;
+  margin: 0;
+}
+
 .modal-details {
   flex: 1 1 45%;
   padding: 24px;

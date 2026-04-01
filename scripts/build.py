@@ -327,13 +327,19 @@ def build(local=False, force=False):
         meta_slug = f.stem  # e.g. "20231029_photo_1" — matches JSON filename
         deleted = False
         json_path = BLOG_DIR / "metadata" / f"{meta_slug}.json"
+        photo_captions = []
+        post_caption = ""
         if json_path.exists():
             try:
                 meta_data = json.loads(json_path.read_text(encoding="utf-8"))
                 deleted = bool(meta_data.get("deleted"))
+                post_caption = meta_data.get("caption", "")
+                for photo in meta_data.get("photos", []):
+                    if not photo.get("deleted"):
+                        photo_captions.append(photo.get("caption", ""))
             except (json.JSONDecodeError, OSError):
                 pass
-        posts.append((f.name, date, slug, url_slug, deleted, meta_slug))
+        posts.append((f.name, date, slug, url_slug, deleted, meta_slug, photo_captions, post_caption))
 
     # Sort newest first
     posts.sort(key=lambda p: p[1], reverse=True)
@@ -377,7 +383,7 @@ def build(local=False, force=False):
     rendered_count = 0
     cached_count = 0
 
-    for filename, date, slug, url_slug, deleted, meta_slug in posts:
+    for filename, date, slug, url_slug, deleted, meta_slug, photo_captions, post_caption in posts:
         filepath = POSTS_DIR / filename
         raw = filepath.read_text(encoding="utf-8")
         raw_hash = content_hash(raw)
@@ -477,6 +483,8 @@ def build(local=False, force=False):
             "thumbnail": thumbnail,
             "photo": photo,
             "post_images": post_images,
+            "photo_captions": photo_captions,
+            "post_caption": post_caption,
             "post_html": post_html,
         })
 
@@ -706,6 +714,8 @@ def build(local=False, force=False):
             chips_html = make_tag_chips(p["tags"])
             post_imgs = p.get("post_images", [])
             images_json = html.escape(json.dumps(post_imgs))
+            captions_json = html.escape(json.dumps(p.get("photo_captions", [])))
+            post_caption_esc = html.escape(p.get("post_caption", ""))
             multi_icon = '<span class="grid-multi-icon" aria-label="Multiple images"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></span>' if len(post_imgs) > 1 else ''
             deleted_cls = " deleted" if p.get("deleted") else ""
             deleted_badge = '<span class="deleted-badge">Deleted</span>' if p.get("deleted") else ''
@@ -718,6 +728,8 @@ def build(local=False, force=False):
                 f' data-date="{p["date_str"]}"'
                 f' data-excerpt="{excerpt}"'
                 f' data-images="{images_json}"'
+                f' data-captions="{captions_json}"'
+                f' data-post-caption="{post_caption_esc}"'
                 f' data-tags="{html.escape(chips_html)}">\n'
                 f'    <img src="{html.escape(photo)}" alt="{html.escape(p["title"])}" loading="lazy">\n'
                 f'    {multi_icon}\n'

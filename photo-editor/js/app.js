@@ -228,6 +228,8 @@ async function loadThumbnails(gridEl, summaries) {
         // Store post data for modal
         const imageUrls = photos.map(p => rawUrl(p.web));
         el.dataset.images = JSON.stringify(imageUrls);
+        el.dataset.captions = JSON.stringify(photos.map(p => p.caption || ''));
+        el.dataset.postCaption = post.caption || '';
         el.dataset.title = post.title || '';
         el.dataset.date = post.date || '';
         el.dataset.excerpt = post.caption || '';
@@ -862,7 +864,9 @@ function showSettings() {
 
 let modalEl = null;
 let modalImages = [];
+let modalCaptions = [];
 let modalIdx = 0;
+let modalSlug = null;
 
 function ensureModal() {
   if (modalEl) return;
@@ -878,12 +882,20 @@ function ensureModal() {
         <button class="carousel-next">&#8250;</button>
         <div class="carousel-dots" id="carousel-dots"></div>
         <span class="carousel-counter" id="carousel-counter"></span>
+        <div class="modal-photo-caption" id="modal-photo-caption">
+          <span class="caption-text"></span>
+          <button class="caption-edit-icon" title="Edit photo caption">&#9998;</button>
+        </div>
       </div>
       <div class="modal-details">
         <h2 class="modal-title"></h2>
         <span class="modal-date"></span>
-        <p class="modal-excerpt"></p>
+        <div class="modal-post-caption-row">
+          <p class="modal-post-caption" id="modal-post-caption"></p>
+          <button class="caption-edit-icon" id="edit-post-caption-btn" title="Edit post caption">&#9998;</button>
+        </div>
         <div class="modal-tags"></div>
+        <button class="btn primary full-width" id="modal-view-post">View full post</button>
       </div>
     </div>
   `;
@@ -901,6 +913,35 @@ function ensureModal() {
   modalEl.querySelector('.carousel-next').addEventListener('click', (e) => {
     e.stopPropagation();
     if (modalIdx < modalImages.length - 1) { modalIdx++; updateModal(); }
+  });
+
+  // View full post
+  modalEl.querySelector('#modal-view-post').addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (modalSlug) {
+      closeModal();
+      showPostDetail(modalSlug);
+    }
+  });
+
+  // Edit post caption
+  modalEl.querySelector('#edit-post-caption-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (modalSlug) {
+      const currentText = modalEl.querySelector('#modal-post-caption').textContent;
+      closeModal();
+      showCaptionDialog(modalSlug, null, currentText);
+    }
+  });
+
+  // Edit photo caption
+  modalEl.querySelector('.modal-photo-caption .caption-edit-icon').addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (modalSlug) {
+      const currentText = modalCaptions[modalIdx] || '';
+      closeModal();
+      showCaptionDialog(modalSlug, modalIdx, currentText);
+    }
   });
 
   // Keyboard
@@ -931,6 +972,8 @@ function ensureModal() {
 
 function openModal(gridItem) {
   ensureModal();
+  modalSlug = gridItem.dataset.slug || null;
+
   try {
     modalImages = JSON.parse(gridItem.dataset.images || '[]');
   } catch { modalImages = []; }
@@ -940,10 +983,21 @@ function openModal(gridItem) {
     if (img && img.src) modalImages = [img.src];
   }
 
+  // Per-photo captions
+  try {
+    modalCaptions = JSON.parse(gridItem.dataset.captions || '[]');
+  } catch { modalCaptions = []; }
+
   modalIdx = 0;
   modalEl.querySelector('.modal-title').textContent = gridItem.dataset.title || '';
   modalEl.querySelector('.modal-date').textContent = gridItem.dataset.date || '';
-  modalEl.querySelector('.modal-excerpt').textContent = gridItem.dataset.excerpt || '';
+
+  // Post caption (persistent across photos)
+  const postCap = gridItem.dataset.postCaption || gridItem.dataset.excerpt || '';
+  const postCapEl = modalEl.querySelector('#modal-post-caption');
+  postCapEl.textContent = postCap;
+  postCapEl.parentElement.style.display = postCap ? '' : 'none';
+
   modalEl.querySelector('.modal-tags').innerHTML =
     (gridItem.dataset.tags || '').split(', ').filter(Boolean)
       .map(t => `<span class="tag">${escapeHtml(t)}</span>`).join(' ');
@@ -979,6 +1033,12 @@ function updateModal() {
   modalEl.querySelector('#carousel-counter').textContent = `${modalIdx + 1} / ${modalImages.length}`;
   modalEl.querySelector('.carousel-prev').classList.toggle('visible', modalIdx > 0);
   modalEl.querySelector('.carousel-next').classList.toggle('visible', modalIdx < modalImages.length - 1);
+
+  // Update per-photo caption
+  const cap = modalCaptions[modalIdx] || '';
+  const capEl = modalEl.querySelector('#modal-photo-caption');
+  capEl.querySelector('.caption-text').textContent = cap;
+  capEl.style.display = cap ? '' : 'none';
 }
 
 function closeModal() {

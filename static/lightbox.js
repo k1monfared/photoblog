@@ -37,7 +37,8 @@
   var modalImg = modal.querySelector('.modal-img');
   var modalTitle = modal.querySelector('.modal-title');
   var modalDate = modal.querySelector('.modal-date');
-  var modalExcerpt = modal.querySelector('.modal-excerpt');
+  var modalPostCaption = modal.querySelector('#modal-post-caption');
+  var modalPhotoCaption = modal.querySelector('#modal-photo-caption');
   var modalTags = modal.querySelector('.modal-tags');
   var modalLink = modal.querySelector('.modal-link');
   var modalClose = modal.querySelector('.modal-close');
@@ -47,6 +48,7 @@
   var counter = modal.querySelector('#carousel-counter');
 
   var images = [];
+  var captions = [];
   var currentIdx = 0;
 
   function updateCarousel() {
@@ -62,6 +64,10 @@
     // Show/hide prev/next
     prevBtn.classList.toggle('visible', currentIdx > 0);
     nextBtn.classList.toggle('visible', currentIdx < images.length - 1);
+    // Update per-photo caption
+    var cap = captions[currentIdx] || '';
+    modalPhotoCaption.textContent = cap;
+    modalPhotoCaption.style.display = cap ? '' : 'none';
   }
 
   function openModal(item) {
@@ -72,15 +78,25 @@
       images = [];
     }
     if (images.length === 0) {
-      // Fallback to the grid item's img src
       var img = item.querySelector('img');
       images = img && img.dataset.src ? [img.dataset.src] : (img ? [img.src] : []);
     }
+
+    // Parse per-photo captions
+    try {
+      captions = JSON.parse(item.dataset.captions || '[]');
+    } catch (e) {
+      captions = [];
+    }
+
     currentIdx = 0;
 
     modalTitle.textContent = item.dataset.title || '';
     modalDate.textContent = item.dataset.date || '';
-    modalExcerpt.textContent = item.dataset.excerpt || '';
+    // Post caption (persistent across all photos)
+    var postCap = item.dataset.postCaption || item.dataset.excerpt || '';
+    modalPostCaption.textContent = postCap;
+    modalPostCaption.style.display = postCap ? '' : 'none';
     modalTags.innerHTML = item.dataset.tags || '';
     modalLink.href = item.dataset.url || '';
 

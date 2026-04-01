@@ -565,6 +565,183 @@ textarea { min-height: 80px; resize: vertical; }
 /* ===== SETTINGS ===== */
 .settings-screen { padding: 0 20px; }
 
+/* ===== MULTI-IMAGE ICON (matches viewer) ===== */
+.grid-multi-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+  pointer-events: none;
+}
+
+/* ===== CAROUSEL MODAL (matches viewer lightbox.js) ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  padding: 40px;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--modal-bg, var(--bg-card));
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  max-width: 900px;
+  max-height: 80vh;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1001;
+  line-height: 1;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+.modal-close:hover { opacity: 0.7; }
+
+.modal-photo {
+  flex: 1 1 55%;
+  min-width: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.modal-img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+}
+
+.carousel-prev, .carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  line-height: 1;
+  padding: 0;
+  transition: background 0.15s;
+}
+.carousel-prev:hover, .carousel-next:hover { background: rgba(0,0,0,0.8); }
+.carousel-prev { left: 8px; }
+.carousel-next { right: 8px; }
+.carousel-prev.visible, .carousel-next.visible { display: flex; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  gap: 4px;
+  z-index: 2;
+}
+.carousel-dots.visible { display: flex; }
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  transition: background 0.15s;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+.carousel-dot.active { background: #fff; }
+
+.carousel-counter {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: none;
+  z-index: 2;
+}
+.carousel-counter.visible { display: block; }
+
+.modal-details {
+  flex: 1 1 45%;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.modal-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.modal-excerpt {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.modal-tags { margin-top: 4px; }
+
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  margin: 2px 2px 2px 0;
+  background: var(--bg);
+  color: var(--link);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
 /* ===== RESPONSIVE (matches local site) ===== */
 @media (max-width: 768px) {
   .app-header {
@@ -585,6 +762,20 @@ textarea { min-height: 80px; resize: vertical; }
     width: 95%;
     max-width: 95%;
   }
+
+  /* Modal: full screen on mobile */
+  .modal-overlay { padding: 0; }
+  .modal-content {
+    flex-direction: column;
+    max-height: 100vh;
+    border-radius: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+  .modal-photo { flex: none; max-height: 60vh; }
+  .modal-img { max-height: 60vh; }
+  .modal-details { padding: 16px; flex: 1; }
+  .modal-close { top: 8px; right: 12px; }
 }
 
 @media (max-width: 480px) {

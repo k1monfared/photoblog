@@ -157,14 +157,19 @@ function attachGridHandlers(gridEl) {
       });
     }
 
-    // Item click: open post (unless in selection mode)
+    // Item click: open modal preview (unless in selection mode)
     el.addEventListener('click', (e) => {
       if (longPressTriggered) { longPressTriggered = false; return; }
       const slug = el.dataset.slug;
       if (selectedSlugs.length > 0) {
         if (!el.classList.contains('deleted')) toggleSelection(el, slug);
       } else {
-        showPostDetail(slug);
+        // If post data is loaded (has data-images), open modal. Otherwise open detail.
+        if (el.dataset.images) {
+          openModal(el);
+        } else {
+          showPostDetail(slug);
+        }
       }
     });
 
@@ -211,12 +216,34 @@ async function loadThumbnails(gridEl, summaries) {
           }
         }
 
-        const thumb = post.thumbnail || (post.photos && post.photos[0] && post.photos[0].web);
-        if (!thumb) return;
-        const thumbName = thumb.split('/').pop().replace(/\.\w+$/, '.png');
-        const url = rawUrl(`files/thumbs/${thumbName}`);
+        const photos = (post.photos || []).filter(p => !p.deleted);
+        if (photos.length === 0) return;
+
+        // Use web image directly (thumbs are gitignored, not on GitHub)
+        const firstWeb = photos[0].web;
+        const url = rawUrl(firstWeb);
         const img = el.querySelector('img');
         if (img) { img.src = url; img.style.display = ''; }
+
+        // Store post data for modal
+        const imageUrls = photos.map(p => rawUrl(p.web));
+        el.dataset.images = JSON.stringify(imageUrls);
+        el.dataset.title = post.title || '';
+        el.dataset.date = post.date || '';
+        el.dataset.excerpt = post.caption || '';
+        el.dataset.tags = (post.tags || []).join(', ');
+
+        // Multi-image indicator
+        if (photos.length > 1) {
+          const icon = document.createElement('span');
+          icon.className = 'grid-multi-icon';
+          icon.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>';
+          el.appendChild(icon);
+        }
+
+        // Update title overlay
+        const titleEl = el.querySelector('.title-overlay');
+        if (titleEl) titleEl.textContent = post.title || '';
       } catch { /* skip failures */ }
     }));
   }
@@ -829,6 +856,139 @@ function showSettings() {
       showSetup();
     }
   });
+}
+
+// --- Carousel Modal (matches viewer lightbox.js) ---
+
+let modalEl = null;
+let modalImages = [];
+let modalIdx = 0;
+
+function ensureModal() {
+  if (modalEl) return;
+  modalEl = document.createElement('div');
+  modalEl.className = 'modal-overlay';
+  modalEl.id = 'post-modal';
+  modalEl.innerHTML = `
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <div class="modal-photo">
+        <button class="carousel-prev">&#8249;</button>
+        <img class="modal-img" src="" alt="">
+        <button class="carousel-next">&#8250;</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+        <span class="carousel-counter" id="carousel-counter"></span>
+      </div>
+      <div class="modal-details">
+        <h2 class="modal-title"></h2>
+        <span class="modal-date"></span>
+        <p class="modal-excerpt"></p>
+        <div class="modal-tags"></div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modalEl);
+
+  // Close
+  modalEl.querySelector('.modal-close').addEventListener('click', closeModal);
+  modalEl.addEventListener('click', (e) => { if (e.target === modalEl) closeModal(); });
+
+  // Prev/Next
+  modalEl.querySelector('.carousel-prev').addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (modalIdx > 0) { modalIdx--; updateModal(); }
+  });
+  modalEl.querySelector('.carousel-next').addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (modalIdx < modalImages.length - 1) { modalIdx++; updateModal(); }
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (!modalEl.classList.contains('open')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft' && modalIdx > 0) { modalIdx--; updateModal(); }
+    if (e.key === 'ArrowRight' && modalIdx < modalImages.length - 1) { modalIdx++; updateModal(); }
+  });
+
+  // Touch swipe
+  let startX = null, startT = null;
+  modalEl.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1 || modalImages.length <= 1) return;
+    startX = e.touches[0].clientX;
+    startT = Date.now();
+  }, { passive: true });
+  modalEl.addEventListener('touchend', (e) => {
+    if (startX == null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    const dt = Date.now() - startT;
+    startX = null;
+    if (dt > 600 || Math.abs(dx) < 50) return;
+    if (dx < 0 && modalIdx < modalImages.length - 1) { modalIdx++; updateModal(); }
+    if (dx > 0 && modalIdx > 0) { modalIdx--; updateModal(); }
+  }, { passive: true });
+}
+
+function openModal(gridItem) {
+  ensureModal();
+  try {
+    modalImages = JSON.parse(gridItem.dataset.images || '[]');
+  } catch { modalImages = []; }
+
+  if (modalImages.length === 0) {
+    const img = gridItem.querySelector('img');
+    if (img && img.src) modalImages = [img.src];
+  }
+
+  modalIdx = 0;
+  modalEl.querySelector('.modal-title').textContent = gridItem.dataset.title || '';
+  modalEl.querySelector('.modal-date').textContent = gridItem.dataset.date || '';
+  modalEl.querySelector('.modal-excerpt').textContent = gridItem.dataset.excerpt || '';
+  modalEl.querySelector('.modal-tags').innerHTML =
+    (gridItem.dataset.tags || '').split(', ').filter(Boolean)
+      .map(t => `<span class="tag">${escapeHtml(t)}</span>`).join(' ');
+
+  // Build dots
+  const dotsEl = modalEl.querySelector('#carousel-dots');
+  const counterEl = modalEl.querySelector('#carousel-counter');
+  dotsEl.innerHTML = '';
+  if (modalImages.length > 1) {
+    modalImages.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => { modalIdx = i; updateModal(); });
+      dotsEl.appendChild(dot);
+    });
+    dotsEl.classList.add('visible');
+    counterEl.classList.add('visible');
+  } else {
+    dotsEl.classList.remove('visible');
+    counterEl.classList.remove('visible');
+  }
+
+  updateModal();
+  modalEl.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateModal() {
+  if (modalImages.length === 0) return;
+  modalEl.querySelector('.modal-img').src = modalImages[modalIdx];
+  const dots = modalEl.querySelectorAll('.carousel-dot');
+  dots.forEach((d, i) => d.classList.toggle('active', i === modalIdx));
+  modalEl.querySelector('#carousel-counter').textContent = `${modalIdx + 1} / ${modalImages.length}`;
+  modalEl.querySelector('.carousel-prev').classList.toggle('visible', modalIdx > 0);
+  modalEl.querySelector('.carousel-next').classList.toggle('visible', modalIdx < modalImages.length - 1);
+}
+
+function closeModal() {
+  if (!modalEl) return;
+  modalEl.classList.remove('open');
+  document.body.style.overflow = '';
+  modalEl.querySelector('.carousel-prev').classList.remove('visible');
+  modalEl.querySelector('.carousel-next').classList.remove('visible');
+  modalEl.querySelector('#carousel-dots').classList.remove('visible');
+  modalEl.querySelector('#carousel-counter').classList.remove('visible');
 }
 
 // --- Router ---

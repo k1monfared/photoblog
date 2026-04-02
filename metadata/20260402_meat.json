@@ -12,8 +12,10 @@
       "original": "signal-2025-01-18-173742.jpeg",
       "alt": "meat",
       "caption": "hmmm",
-      "status": "jpeg"
+      "status": "jpeg",
+      "deleted": true
     }
   ],
-  "thumbnail": "files/photoblog/2026-04-02_meat_01.jpg"
+  "thumbnail": "files/photoblog/2026-04-02_meat_01.jpg",
+  "deleted": true
 }

@@ -277,7 +277,7 @@ function setupMemoryObserver(gridEl) {
           }
         }
       });
-    }, { rootMargin: '200% 0px' });
+    }, { rootMargin: '500% 0px' });
 
     images.forEach(img => observer.observe(img));
   }, 2000);

@@ -80,7 +80,7 @@
           }
         });
       }, {
-        rootMargin: '200% 0px'  // 2 viewports buffer in each direction
+        rootMargin: '500% 0px'  // 5 viewports buffer in each direction
       });
 
       allImages.forEach(function (img) {

@@ -35,20 +35,27 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Restore build cache
-        id: build-cache
         uses: actions/cache@v4
         with:
           path: |
             _site
             .build_cache.json
+            .build_tools_hash
           key: photoblog-build-${{ hashFiles('scripts/build.py', 'templates/**', 'static/**') }}-${{ hashFiles('posts/*.md') }}
           restore-keys: |
             photoblog-build-${{ hashFiles('scripts/build.py', 'templates/**', 'static/**') }}-
             photoblog-build-
 
-      - name: Force full rebuild if build tools changed
-        if: steps.build-cache.outputs.cache-hit != 'true'
-        run: rm -f .build_cache.json
+      - name: Force full rebuild only if build tools/templates changed
+        run: |
+          TOOLS_HASH="${{ hashFiles('scripts/build.py', 'templates/**', 'static/**') }}"
+          if [ -f .build_tools_hash ] && [ "$(cat .build_tools_hash)" = "$TOOLS_HASH" ]; then
+            echo "Build tools unchanged, incremental build"
+          else
+            echo "Build tools changed, forcing full rebuild"
+            rm -f .build_cache.json
+          fi
+          echo "$TOOLS_HASH" > .build_tools_hash
 
       - name: Build photoblog
         run: python scripts/build.py

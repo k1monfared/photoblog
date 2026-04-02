@@ -12,6 +12,20 @@ let selectedPhotos = [];
 let currentPostCache = {}; // slug -> post data
 let showingDeleted = false;
 
+function showToast(message, duration = 4000) {
+  const existing = document.querySelector('.edit-toast');
+  if (existing) existing.remove();
+  const toast = document.createElement('div');
+  toast.className = 'edit-toast';
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.classList.add('visible'), 10);
+  setTimeout(() => {
+    toast.classList.remove('visible');
+    setTimeout(() => toast.remove(), 300);
+  }, duration);
+}
+
 function escapeHtml(str) {
   const div = document.createElement('div');
   div.textContent = str || '';
@@ -524,6 +538,7 @@ function showCaptionDialog(slug, photoIndex, currentCaption) {
       const text = overlay.querySelector('#caption-input').value;
       await updateCaption(slug, text, photoIndex);
       overlay.remove();
+      showToast('Caption saved. Site will rebuild in ~2 min.');
       showPostDetail(slug);
     } catch (err) {
       alert('Error: ' + err.message);

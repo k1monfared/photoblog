@@ -177,6 +177,23 @@
 
   // --- Helpers ---
 
+  // --- Toast notification ---
+
+  function showToast(message, duration) {
+    duration = duration || 4000;
+    var existing = document.querySelector('.edit-toast');
+    if (existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.className = 'edit-toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(function () { toast.classList.add('visible'); }, 10);
+    setTimeout(function () {
+      toast.classList.remove('visible');
+      setTimeout(function () { toast.remove(); }, 300);
+    }, duration);
+  }
+
   function escapeHTML(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str || ''));
@@ -456,7 +473,7 @@
         return commitPostUpdate(post, 'Update caption: ' + post.title);
       }).then(function () {
         overlay.remove();
-        location.reload();
+        showToast('Saved. Site will rebuild in ~2 minutes.');
       }).catch(function (err) {
         alert('Error: ' + err.message);
         btn.disabled = false;
@@ -676,7 +693,7 @@
         return ghCreateCommit(files, 'Merge ' + slugs.length + ' posts into: ' + slugName);
       }).then(function () {
         overlay.remove();
-        location.reload();
+        showToast('Saved. Site will rebuild in ~2 minutes.');
       }).catch(function (err) {
         alert('Error: ' + err.message);
         btn.disabled = false;
@@ -761,7 +778,7 @@
         });
       }).then(function () {
         return ghCreateCommit(files, 'Split photos from ' + postSlug + ' into: ' + slugName);
-      }).then(function () { overlay.remove(); location.reload(); })
+      }).then(function () { overlay.remove(); showToast('Saved. Site will rebuild in ~2 minutes.'); })
       .catch(function (err) { alert('Error: ' + err.message); btn.disabled = false; btn.textContent = 'Split'; });
     });
   }
@@ -809,7 +826,15 @@
 
     chain.then(function () {
       return ghCreateCommit(files, 'Delete: ' + slugs.join(', '));
-    }).then(function () { location.reload(); })
+    }).then(function () {
+      // Optimistic: hide deleted items from DOM
+      slugs.forEach(function (slug) {
+        var el = document.querySelector('[data-slug="' + slug + '"]');
+        if (el) el.style.display = 'none';
+      });
+      clearSelection();
+      showToast('Deleted. Site will rebuild in ~2 minutes.');
+    })
     .catch(function (err) { alert('Error: ' + err.message); });
   }
 
@@ -1033,7 +1058,7 @@
         files.push({ path: 'metadata/' + newSlug + '.json', content: JSON.stringify(post, null, 2) + '\n' });
         if (md) files.push({ path: 'posts/' + newSlug + '.md', content: md });
         return ghCreateCommit(files, 'Add post: ' + title);
-      }).then(function () { overlay.remove(); location.reload(); })
+      }).then(function () { overlay.remove(); showToast('Saved. Site will rebuild in ~2 minutes.'); })
       .catch(function (err) { alert('Error: ' + err.message); btn.disabled = false; btn.textContent = 'Add post'; });
     });
   }

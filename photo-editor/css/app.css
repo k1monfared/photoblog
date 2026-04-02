@@ -850,6 +850,30 @@ textarea { min-height: 80px; resize: vertical; }
   .grid-item .title-overlay { font-size: 0.75rem; }
 }
 
+/* Toast notification */
+.edit-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--text);
+  color: var(--bg);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.edit-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* PWA safe areas */
 @supports (padding-top: env(safe-area-inset-top)) {
   .app-header {

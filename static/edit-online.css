@@ -1,3 +1,27 @@
+/* Toast notification */
+.edit-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--text, #262626);
+  color: var(--bg, #fff);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.edit-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* Online editor styles — supplements editor.css which provides the core control styles.
    This file adds login-specific styles and ensures edit controls display in edit mode. */
 

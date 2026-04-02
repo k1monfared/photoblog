@@ -590,15 +590,16 @@
       }
     }
 
-    // Update photo caption
+    // Update photo caption (use the span inside the div)
     var photoCaptionEl = modal.querySelector('#modal-photo-caption');
     if (photoCaptionEl) {
       var counterText = modal.querySelector('#carousel-counter').textContent || '1 / 1';
       var currentIdx = parseInt(counterText.split('/')[0].trim()) - 1 || 0;
       var pendingPhoto = getPendingPhotoCaption(currentModalSlug, currentIdx);
       if (pendingPhoto !== null) {
-        photoCaptionEl.textContent = pendingPhoto;
-        photoCaptionEl.style.display = pendingPhoto ? '' : 'none';
+        var capSpan = photoCaptionEl.querySelector('.caption-text');
+        if (capSpan) capSpan.textContent = pendingPhoto;
+        photoCaptionEl.style.display = '';
       }
     }
   }
@@ -665,18 +666,29 @@
     });
     postMeta.parentNode.insertBefore(postBtn, postMeta.nextSibling);
 
-    // Photo caption edit buttons
+    // Photo caption edit buttons — fetch real captions from metadata JSON
     var photos = getPhotoContainers();
-    photos.forEach(function (container, i) {
-      var btn = document.createElement('button');
-      btn.className = 'caption-edit-btn';
-      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
-      btn.title = 'Edit photo caption';
-      btn.addEventListener('click', function () {
-        var caption = getPhotoCaption(container);
-        openCaptionEditor(slug, i, caption);
+    var photoCaptionsFromJson = [];
+
+    ghFetchRaw('metadata/' + slug + '.json').then(function (post) {
+      if (!post) return;
+      var nonDeleted = (post.photos || []).filter(function (p) { return !p.deleted; });
+      photoCaptionsFromJson = nonDeleted.map(function (p) { return p.caption || ''; });
+    }).catch(function () {}).then(function () {
+      photos.forEach(function (container, i) {
+        var btn = document.createElement('button');
+        btn.className = 'caption-edit-btn';
+        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
+        btn.title = 'Edit photo caption';
+        btn.addEventListener('click', function () {
+          // Use JSON caption (authoritative), fall back to DOM, check pending
+          var caption = photoCaptionsFromJson[i] || getPhotoCaption(container);
+          var pending = getPendingPhotoCaption(slug, i);
+          if (pending !== null) caption = pending;
+          openCaptionEditor(slug, i, caption);
+        });
+        container.parentNode.insertBefore(btn, container.nextSibling);
       });
-      container.parentNode.insertBefore(btn, container.nextSibling);
     });
   }
 

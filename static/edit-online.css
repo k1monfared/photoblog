@@ -78,6 +78,17 @@
   color: #fff;
 }
 
+/* In edit mode, always show photo caption area for the edit button */
+.edit-mode #modal-photo-caption {
+  display: flex !important;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.edit-mode #modal-photo-caption .caption-text {
+  flex: 1;
+}
+
 /* Pending change indicator */
 .caption-pending {
   outline: 2px dashed var(--link, #0095f6);

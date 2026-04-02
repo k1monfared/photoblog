@@ -64,10 +64,17 @@
     // Show/hide prev/next
     prevBtn.classList.toggle('visible', currentIdx > 0);
     nextBtn.classList.toggle('visible', currentIdx < images.length - 1);
-    // Update per-photo caption
+    // Update per-photo caption (use child span to preserve edit buttons)
     var cap = captions[currentIdx] || '';
-    modalPhotoCaption.textContent = cap;
-    modalPhotoCaption.style.display = cap ? '' : 'none';
+    var captionSpan = modalPhotoCaption.querySelector('.caption-text');
+    if (captionSpan) {
+      captionSpan.textContent = cap;
+    } else {
+      modalPhotoCaption.textContent = cap;
+    }
+    // In edit mode, always show the caption area (for the edit button)
+    var inEditMode = document.body.classList.contains('edit-mode');
+    modalPhotoCaption.style.display = (cap || inEditMode) ? '' : 'none';
   }
 
   function openModal(item) {

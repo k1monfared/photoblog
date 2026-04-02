@@ -249,6 +249,7 @@
   var saveBtn = null;
 
   function createSaveButton() {
+    if (saveBtn) return;
     saveBtn = document.createElement('button');
     saveBtn.className = 'edit-save-btn';
     saveBtn.style.display = 'none';
@@ -1354,7 +1355,12 @@
   function init() {
     addLoginButton();
     if (getToken()) {
-      // Verify token is still valid, then activate
+      // Show save button immediately if there are pending changes (don't wait for API)
+      if (getPendingCount() > 0) {
+        createSaveButton();
+        updateSaveButton();
+      }
+      // Verify token is still valid, then activate full edit mode
       fetch(API + '/repos/' + REPO, {
         headers: { 'Authorization': 'Bearer ' + getToken(), 'Accept': 'application/vnd.github.v3+json' },
       }).then(function (res) {

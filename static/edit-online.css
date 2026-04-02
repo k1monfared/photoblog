@@ -1,0 +1,110 @@
+/* Online editor styles — supplements editor.css which provides the core control styles.
+   This file adds login-specific styles and ensures edit controls display in edit mode. */
+
+/* Login button in nav */
+#edit-login-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+#edit-login-btn:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+/* In edit mode, show the lock as active */
+.edit-mode #edit-login-btn {
+  color: var(--link);
+}
+
+/* Caption edit buttons — show on hover in edit mode */
+.edit-mode .caption-edit-btn {
+  display: inline-flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1;
+  transition: color 0.15s, border-color 0.15s;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+}
+
+.edit-mode .caption-edit-btn:hover {
+  color: var(--link);
+  border-color: var(--link);
+}
+
+/* Photo checkboxes — show in edit mode on hover or selection */
+.edit-mode .photo-checkbox {
+  display: flex;
+}
+
+/* Selection mode: always show checkboxes */
+.edit-mode.selection-mode .photo-checkbox {
+  display: flex;
+}
+
+/* Trash dialog grid layout */
+.trash-dialog .trash-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.trash-dialog .trash-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.trash-dialog .trash-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.trash-dialog .trash-item-title {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.trash-dialog .trash-restore-btn {
+  background: var(--link);
+  color: #fff;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.trash-dialog .trash-purge-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}

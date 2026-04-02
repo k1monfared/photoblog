@@ -35,7 +35,9 @@
     options = options || {};
     options.headers = ghHeaders();
     return fetch(API + path, options).then(function (res) {
-      if (!res.ok) return res.json().then(function (b) { throw new Error('GitHub API ' + res.status + ': ' + (b.message || res.statusText)); });
+      if (!res.ok) return res.json().then(function (b) {
+        throw new Error('GitHub API ' + res.status + ' on ' + (options.method || 'GET') + ' ' + path + ': ' + (b.message || res.statusText));
+      });
       return res.json();
     });
   }

@@ -22,6 +22,69 @@
   transform: translateX(-50%) translateY(0);
 }
 
+/* Floating Save button */
+.edit-save-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--link, #0095f6);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 1100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.edit-save-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.edit-save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Modal edit buttons */
+.modal-edit-btn {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: var(--text-muted, #8e8e8e);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+.modal-edit-btn:hover {
+  background: var(--border, #dbdbdb);
+  color: var(--link, #0095f6);
+}
+
+.edit-mode .modal-edit-btn {
+  display: inline-flex;
+}
+
+.modal-photo-edit-btn {
+  background: rgba(255,255,255,0.3);
+  color: #fff;
+}
+
+.modal-photo-edit-btn:hover {
+  background: rgba(255,255,255,0.5);
+  color: #fff;
+}
+
+/* Pending change indicator */
+.caption-pending {
+  outline: 2px dashed var(--link, #0095f6);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* Online editor styles — supplements editor.css which provides the core control styles.
    This file adds login-specific styles and ensures edit controls display in edit mode. */
 

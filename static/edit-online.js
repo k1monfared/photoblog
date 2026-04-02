@@ -14,6 +14,39 @@
   var isGridPage = !!document.querySelector('.grid-item');
   var selected = {};
   var editMode = false;
+  var pendingChanges = {};
+  // pendingChanges structure: { slug: { postCaption: "text"|null, photoCaptions: { index: "text" } } }
+
+  function addPendingChange(slug, field, value, photoIndex) {
+    if (!pendingChanges[slug]) pendingChanges[slug] = { postCaption: null, photoCaptions: {} };
+    if (photoIndex !== null && photoIndex !== undefined) {
+      pendingChanges[slug].photoCaptions[photoIndex] = value;
+    } else {
+      pendingChanges[slug].postCaption = value;
+    }
+    updateSaveButton();
+  }
+
+  function getPendingCount() {
+    var count = 0;
+    for (var slug in pendingChanges) {
+      var c = pendingChanges[slug];
+      if (c.postCaption !== null) count++;
+      count += Object.keys(c.photoCaptions).length;
+    }
+    return count;
+  }
+
+  function getPendingPhotoCaption(slug, photoIndex) {
+    var c = pendingChanges[slug];
+    if (c && c.photoCaptions[photoIndex] !== undefined) return c.photoCaptions[photoIndex];
+    return null;
+  }
+
+  function getPendingPostCaption(slug) {
+    var c = pendingChanges[slug];
+    return (c && c.postCaption !== null) ? c.postCaption : null;
+  }
 
   // --- Token Management ---
 
@@ -194,6 +227,90 @@
     }, duration);
   }
 
+  // --- Save Button (floating, shows pending change count) ---
+
+  var saveBtn = null;
+
+  function createSaveButton() {
+    saveBtn = document.createElement('button');
+    saveBtn.className = 'edit-save-btn';
+    saveBtn.style.display = 'none';
+    saveBtn.addEventListener('click', commitPendingChanges);
+    document.body.appendChild(saveBtn);
+  }
+
+  function updateSaveButton() {
+    if (!saveBtn) return;
+    var count = getPendingCount();
+    if (count > 0) {
+      saveBtn.textContent = 'Save ' + count + ' change' + (count > 1 ? 's' : '');
+      saveBtn.style.display = '';
+    } else {
+      saveBtn.style.display = 'none';
+    }
+  }
+
+  function commitPendingChanges() {
+    var count = getPendingCount();
+    if (count === 0) return;
+
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Saving...';
+
+    var slugs = Object.keys(pendingChanges);
+    var files = [];
+    var chain = Promise.resolve();
+
+    slugs.forEach(function (slug) {
+      chain = chain.then(function () {
+        return ghFetchRaw('metadata/' + slug + '.json').then(function (post) {
+          if (!post) return;
+          var changes = pendingChanges[slug];
+
+          // Apply post caption
+          if (changes.postCaption !== null) {
+            post.caption = changes.postCaption;
+          }
+
+          // Apply photo captions
+          for (var idxStr in changes.photoCaptions) {
+            var ni = parseInt(idxStr);
+            var actual = mapNonDeletedIndex(post.photos, ni);
+            if (actual !== null) {
+              post.photos[actual].caption = changes.photoCaptions[idxStr];
+            }
+          }
+
+          var md = generateMarkdown(post);
+          files.push({ path: 'metadata/' + slug + '.json', content: JSON.stringify(post, null, 2) + '\n' });
+          if (md) files.push({ path: 'posts/' + slug + '.md', content: md });
+        });
+      });
+    });
+
+    chain.then(function () {
+      return ghCreateCommitWithRetry(files, 'Update captions: ' + slugs.join(', '));
+    }).then(function () {
+      pendingChanges = {};
+      updateSaveButton();
+      showToast('Saved ' + count + ' change' + (count > 1 ? 's' : '') + '. Site will rebuild in ~2 min.');
+    }).catch(function (err) {
+      alert('Error saving: ' + err.message);
+      saveBtn.disabled = false;
+      updateSaveButton();
+    });
+  }
+
+  // Retry on 422 (ref moved between read and update)
+  function ghCreateCommitWithRetry(files, message) {
+    return ghCreateCommit(files, message).catch(function (err) {
+      if (err.message && err.message.indexOf('422') !== -1) {
+        return ghCreateCommit(files, message);
+      }
+      throw err;
+    });
+  }
+
   function escapeHTML(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str || ''));
@@ -319,7 +436,9 @@
     }
 
     document.body.classList.add('edit-mode');
+    createSaveButton();
     setupEditorNav();
+    setupModalEditing();
     createToolbar();
 
     if (isPostPage) {
@@ -328,6 +447,104 @@
     }
     if (isGridPage) {
       setupGridSelection();
+    }
+  }
+
+  // --- Modal Caption Editing ---
+
+  var currentModalSlug = null;
+  var currentModalCaptions = [];
+
+  function setupModalEditing() {
+    var modal = document.getElementById('post-modal');
+    if (!modal) return;
+
+    // Add edit button to post caption in modal
+    var postCapEl = modal.querySelector('#modal-post-caption');
+    if (postCapEl) {
+      var editBtn = document.createElement('button');
+      editBtn.className = 'modal-edit-btn';
+      editBtn.title = 'Edit post caption';
+      editBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
+      editBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (currentModalSlug) {
+          var currentText = postCapEl.textContent || '';
+          openCaptionEditor(currentModalSlug, null, currentText);
+        }
+      });
+      postCapEl.parentNode.insertBefore(editBtn, postCapEl.nextSibling);
+    }
+
+    // Add edit button to photo caption in modal
+    var photoCaptionEl = modal.querySelector('#modal-photo-caption');
+    if (photoCaptionEl) {
+      var photoEditBtn = document.createElement('button');
+      photoEditBtn.className = 'modal-edit-btn modal-photo-edit-btn';
+      photoEditBtn.title = 'Edit photo caption';
+      photoEditBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
+      photoEditBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (currentModalSlug) {
+          var currentIdx = parseInt(modal.querySelector('#carousel-counter').textContent.split('/')[0].trim()) - 1 || 0;
+          var currentText = currentModalCaptions[currentIdx] || '';
+          // Check pending changes first
+          var pending = getPendingPhotoCaption(currentModalSlug, currentIdx);
+          if (pending !== null) currentText = pending;
+          openCaptionEditor(currentModalSlug, currentIdx, currentText);
+        }
+      });
+      photoCaptionEl.appendChild(photoEditBtn);
+    }
+
+    // Hook into modal open to track current slug and captions
+    var origOpenModal = window._origOpenModal;
+    // Observe the modal for when it opens
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (m) {
+        if (m.attributeName === 'class' && modal.classList.contains('open')) {
+          // Find which grid item opened the modal by checking active item
+          var items = document.querySelectorAll('.grid-item');
+          items.forEach(function (item) {
+            var imgSrc = modal.querySelector('.modal-img').getAttribute('src') || '';
+            try {
+              var itemImages = JSON.parse(item.dataset.images || '[]');
+              if (itemImages.indexOf(imgSrc) !== -1 || (itemImages.length > 0 && imgSrc.indexOf(itemImages[0]) !== -1)) {
+                currentModalSlug = item.dataset.slug || null;
+                try { currentModalCaptions = JSON.parse(item.dataset.captions || '[]'); } catch (e) { currentModalCaptions = []; }
+              }
+            } catch (e) {}
+          });
+        }
+      });
+    });
+    observer.observe(modal, { attributes: true });
+  }
+
+  function updateModalCaptionsFromPending() {
+    var modal = document.getElementById('post-modal');
+    if (!modal || !modal.classList.contains('open') || !currentModalSlug) return;
+
+    // Update post caption
+    var postCapEl = modal.querySelector('#modal-post-caption');
+    if (postCapEl) {
+      var pendingPost = getPendingPostCaption(currentModalSlug);
+      if (pendingPost !== null) {
+        postCapEl.textContent = pendingPost;
+        postCapEl.parentNode.style.display = pendingPost ? '' : 'none';
+      }
+    }
+
+    // Update photo caption
+    var photoCaptionEl = modal.querySelector('#modal-photo-caption');
+    if (photoCaptionEl) {
+      var counterText = modal.querySelector('#carousel-counter').textContent || '1 / 1';
+      var currentIdx = parseInt(counterText.split('/')[0].trim()) - 1 || 0;
+      var pendingPhoto = getPendingPhotoCaption(currentModalSlug, currentIdx);
+      if (pendingPhoto !== null) {
+        photoCaptionEl.textContent = pendingPhoto;
+        photoCaptionEl.style.display = pendingPhoto ? '' : 'none';
+      }
     }
   }
 
@@ -439,15 +656,24 @@
   }
 
   function openCaptionEditor(slug, photoIndex, currentText) {
+    // Check if there's already a pending change for this
+    var pending;
+    if (photoIndex !== null && photoIndex !== undefined) {
+      pending = getPendingPhotoCaption(slug, photoIndex);
+    } else {
+      pending = getPendingPostCaption(slug);
+    }
+    var displayText = (pending !== null) ? pending : (currentText || '');
+
     var overlay = document.createElement('div');
     overlay.className = 'editor-dialog-overlay open';
     overlay.innerHTML =
       '<div class="editor-dialog">' +
-        '<h3>' + (photoIndex !== null ? 'Photo caption' : 'Post caption') + '</h3>' +
-        '<textarea id="caption-textarea" rows="4">' + escapeHTML(currentText || '') + '</textarea>' +
+        '<h3>' + (photoIndex !== null && photoIndex !== undefined ? 'Photo caption' : 'Post caption') + '</h3>' +
+        '<textarea id="caption-textarea" rows="4">' + escapeHTML(displayText) + '</textarea>' +
         '<div class="dialog-actions">' +
           '<button class="btn-cancel">Cancel</button>' +
-          '<button class="btn-primary" id="caption-save">Save</button>' +
+          '<button class="btn-primary" id="caption-save">Done</button>' +
         '</div>' +
       '</div>';
 
@@ -457,28 +683,34 @@
     overlay.addEventListener('click', function (e) { if (e.target === overlay) overlay.remove(); });
 
     overlay.querySelector('#caption-save').addEventListener('click', function () {
-      var btn = overlay.querySelector('#caption-save');
-      btn.disabled = true;
-      btn.textContent = 'Saving...';
       var newCaption = overlay.querySelector('#caption-textarea').value;
+      addPendingChange(slug, null, newCaption, photoIndex);
+      overlay.remove();
 
-      ghFetchRaw('metadata/' + slug + '.json').then(function (post) {
-        if (!post) throw new Error('Post not found');
-        if (photoIndex !== null && photoIndex !== undefined) {
-          var actual = mapNonDeletedIndex(post.photos, photoIndex);
-          if (actual !== null) post.photos[actual].caption = newCaption;
-        } else {
-          post.caption = newCaption;
+      // Optimistic DOM update
+      if (photoIndex !== null && photoIndex !== undefined) {
+        // Update photo caption in DOM if on post page
+        var containers = getPhotoContainers();
+        if (containers[photoIndex]) {
+          var next = containers[photoIndex].nextElementSibling;
+          if (next && (next.querySelector('em') || (!next.querySelector('img') && next.tagName === 'P'))) {
+            next.innerHTML = newCaption ? '<em>' + escapeHTML(newCaption) + '</em>' : '';
+          }
         }
-        return commitPostUpdate(post, 'Update caption: ' + post.title);
-      }).then(function () {
-        overlay.remove();
-        showToast('Saved. Site will rebuild in ~2 minutes.');
-      }).catch(function (err) {
-        alert('Error: ' + err.message);
-        btn.disabled = false;
-        btn.textContent = 'Save';
-      });
+      } else {
+        // Update post caption in DOM
+        var postBody = document.querySelector('.post-body');
+        if (postBody) {
+          var firstChild = postBody.firstElementChild;
+          if (firstChild && firstChild.tagName === 'P' && !firstChild.querySelector('img')) {
+            firstChild.textContent = newCaption;
+          }
+        }
+      }
+
+      // Update modal captions if open
+      updateModalCaptionsFromPending();
+      showToast('Caption updated. Click Save to push changes.');
     });
   }
 
@@ -690,7 +922,7 @@
         });
         return delChain;
       }).then(function () {
-        return ghCreateCommit(files, 'Merge ' + slugs.length + ' posts into: ' + slugName);
+        return ghCreateCommitWithRetry(files, 'Merge ' + slugs.length + ' posts into: ' + slugName);
       }).then(function () {
         overlay.remove();
         showToast('Saved. Site will rebuild in ~2 minutes.');
@@ -777,7 +1009,7 @@
           else return ghGetFileSha('posts/' + postSlug + '.md').then(function (sha) { if (sha) files.push({ path: 'posts/' + postSlug + '.md', sha: null }); });
         });
       }).then(function () {
-        return ghCreateCommit(files, 'Split photos from ' + postSlug + ' into: ' + slugName);
+        return ghCreateCommitWithRetry(files, 'Split photos from ' + postSlug + ' into: ' + slugName);
       }).then(function () { overlay.remove(); showToast('Saved. Site will rebuild in ~2 minutes.'); })
       .catch(function (err) { alert('Error: ' + err.message); btn.disabled = false; btn.textContent = 'Split'; });
     });
@@ -825,7 +1057,7 @@
     });
 
     chain.then(function () {
-      return ghCreateCommit(files, 'Delete: ' + slugs.join(', '));
+      return ghCreateCommitWithRetry(files, 'Delete: ' + slugs.join(', '));
     }).then(function () {
       // Optimistic: hide deleted items from DOM
       slugs.forEach(function (slug) {
@@ -919,7 +1151,7 @@
             });
             files.push({ path: 'metadata/' + slug + '.json', sha: null });
             files.push({ path: 'posts/' + slug + '.md', sha: null });
-            return ghCreateCommit(files, 'Purge: ' + slug);
+            return ghCreateCommitWithRetry(files, 'Purge: ' + slug);
           }).then(function () { item.remove(); })
           .catch(function (err) { alert('Error: ' + err.message); btn.disabled = false; btn.textContent = 'Purge'; });
         });
@@ -1057,7 +1289,7 @@
         var md = generateMarkdown(post);
         files.push({ path: 'metadata/' + newSlug + '.json', content: JSON.stringify(post, null, 2) + '\n' });
         if (md) files.push({ path: 'posts/' + newSlug + '.md', content: md });
-        return ghCreateCommit(files, 'Add post: ' + title);
+        return ghCreateCommitWithRetry(files, 'Add post: ' + title);
       }).then(function () { overlay.remove(); showToast('Saved. Site will rebuild in ~2 minutes.'); })
       .catch(function (err) { alert('Error: ' + err.message); btn.disabled = false; btn.textContent = 'Add post'; });
     });

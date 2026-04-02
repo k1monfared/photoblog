@@ -2,7 +2,7 @@
   "title": "meat",
   "date": "2026-04-02",
   "slug": "20260402_meat",
-  "caption": "test",
+  "caption": "This works?",
   "tags": [
     "photoblog"
   ],
@@ -11,7 +11,7 @@
       "web": "files/photoblog/2026-04-02_meat_01.jpg",
       "original": "signal-2025-01-18-173742.jpeg",
       "alt": "meat",
-      "caption": "It is for the cutting board",
+      "caption": "hmmm",
       "status": "jpeg"
     }
   ],

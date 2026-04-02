@@ -79,9 +79,9 @@ async function showGrid() {
         <div class="header-actions">
           <button id="add-btn" class="nav-add-btn" title="Add post">+</button>
           <button id="show-deleted-btn" class="btn small">${showingDeleted ? 'Hide deleted' : 'Show deleted'}</button>
-          <button id="refresh-btn" class="btn icon" title="Refresh">&#8635;</button>
-          <button id="trash-btn" class="btn icon" title="Trash">&#128465;</button>
-          <button id="settings-btn" class="btn icon" title="Settings">&#9881;</button>
+          <button id="refresh-btn" class="btn icon" title="Refresh"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></button>
+          <button id="trash-btn" class="btn icon" title="Trash"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>
+          <button id="settings-btn" class="btn icon" title="Settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></button>
         </div>
       </header>
       <div id="tag-filter" class="tag-filter"></div>
@@ -341,10 +341,10 @@ async function showPostDetail(slug) {
   app.innerHTML = `
     <div class="screen detail-screen">
       <header class="app-header">
-        <button id="back-btn" class="btn icon">&larr;</button>
+        <button id="back-btn" class="btn icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
         <h2 id="post-title">Loading...</h2>
         <div class="header-actions">
-          <button id="edit-caption-btn" class="btn icon" title="Edit post caption">&#9998;</button>
+          <button id="edit-caption-btn" class="btn icon" title="Edit post caption"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
         </div>
       </header>
       <div id="post-content"><div class="loading">Loading...</div></div>
@@ -411,7 +411,7 @@ async function showPostDetail(slug) {
         </div>
         <div class="caption-row">
           <span class="caption-text">${photo.caption ? escapeHtml(photo.caption) : '(no caption)'}</span>
-          <button class="edit-btn" data-index="${i}">&#9998;</button>
+          <button class="edit-btn" data-index="${i}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
         </div>
         ${exifParts.length ? `<div class="exif-info">${escapeHtml(exifParts.join(' | '))}</div>` : ''}
       `;
@@ -543,7 +543,7 @@ async function showAddPost() {
   app.innerHTML = `
     <div class="screen add-screen">
       <header class="app-header">
-        <button id="back-btn" class="btn icon">&larr;</button>
+        <button id="back-btn" class="btn icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
         <h2>Add Post</h2>
       </header>
       <div class="form-group">
@@ -784,7 +784,7 @@ async function showTrash() {
   app.innerHTML = `
     <div class="screen trash-screen">
       <header class="app-header">
-        <button id="back-btn" class="btn icon">&larr;</button>
+        <button id="back-btn" class="btn icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
         <h2>Trash</h2>
       </header>
       <div id="trash-list"><div class="loading">Loading...</div></div>
@@ -868,7 +868,7 @@ function showSettings() {
   app.innerHTML = `
     <div class="screen settings-screen">
       <header class="app-header">
-        <button id="back-btn" class="btn icon">&larr;</button>
+        <button id="back-btn" class="btn icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
         <h2>Settings</h2>
       </header>
       <div class="form-group">
@@ -916,7 +916,7 @@ function ensureModal() {
         <span class="carousel-counter" id="carousel-counter"></span>
         <div class="modal-photo-caption" id="modal-photo-caption">
           <span class="caption-text"></span>
-          <button class="caption-edit-icon" title="Edit photo caption">&#9998;</button>
+          <button class="caption-edit-icon" title="Edit photo caption"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
         </div>
       </div>
       <div class="modal-details">
@@ -924,7 +924,7 @@ function ensureModal() {
         <span class="modal-date"></span>
         <div class="modal-post-caption-row">
           <p class="modal-post-caption" id="modal-post-caption"></p>
-          <button class="caption-edit-icon" id="edit-post-caption-btn" title="Edit post caption">&#9998;</button>
+          <button class="caption-edit-icon" id="edit-post-caption-btn" title="Edit post caption"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
         </div>
         <div class="modal-tags"></div>
         <button class="btn primary full-width" id="modal-view-post">View full post</button>

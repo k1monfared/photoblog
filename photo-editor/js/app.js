@@ -134,6 +134,9 @@ async function loadGrid(force = false) {
 
     // Lazy-load thumbnails in background batches
     loadThumbnails(gridEl, summaries);
+
+    // Off-screen image memory management (matches viewer pagination.js)
+    setupMemoryObserver(gridEl);
   } catch (err) {
     if (gridEl.isConnected) {
       gridEl.innerHTML = `<div class="error">Failed to load: ${escapeHtml(err.message)}</div>`;
@@ -223,7 +226,7 @@ async function loadThumbnails(gridEl, summaries) {
         const firstWeb = photos[0].web;
         const url = rawUrl(firstWeb);
         const img = el.querySelector('img');
-        if (img) { img.src = url; img.style.display = ''; }
+        if (img) { img.src = url; img.dataset.src = url; img.style.display = ''; }
 
         // Store post data for modal
         const imageUrls = photos.map(p => rawUrl(p.web));
@@ -249,6 +252,35 @@ async function loadThumbnails(gridEl, summaries) {
       } catch { /* skip failures */ }
     }));
   }
+}
+
+function setupMemoryObserver(gridEl) {
+  if (!('IntersectionObserver' in window)) return;
+
+  // Wait briefly for thumbnails to start loading before observing
+  setTimeout(() => {
+    const images = gridEl.querySelectorAll('.grid-item img');
+    images.forEach(img => {
+      if (img.src) img.dataset.src = img.src;
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const img = entry.target;
+        if (entry.isIntersecting) {
+          if (!img.getAttribute('src') && img.dataset.src) {
+            img.src = img.dataset.src;
+          }
+        } else {
+          if (img.getAttribute('src')) {
+            img.removeAttribute('src');
+          }
+        }
+      });
+    }, { rootMargin: '200% 0px' });
+
+    images.forEach(img => observer.observe(img));
+  }, 2000);
 }
 
 function toggleSelection(el, slug) {

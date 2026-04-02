@@ -14,8 +14,24 @@
   var isGridPage = !!document.querySelector('.grid-item');
   var selected = {};
   var editMode = false;
-  var pendingChanges = {};
+  var PENDING_KEY = 'gh_edit_pending';
+  var pendingChanges = loadPendingChanges();
   // pendingChanges structure: { slug: { postCaption: "text"|null, photoCaptions: { index: "text" } } }
+
+  function loadPendingChanges() {
+    try {
+      var stored = localStorage.getItem(PENDING_KEY);
+      return stored ? JSON.parse(stored) : {};
+    } catch (e) { return {}; }
+  }
+
+  function savePendingChanges() {
+    if (getPendingCount() === 0) {
+      localStorage.removeItem(PENDING_KEY);
+    } else {
+      localStorage.setItem(PENDING_KEY, JSON.stringify(pendingChanges));
+    }
+  }
 
   function addPendingChange(slug, field, value, photoIndex) {
     if (!pendingChanges[slug]) pendingChanges[slug] = { postCaption: null, photoCaptions: {} };
@@ -24,6 +40,7 @@
     } else {
       pendingChanges[slug].postCaption = value;
     }
+    savePendingChanges();
     updateSaveButton();
   }
 
@@ -242,9 +259,12 @@
   function updateSaveButton() {
     if (!saveBtn) return;
     var count = getPendingCount();
+    var postCount = Object.keys(pendingChanges).length;
     if (count > 0) {
-      saveBtn.textContent = 'Save ' + count + ' change' + (count > 1 ? 's' : '');
+      saveBtn.textContent = 'Save ' + count + ' edit' + (count > 1 ? 's' : '') +
+        ' in ' + postCount + ' post' + (postCount > 1 ? 's' : '');
       saveBtn.style.display = '';
+      saveBtn.disabled = false;
     } else {
       saveBtn.style.display = 'none';
     }
@@ -292,6 +312,7 @@
       return ghCreateCommitWithRetry(files, 'Update captions: ' + slugs.join(', '));
     }).then(function () {
       pendingChanges = {};
+      savePendingChanges();
       updateSaveButton();
       showToast('Saved ' + count + ' change' + (count > 1 ? 's' : '') + '. Site will rebuild in ~2 min.');
     }).catch(function (err) {
@@ -444,9 +465,42 @@
     if (isPostPage) {
       setupCaptionEditing();
       setupPostSelection();
+      applyPendingToPostPage();
     }
     if (isGridPage) {
       setupGridSelection();
+    }
+  }
+
+  // Apply any pending changes to the current post page DOM on load
+  function applyPendingToPostPage() {
+    var slug = getPostSlug();
+    if (!slug || !pendingChanges[slug]) return;
+    var changes = pendingChanges[slug];
+
+    // Apply post caption
+    if (changes.postCaption !== null) {
+      var postBody = document.querySelector('.post-body');
+      if (postBody) {
+        var firstChild = postBody.firstElementChild;
+        if (firstChild && firstChild.tagName === 'P' && !firstChild.querySelector('img')) {
+          firstChild.textContent = changes.postCaption;
+          firstChild.classList.add('caption-pending');
+        }
+      }
+    }
+
+    // Apply photo captions
+    var containers = getPhotoContainers();
+    for (var idxStr in changes.photoCaptions) {
+      var idx = parseInt(idxStr);
+      if (containers[idx]) {
+        var next = containers[idx].nextElementSibling;
+        if (next && (next.querySelector('em') || (!next.querySelector('img') && next.tagName === 'P'))) {
+          next.innerHTML = '<em>' + escapeHTML(changes.photoCaptions[idxStr]) + '</em>';
+          next.classList.add('caption-pending');
+        }
+      }
     }
   }
 

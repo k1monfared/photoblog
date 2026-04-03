@@ -89,6 +89,32 @@
   flex: 1;
 }
 
+/* Add post: camera/gallery buttons */
+.add-photo-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.btn-icon-action {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: var(--bg, #fafafa);
+  border: 2px dashed var(--border, #dbdbdb);
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-muted, #8e8e8e);
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.btn-icon-action:hover {
+  border-color: var(--link, #0095f6);
+  color: var(--link, #0095f6);
+}
+
 /* Pending change indicator */
 .caption-pending {
   outline: 2px dashed var(--link, #0095f6);

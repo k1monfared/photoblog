@@ -1230,6 +1230,14 @@
 
   // --- Add Post Dialog ---
 
+  function generateSlug(title) {
+    return title.toLowerCase()
+      .replace(/[^\w\s]/g, '')
+      .replace(/\s+/g, '_')
+      .replace(/_+/g, '_')
+      .replace(/^_|_$/g, '') || 'photo';
+  }
+
   function openAddDialog() {
     var today = new Date().toISOString().slice(0, 10);
     var overlay = document.createElement('div');
@@ -1237,14 +1245,18 @@
     overlay.innerHTML =
       '<div class="editor-dialog add-dialog">' +
         '<h3>Add new post</h3>' +
-        '<label>Photos</label>' +
-        '<div class="add-dropzone" id="add-dropzone">' +
-          '<input type="file" id="add-files" multiple accept="image/*" style="display:none">' +
-          '<p class="dropzone-text">Click to choose photos</p>' +
-          '<div class="add-previews" id="add-previews"></div>' +
+        '<div class="add-photo-buttons">' +
+          '<button class="btn-icon-action" id="add-camera" title="Take photo">' +
+            '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>' +
+          '</button>' +
+          '<button class="btn-icon-action" id="add-gallery" title="Choose from gallery">' +
+            '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' +
+          '</button>' +
         '</div>' +
+        '<div class="add-previews" id="add-previews"></div>' +
+        '<input type="file" id="add-camera-input" accept="image/*" capture="environment" style="display:none">' +
+        '<input type="file" id="add-gallery-input" accept="image/*" multiple style="display:none">' +
         '<label>Date</label><input type="text" id="add-date" value="' + today + '" placeholder="YYYY-MM-DD"><br>' +
-        '<label>Slug</label><input type="text" id="add-slug" placeholder="my_photo"><br>' +
         '<label>Title</label><input type="text" id="add-title" value="' + today + '"><br>' +
         '<label>Caption</label><textarea id="add-caption" rows="3"></textarea><br>' +
         '<label>Tags</label><input type="text" id="add-tags" value="photoblog"><br>' +
@@ -1255,13 +1267,16 @@
     overlay.querySelector('.btn-cancel').addEventListener('click', function () { overlay.remove(); });
     overlay.addEventListener('click', function (e) { if (e.target === overlay) overlay.remove(); });
 
-    var fileInput = overlay.querySelector('#add-files');
-    var dropzone = overlay.querySelector('#add-dropzone');
+    var cameraInput = overlay.querySelector('#add-camera-input');
+    var galleryInput = overlay.querySelector('#add-gallery-input');
     var previews = overlay.querySelector('#add-previews');
     var selectedFiles = [];
 
-    dropzone.addEventListener('click', function (e) { if (e.target !== fileInput) fileInput.click(); });
-    fileInput.addEventListener('change', function () { addFilesToList(fileInput.files); });
+    overlay.querySelector('#add-camera').addEventListener('click', function () { cameraInput.click(); });
+    overlay.querySelector('#add-gallery').addEventListener('click', function () { galleryInput.click(); });
+
+    cameraInput.addEventListener('change', function () { addFilesToList(cameraInput.files); });
+    galleryInput.addEventListener('change', function () { addFilesToList(galleryInput.files); });
 
     function addFilesToList(fileList) {
       for (var i = 0; i < fileList.length; i++) {
@@ -1289,75 +1304,88 @@
     overlay.querySelector('#add-submit').addEventListener('click', function () {
       var btn = overlay.querySelector('#add-submit');
       var date = overlay.querySelector('#add-date').value.trim();
-      var slugName = overlay.querySelector('#add-slug').value.trim().toLowerCase().replace(/[^a-z0-9_]/g, '_');
       var title = overlay.querySelector('#add-title').value.trim() || date;
       var caption = overlay.querySelector('#add-caption').value;
       var tags = overlay.querySelector('#add-tags').value;
 
-      if (!date || !slugName || selectedFiles.length === 0) {
-        alert('Date, slug, and at least one photo are required.');
+      if (!date || selectedFiles.length === 0) {
+        alert('Date and at least one photo are required.');
         return;
       }
 
       btn.disabled = true;
       btn.textContent = 'Uploading...';
 
+      // Auto-generate slug from title, check for duplicates
+      var slugName = generateSlug(title);
       var datePart = date.replace(/-/g, '').slice(0, 8);
-      var newSlug = datePart + '_' + slugName;
-      var files = [];
-      var photos = [];
 
-      // Process images: resize via OffscreenCanvas, encode as base64
-      var imgChain = Promise.resolve();
-      selectedFiles.forEach(function (file, seq) {
-        imgChain = imgChain.then(function () {
-          return createImageBitmap(file).then(function (bitmap) {
-            var w = bitmap.width, h = bitmap.height;
-            if (w > 1200 || h > 1600) {
-              var ratio = Math.min(1200 / w, 1600 / h);
-              w = Math.round(w * ratio);
-              h = Math.round(h * ratio);
-            }
-            var canvas = new OffscreenCanvas(w, h);
-            canvas.getContext('2d').drawImage(bitmap, 0, 0, w, h);
-            bitmap.close();
-            return canvas.convertToBlob({ type: 'image/jpeg', quality: 0.85 });
-          }).then(function (blob) {
-            return blob.arrayBuffer();
-          }).then(function (buffer) {
-            var bytes = new Uint8Array(buffer);
-            var binary = '';
-            for (var i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
-            var b64 = btoa(binary);
+      // Check for duplicate slugs via metadata listing
+      ghRequest('/repos/' + REPO + '/contents/metadata').then(function (metaFiles) {
+        var existingSlugs = metaFiles.map(function (f) { return f.name.replace('.json', ''); });
+        var baseSlug = datePart + '_' + slugName;
+        var newSlug = baseSlug;
+        var counter = 2;
+        while (existingSlugs.indexOf(newSlug) !== -1) {
+          newSlug = baseSlug + '_' + counter;
+          counter++;
+        }
 
-            var nn = String(seq + 1).padStart(2, '0');
-            var webName = date + '_' + slugName + '_' + nn + '.jpg';
-            var webRel = 'files/photoblog/' + webName;
-            files.push({ path: webRel, content: b64, encoding: 'base64' });
+        var files = [];
+        var photos = [];
 
-            photos.push({
-              web: webRel,
-              original: file.name,
-              alt: selectedFiles.length > 1 ? title + ' - ' + (seq + 1) : title,
-              caption: '',
-              status: 'jpeg',
+        // Process images: resize via OffscreenCanvas, encode as base64
+        var imgChain = Promise.resolve();
+        selectedFiles.forEach(function (file, seq) {
+          imgChain = imgChain.then(function () {
+            return createImageBitmap(file).then(function (bitmap) {
+              var w = bitmap.width, h = bitmap.height;
+              if (w > 1200 || h > 1600) {
+                var ratio = Math.min(1200 / w, 1600 / h);
+                w = Math.round(w * ratio);
+                h = Math.round(h * ratio);
+              }
+              var canvas = new OffscreenCanvas(w, h);
+              canvas.getContext('2d').drawImage(bitmap, 0, 0, w, h);
+              bitmap.close();
+              return canvas.convertToBlob({ type: 'image/jpeg', quality: 0.85 });
+            }).then(function (blob) {
+              return blob.arrayBuffer();
+            }).then(function (buffer) {
+              var bytes = new Uint8Array(buffer);
+              var binary = '';
+              for (var i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+              var b64 = btoa(binary);
+
+              var nn = String(seq + 1).padStart(2, '0');
+              var webName = date + '_' + newSlug.replace(/^\d{8}_/, '') + '_' + nn + '.jpg';
+              var webRel = 'files/photoblog/' + webName;
+              files.push({ path: webRel, content: b64, encoding: 'base64' });
+
+              photos.push({
+                web: webRel,
+                original: file.name,
+                alt: selectedFiles.length > 1 ? title + ' - ' + (seq + 1) : title,
+                caption: '',
+                status: 'jpeg',
+              });
             });
           });
         });
-      });
 
-      imgChain.then(function () {
-        var tagList = tags.split(',').map(function (t) { return t.trim(); }).filter(Boolean);
-        var post = {
-          title: title, date: date, slug: newSlug, caption: caption,
-          tags: tagList.length ? tagList : ['photoblog'],
-          photos: photos, thumbnail: photos[0].web,
-        };
-        var md = generateMarkdown(post);
-        files.push({ path: 'metadata/' + newSlug + '.json', content: JSON.stringify(post, null, 2) + '\n' });
-        if (md) files.push({ path: 'posts/' + newSlug + '.md', content: md });
-        return ghCreateCommitWithRetry(files, 'Add post: ' + title);
-      }).then(function () { overlay.remove(); showToast('Saved. Site will rebuild in ~2 minutes.'); })
+        return imgChain.then(function () {
+          var tagList = tags.split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+          var post = {
+            title: title, date: date, slug: newSlug, caption: caption,
+            tags: tagList.length ? tagList : ['photoblog'],
+            photos: photos, thumbnail: photos[0].web,
+          };
+          var md = generateMarkdown(post);
+          files.push({ path: 'metadata/' + newSlug + '.json', content: JSON.stringify(post, null, 2) + '\n' });
+          if (md) files.push({ path: 'posts/' + newSlug + '.md', content: md });
+          return ghCreateCommitWithRetry(files, 'Add post: ' + title);
+        });
+      }).then(function () { overlay.remove(); showToast('Post added. Site will rebuild in ~2 minutes.'); })
       .catch(function (err) { alert('Error: ' + err.message); btn.disabled = false; btn.textContent = 'Add post'; });
     });
   }

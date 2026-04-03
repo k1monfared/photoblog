@@ -13,9 +13,11 @@
     lbImg.src = src;
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    history.pushState({ modal: 'lightbox' }, '');
   }
 
   function lbCloseFn() {
+    if (!overlay.classList.contains('open')) return;
     overlay.classList.remove('open');
     document.body.style.overflow = '';
   }
@@ -130,9 +132,11 @@
     updateCarousel();
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
+    history.pushState({ modal: 'carousel' }, '');
   }
 
   function closeModal() {
+    if (!modal.classList.contains('open')) return;
     modal.classList.remove('open');
     document.body.style.overflow = '';
     prevBtn.classList.remove('visible');
@@ -197,4 +201,10 @@
     if (dx < 0 && currentIdx < images.length - 1) { currentIdx++; updateCarousel(); }
     if (dx > 0 && currentIdx > 0) { currentIdx--; updateCarousel(); }
   }, { passive: true });
+
+  // Back button closes modals
+  window.addEventListener('popstate', function (e) {
+    if (overlay.classList.contains('open')) { lbCloseFn(); return; }
+    if (modal && modal.classList.contains('open')) { closeModal(); return; }
+  });
 })();

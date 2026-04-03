@@ -1390,6 +1390,29 @@
     });
   }
 
+  // --- Back button closes editor dialogs ---
+
+  var dialogOpen = false;
+
+  var bodyObserver = new MutationObserver(function () {
+    var hasDialog = !!document.querySelector('.editor-dialog-overlay');
+    if (hasDialog && !dialogOpen) {
+      dialogOpen = true;
+      history.pushState({ modal: 'editor-dialog' }, '');
+    } else if (!hasDialog && dialogOpen) {
+      dialogOpen = false;
+    }
+  });
+  bodyObserver.observe(document.body, { childList: true });
+
+  window.addEventListener('popstate', function () {
+    if (dialogOpen) {
+      var overlay = document.querySelector('.editor-dialog-overlay');
+      if (overlay) overlay.remove();
+      dialogOpen = false;
+    }
+  });
+
   // --- Init ---
 
   function init() {

@@ -3,3 +3,7 @@ __pycache__/
 .build_cache.json
 download_urls.json
 files/thumbs/
+.idea/
+.playwright-mcp/
+android/
+STATUS.log

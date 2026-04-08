@@ -5,7 +5,8 @@ thumbnail: files/photoblog/2026-04-04_createavity_01.jpg
 
 # CreaTeavity
 
-Mint, walnut, raspberry, lime zest, lime, honey
+Mint, walnut, raspberry, lime zest, lime, honey.
+The lime zest was a mistake, made it really bitter, and the more it steeped the more bitter it got. Probably should have peeled the lime too. Or not steep the lime at all.
 
 ![CreaTeavity - 1](files/photoblog/2026-04-04_createavity_01.jpg)
 

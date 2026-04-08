@@ -115,6 +115,12 @@ nav button:hover, nav .nav-icon:hover {
 #theme-toggle {
   font-size: 1rem;
   line-height: 1;
+  background: var(--text);
+  color: var(--bg);
+}
+
+#theme-toggle:hover {
+  opacity: 0.8;
 }
 
 /* ===== MAIN CONTENT ===== */

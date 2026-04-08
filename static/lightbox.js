@@ -1,38 +1,5 @@
-// Lightbox for post page images + carousel modal for grid items
+// Carousel modal for grid items (base lightbox provided by site_kit)
 (function () {
-  // --- Lightbox for post detail page ---
-  var overlay = document.createElement('div');
-  overlay.className = 'lightbox-overlay';
-  overlay.innerHTML = '<img class="lightbox-img"><button class="lightbox-close">&times;</button>';
-  document.body.appendChild(overlay);
-
-  var lbImg = overlay.querySelector('.lightbox-img');
-  var lbClose = overlay.querySelector('.lightbox-close');
-
-  function lbOpen(src) {
-    lbImg.src = src;
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    history.pushState({ modal: 'lightbox' }, '');
-  }
-
-  function lbCloseFn() {
-    if (!overlay.classList.contains('open')) return;
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('.post-body img').forEach(function (el) {
-    el.style.cursor = 'zoom-in';
-    el.addEventListener('click', function () { lbOpen(el.src); });
-  });
-
-  overlay.addEventListener('click', function (e) {
-    if (e.target === overlay || e.target === lbClose) lbCloseFn();
-  });
-  lbClose.addEventListener('click', lbCloseFn);
-
-  // --- Carousel modal for grid items ---
   var modal = document.getElementById('post-modal');
   if (!modal) return;
 
@@ -169,9 +136,8 @@
 
   // Keyboard: left/right arrows for carousel, escape to close
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      lbCloseFn();
-      if (modal.classList.contains('open')) closeModal();
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closeModal();
     }
     if (!modal.classList.contains('open')) return;
     if (e.key === 'ArrowLeft' && currentIdx > 0) {
@@ -202,9 +168,8 @@
     if (dx > 0 && currentIdx > 0) { currentIdx--; updateCarousel(); }
   }, { passive: true });
 
-  // Back button closes modals
+  // Back button closes modal
   window.addEventListener('popstate', function (e) {
-    if (overlay.classList.contains('open')) { lbCloseFn(); return; }
     if (modal && modal.classList.contains('open')) { closeModal(); return; }
   });
 })();

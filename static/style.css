@@ -1,38 +1,15 @@
 /* === Instagram-style Photoblog === */
 
-/* Photoblog color overrides (site_kit base.css provides defaults) */
+/* Photoblog-specific variables (colors come from site_kit base.css) */
 :root {
-  --bg-dark: #000;
-  --text-dark: #f5f5f5;
-  --bg-light: #fafafa;
-  --text-light: #262626;
-  --bg: var(--bg-dark);
-  --text: var(--text-dark);
-  --toggle-bg: var(--bg-light);
-  --toggle-text: var(--text-light);
-  /* dark mode photoblog-specific values */
-  --bg-card: #1a1a1a;
-  --text-muted: #a8a8a8;
-  --link: #0095f6;
-  --link-hover: #4cb5f9;
-  --border: #363636;
-  --header-bg: #000;
+  --bg-card: var(--code-bg);
   --overlay: rgba(0,0,0,0.5);
-  --modal-bg: #1a1a1a;
+  --modal-bg: var(--code-bg);
   --shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 [data-theme="light"] {
-  --bg: var(--bg-light);
-  --text: var(--text-light);
-  --toggle-bg: var(--bg-dark);
-  --toggle-text: var(--text-dark);
   --bg-card: #fff;
-  --text-muted: #8e8e8e;
-  --link: #0095f6;
-  --link-hover: #00376b;
-  --border: #dbdbdb;
-  --header-bg: #fff;
   --overlay: rgba(0,0,0,0.3);
   --modal-bg: #fff;
   --shadow: 0 1px 3px rgba(0,0,0,0.12);
